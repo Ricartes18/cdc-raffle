@@ -3,217 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mega Raffle</title>
+<title>World Tourism Month Grand Raffle • CDC International Airport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
 <style>
 /* CSS Reset and Variables */
 :root {
-  --bg-color: #0f172a;
-  --panel-bg: rgba(30, 41, 59, 0.7);
-  --border-color: rgba(148, 163, 184, 0.2);
-  --text-main: #f8fafc;
+  --bg-dark: #070b14;
+  --bg-card: rgba(15, 23, 42, 0.95);
+  --airport-amber: #ffb703;
+  --airport-orange: #fb8500;
+  --airport-cyan: #00b4d8;
+  --airport-blue: #023e8a;
+  --airport-gold: #fbbf24;
+  --passport-red: #d90429;
+  --text-bright: #f8fafc;
   --text-muted: #94a3b8;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --success: #10b981;
-  --winner-gold: #fbbf24;
-  --card-width: 250px;
-  --card-margin: 10px;
+  --border-glow: rgba(255, 183, 3, 0.3);
+  --card-width: 270px;
+  --card-margin: 12px;
   --total-card-width: calc(var(--card-width) + var(--card-margin) * 2);
 }
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  overflow-x: hidden;
-  display: flex;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-bright);
   height: 100vh;
-}
-
-/* Layout */
-.container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-.sidebar {
-  width: 350px;
-  background: var(--panel-bg);
-  border-right: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
-  backdrop-filter: blur(10px);
-  z-index: 20;
-}
-
-.main-content {
-  flex: 1;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(2, 62, 138, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(255, 183, 3, 0.08) 0%, transparent 50%),
+    linear-gradient(to bottom, #070b14 0%, #0a0f1d 100%);
 }
 
-/* Sidebar Elements */
-h1 {
-  font-size: 1.5rem;
-  margin-top: 0;
-  margin-bottom: 20px;
-  text-align: center;
-  color: var(--text-main);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+/* Ambient Runway Lines Background */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.control-group {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-label {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-textarea {
-  width: 100%;
-  height: 120px;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 10px;
-  border-radius: 8px;
-  resize: vertical;
-  box-sizing: border-box;
-  font-family: monospace;
-}
-
-button {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-button:hover:not(:disabled) {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-}
-
-button:disabled {
-  background: #475569;
-  cursor: not-allowed;
-  opacity: 0.7;
-  transform: none;
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background: rgba(59, 130, 246, 0.1);
-}
-
-.btn-success {
-  background: var(--success);
-}
-.btn-success:hover:not(:disabled) {
-  background: #059669;
-}
-
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-}
-
-/* Stats */
-.stats {
-  background: rgba(15, 23, 42, 0.8);
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 20px;
-  text-align: center;
-}
-.stats .count {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--winner-gold);
-  text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
-}
-
-/* Winners Table */
-.winners-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.winners-list {
-  flex: 1;
-  overflow-y: auto;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.winner-item {
-  padding: 10px;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.winner-item:last-child {
-  border-bottom: none;
-}
-.winner-name {
-  font-weight: bold;
-  font-size: 0.95rem;
-}
-.winner-meta {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+/* Top Airport Departure Terminal Header */
+.airport-header {
+  position: relative;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 30px;
+  background: rgba(10, 15, 29, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--border-glow);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Ticker Area */
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.airplane-badge {
+  background: linear-gradient(135deg, var(--airport-amber), var(--airport-orange));
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 0 20px rgba(255, 183, 3, 0.4);
+}
+
+.title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.airport-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: var(--airport-amber);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
+/* Flight Stats Display Board */
+.stats-board {
+  display: flex;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 183, 3, 0.2);
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-box:last-child {
+  border-right: none;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--airport-amber);
+  text-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
+}
+
+.header-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-bright);
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+}
+
+.icon-btn:hover {
+  background: rgba(255, 183, 3, 0.2);
+  border-color: var(--airport-amber);
+  transform: translateY(-2px);
+}
+
+/* Main Display Area */
+.main-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* Flight Departure Board Ticker Screen */
+.departure-board-frame {
+  width: 100%;
+  max-width: 1400px;
+  position: relative;
+  background: rgba(10, 14, 26, 0.9);
+  border: 3px solid rgba(255, 183, 3, 0.4);
+  border-radius: 20px;
+  padding: 30px 0;
+  box-shadow: 
+    0 0 50px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(255, 183, 3, 0.2);
+  overflow: hidden;
+}
+
+.board-header-bar {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  right: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--airport-amber);
+  text-transform: uppercase;
+  border-bottom: 1px dashed rgba(255, 183, 3, 0.3);
+  padding-bottom: 6px;
+}
+
 .ticker-container {
   position: relative;
   width: 100%;
-  height: 300px;
-  margin: auto 0;
+  height: 220px;
   display: flex;
   align-items: center;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(15, 23, 42, 0) 100%);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
   overflow: hidden;
-  box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+  margin-top: 15px;
 }
 
 .ticker-track {
@@ -224,115 +257,179 @@ button:disabled {
   will-change: transform;
 }
 
-/* Center Reticle */
+/* Reticle / Runway Target Scanner */
 .reticle {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
   width: 4px;
-  background: var(--winner-gold);
+  background: linear-gradient(to bottom, var(--airport-amber), var(--airport-orange));
   transform: translateX(-50%);
-  z-index: 10;
-  box-shadow: 0 0 15px var(--winner-gold), 0 0 5px var(--winner-gold);
+  z-index: 30;
+  box-shadow: 0 0 20px var(--airport-amber);
 }
 
 .reticle::before, .reticle::after {
-  content: '';
+  content: '▼';
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  border: 15px solid transparent;
+  color: var(--airport-amber);
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px var(--airport-amber);
 }
 
-.reticle::before {
-  top: 0;
-  border-top-color: var(--winner-gold);
-}
+.reticle::before { top: -2px; }
+.reticle::after { bottom: -2px; content: '▲'; }
 
-.reticle::after {
-  bottom: 0;
-  border-bottom-color: var(--winner-gold);
-}
-
-/* Card */
-.card {
+/* Boarding Pass Card Styling */
+.boarding-pass-card {
   width: var(--card-width);
   height: 180px;
   margin: 0 var(--card-margin);
-  background: rgba(15, 23, 42, 0.9);
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 14px 18px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: center;
+  justify-content: space-between;
   flex-shrink: 0;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
-.card::before {
+.boarding-pass-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; height: 4px;
-  background: var(--accent);
+  top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--airport-cyan), var(--airport-amber));
 }
 
-.card .name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text-main);
+.pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--airport-amber);
+  letter-spacing: 1px;
+}
+
+.pass-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.passenger-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.passenger-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-bright);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;
+  line-height: 1.2;
 }
 
-.card .dept {
-  font-size: 0.85rem;
-  padding: 6px 12px;
-  border-radius: 20px;
-  margin-bottom: 12px;
+.passenger-dept {
+  display: inline-block;
+  font-size: 0.75rem;
   font-weight: 600;
-  background: rgba(255,255,255,0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #90e0ef;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
+.pass-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
 
-.card.winner {
-  border-color: var(--winner-gold);
-  box-shadow: 0 0 40px rgba(251, 191, 36, 0.4);
+/* Winner Card Highlight */
+.boarding-pass-card.winner-active {
+  border-color: var(--airport-amber);
   transform: scale(1.08);
-  z-index: 5;
-  background: rgba(30, 41, 59, 1);
-}
-.card.winner::before {
-  background: var(--winner-gold);
+  box-shadow: 0 0 35px rgba(255, 183, 3, 0.5);
+  z-index: 10;
+  background: linear-gradient(145deg, #2d3748, #1a202c);
 }
 
-/* Confetti */
-#confetti-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
+.boarding-pass-card.winner-active::before {
+  background: var(--airport-amber);
 }
 
-/* Modal */
+/* Boarding Call Control Button */
+.control-zone {
+  margin-top: 40px;
+  position: relative;
+  z-index: 20;
+}
+
+.btn-boarding-call {
+  background: linear-gradient(135deg, var(--airport-amber) 0%, var(--airport-orange) 100%);
+  color: #070b14;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 18px 45px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 
+    0 10px 30px rgba(255, 183, 3, 0.4),
+    0 0 0 4px rgba(255, 183, 3, 0.2);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+}
+
+.btn-boarding-call:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 
+    0 15px 40px rgba(255, 183, 3, 0.6),
+    0 0 0 6px rgba(255, 183, 3, 0.3);
+}
+
+.btn-boarding-call:disabled {
+  background: #334155;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Modal Overlay Base */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(5, 8, 16, 0.88);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -347,206 +444,1123 @@ button:disabled {
   pointer-events: auto;
 }
 
-.modal {
-  background: linear-gradient(145deg, var(--panel-bg), #0f172a);
-  border: 2px solid var(--winner-gold);
-  border-radius: 20px;
-  padding: 50px;
-  text-align: center;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 80px rgba(251, 191, 36, 0.15);
+/* Official Passport Winner Modal */
+.passport-modal {
+  width: 520px;
+  max-width: 92%;
+  background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
+  border: 3px solid var(--airport-amber);
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(255, 183, 3, 0.25);
   transform: scale(0.85) translateY(20px);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  text-align: center;
 }
 
-.modal-overlay.active .modal {
+.modal-overlay.active .passport-modal {
   transform: scale(1) translateY(0);
 }
 
-.modal h2 {
-  color: var(--winner-gold);
-  font-size: 3rem;
-  margin-top: 0;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+.passport-watermark {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  font-size: 15rem;
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
 }
 
-.modal .winner-details {
-  margin: 40px 0;
+.passport-header {
+  border-bottom: 2px solid rgba(255, 183, 3, 0.3);
+  padding-bottom: 15px;
+  margin-bottom: 25px;
 }
-.modal .winner-name {
+
+.passport-emblem {
   font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
 }
-.modal .winner-dept {
-  font-size: 1.1rem;
-  display: inline-block;
-  padding: 8px 20px;
-  border-radius: 30px;
-  background: rgba(255,255,255,0.1);
-  margin-bottom: 15px;
+
+.passport-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: var(--airport-amber);
+  text-transform: uppercase;
+}
+
+.passport-subtitle {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--text-bright);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.winner-info-card {
+  background: rgba(10, 14, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.info-row {
+  margin-bottom: 14px;
+  text-align: left;
+}
+.info-row:last-child { margin-bottom: 0; }
+
+.info-label {
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.info-value-name {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-bright);
+  line-height: 1.2;
+}
+
+.info-value-dept {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--airport-cyan);
+}
+
+/* Stamp Graphic Animation */
+.stamp-seal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 110px;
+  height: 110px;
+  border: 4px double var(--passport-red);
+  border-radius: 50%;
+  color: var(--passport-red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 900;
+  font-size: 0.75rem;
+  line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;
+  transform: rotate(-15deg) scale(2);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  pointer-events: none;
 }
 
-.modal button {
+.modal-overlay.active .stamp-seal.stamped {
+  opacity: 0.9;
+  transform: rotate(-15deg) scale(1);
+}
+
+.btn-claim-passport {
   width: 100%;
-  font-size: 1.2rem;
-  padding: 15px;
-  background: var(--winner-gold);
-  color: #000;
-}
-.modal button:hover {
-  background: #f59e0b;
+  background: linear-gradient(135deg, var(--airport-amber), var(--airport-orange));
+  color: #070b14;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  box-shadow: 0 8px 20px rgba(255, 183, 3, 0.3);
+  transition: all 0.2s;
 }
 
-/* Audio Toggle */
-.audio-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 50;
+.btn-claim-passport:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
 }
-.audio-toggle button {
-  background: var(--panel-bg);
-  border: 1px solid var(--border-color);
-  padding: 10px;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+
+/* Settings Modal */
+.settings-box {
+  background: rgba(15, 23, 42, 0.95);
+  border: 2px solid var(--border-glow);
+  border-radius: 20px;
+  padding: 30px;
+  width: 480px;
+  max-width: 90%;
+  color: var(--text-bright);
+}
+
+.settings-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: var(--airport-amber);
+}
+
+.form-group {
+  margin-bottom: 18px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.form-control {
+  background: rgba(10, 14, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-bright);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.winners-log {
+  max-height: 180px;
+  overflow-y: auto;
+  background: rgba(10, 14, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.winner-log-item {
+  padding: 8px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  font-size: 1.2rem;
-  backdrop-filter: blur(5px);
-}
-.audio-toggle button:hover {
-  background: rgba(255,255,255,0.1);
+  font-size: 0.85rem;
 }
 
-/* Department Colors */
-.dept-administration { background-color: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
-.dept-public-works { background-color: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); }
-.dept-health { background-color: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
-.dept-social-welfare { background-color: rgba(236, 72, 153, 0.15); color: #f9a8d4; border: 1px solid rgba(236, 72, 153, 0.4); }
-.dept-it { background-color: rgba(139, 92, 246, 0.15); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
-.dept-treasury { background-color: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
-.dept-default { background-color: rgba(148, 163, 184, 0.15); color: #e2e8f0; border: 1px solid rgba(148, 163, 184, 0.4); }
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(0,0,0,0.2); 
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.2); 
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.3); 
+/* Canvas Confetti */
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
 }
 </style>
 </head>
 <body>
 
-<div class="container" style="flex-direction: column;">
-  <!-- Main Ticker Content -->
-  <div class="main-content">
-    <!-- Top Bar -->
-    <div style="position: absolute; top: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: flex-start; z-index: 50; pointer-events: none;">
-      <div style="pointer-events: auto; display: flex; gap: 20px; align-items: center;">
-        <div style="display: flex; flex-direction: column;">
-          <h1 style="text-align: left; margin: 0 0 10px 0; font-size: 2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">🎟️ Mega Raffle</h1>
-          <button id="btn-load-participants" class="btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;">Load Participants</button>
-        </div>
-        <div class="stats" style="margin: 0; padding: 10px 20px; display: inline-block; text-align: left; border-radius: 12px; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(5px);">
-          <div class="label" style="font-size: 0.9rem;">Eligible Entries</div>
-          <div class="count" id="pool-count" style="font-size: 2.5rem; line-height: 1;">0</div>
-        </div>
+<!-- Airport Departure Terminal Header -->
+<header class="airport-header">
+  <div class="brand-section">
+    <div class="airplane-badge">✈️</div>
+    <div class="title-group">
+      <div class="airport-tag">
+        <span class="live-dot"></span> CDC INT'L AIRPORT • TERMINAL 2026
       </div>
-      
-      <div style="display: flex; gap: 10px; pointer-events: auto;">
-        <button id="btn-settings" title="Settings" style="background: var(--panel-bg); border: 1px solid var(--border-color); padding: 10px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; backdrop-filter: blur(5px);">⚙️</button>
-        <button id="btn-audio" title="Toggle Sound" style="background: var(--panel-bg); border: 1px solid var(--border-color); padding: 10px; border-radius: 50%; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; backdrop-filter: blur(5px);">🔊</button>
-      </div>
+      <h1 class="main-title">Tourism Month Grand Raffle</h1>
+    </div>
+  </div>
+
+  <div class="stats-board">
+    <div class="stat-box">
+      <span class="stat-label">Passengers</span>
+      <span class="stat-value" id="count-total">0</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-label">Boarded</span>
+      <span class="stat-value" id="count-boarded">0</span>
+    </div>
+  </div>
+
+  <div class="header-controls">
+    <button class="icon-btn" id="btn-settings" title="Flight Settings">⚙️</button>
+    <button class="icon-btn" id="btn-audio" title="Toggle Terminal Audio">🔊</button>
+  </div>
+</header>
+
+<!-- Main Stage / Flight Departure Board Ticker -->
+<main class="main-stage">
+  <div class="departure-board-frame">
+    <div class="board-header-bar">
+      <span>FLIGHT: CDC-2026</span>
+      <span>STATUS: BOARDING IN PROGRESS</span>
+      <span>GATE: TOURISM-01</span>
     </div>
 
     <div class="ticker-container">
       <div class="reticle"></div>
       <div class="ticker-track" id="ticker-track">
-        <!-- Cards generated here -->
+        <!-- Boarding pass cards will render here dynamically -->
       </div>
     </div>
-    
-    <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 50;">
-      <button class="btn-success" id="btn-spin" style="font-size: 1.5rem; padding: 20px 40px; border-radius: 50px; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4); text-shadow: 0 2px 5px rgba(0,0,0,0.2);" disabled>SPIN / DRAW WINNER</button>
-    </div>
   </div>
-</div>
+
+  <div class="control-zone">
+    <button class="btn-boarding-call" id="btn-spin">
+      <span>✈️</span> ANNOUNCE BOARDING / DRAW WINNER
+    </button>
+  </div>
+</main>
 
 <canvas id="confetti-canvas"></canvas>
 
-<!-- Settings Modal -->
-<div class="modal-overlay" id="settings-modal">
-  <div class="modal" style="width: 500px; max-height: 80vh; display: flex; flex-direction: column;">
-    <h2 style="margin-top: 0;">Settings & Data</h2>
+<!-- Official Passport Winner Modal -->
+<div class="modal-overlay" id="winner-modal">
+  <div class="passport-modal">
+    <div class="passport-watermark">✈️</div>
     
-    <div style="overflow-y: auto; flex: 1; padding-right: 10px; text-align: left;">
+    <div class="passport-header">
+      <div class="passport-emblem">🛂</div>
+      <div class="passport-title">Official Travel Passport</div>
+      <div class="passport-subtitle">PRIZE BOARDING VERIFIED</div>
+    </div>
 
-
-      <div class="control-group">
-        <label class="checkbox-group">
-          <input type="checkbox" id="chk-remove-winner" checked>
-          Remove winner from pool after drawing
-        </label>
+    <div class="winner-info-card">
+      <div class="stamp-seal" id="stamp-seal">
+        PRIZE<br>BOARDED<br>★ 2026 ★
       </div>
 
-      <div class="control-group">
-        <label for="spin-duration">Spin Duration (seconds)</label>
-        <input type="number" id="spin-duration" value="5.5" step="0.5" min="1" max="20" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); color: var(--text-main); padding: 8px; border-radius: 8px; font-family: monospace; font-size: 1.1rem; width: 100px;">
+      <div class="info-row">
+        <div class="info-label">Passenger Name</div>
+        <div class="info-value-name" id="modal-name">Lou Anne T. Manalo</div>
       </div>
 
-      <div class="winners-section" style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px; display: flex; flex-direction: column;">
-        <h3 style="margin-top: 0; color: var(--text-main);">🏆 Winners Session Log</h3>
-        <div class="winners-list" id="winners-list" style="max-height: 200px; min-height: 100px; overflow-y: auto; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; margin-bottom: 10px;">
-          <!-- Winners will be populated here -->
-        </div>
-        <button class="btn-secondary" id="btn-export-winners" disabled style="width: 100%;">Export Winners to CSV</button>
+      <div class="info-row" style="margin-top: 12px;">
+        <div class="info-label">Division / Department</div>
+        <div class="info-value-dept" id="modal-dept">CSR and Placement Division</div>
       </div>
     </div>
-    
-    <button id="btn-close-settings" class="btn-secondary" style="margin-top: 20px; width: 100%;">Close</button>
+
+    <button class="btn-claim-passport" id="btn-close-modal">CLAIM BOARDING PASS</button>
   </div>
 </div>
 
-<!-- Winner Modal -->
-<div class="modal-overlay" id="winner-modal">
-  <div class="modal">
-    <h2>🎉 WINNER 🎉</h2>
-    <div class="winner-details">
-      <div class="winner-name" id="modal-name">Juan Dela Cruz</div>
-      <div class="winner-dept" id="modal-dept">Public Works</div>
+<!-- Settings & Flight Log Modal -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="settings-box">
+    <h3>⚙️ Flight Settings & Roster Log</h3>
+    
+    <div class="form-group">
+      <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+        <input type="checkbox" id="chk-remove-winner" checked style="width: 18px; height: 18px;">
+        Remove boarded passenger from future flight draws
+      </label>
     </div>
-    <button id="btn-close-modal">AWESOME!</button>
+
+    <div class="form-group">
+      <label for="spin-duration">Boarding Board Spin Duration (seconds)</label>
+      <input type="number" id="spin-duration" class="form-control" value="5.5" min="1" max="20" step="0.5">
+    </div>
+
+    <div class="form-group" style="margin-top: 20px;">
+      <label>🏆 Boarded Passengers History Log</label>
+      <div class="winners-log" id="winners-log">
+        <!-- Log items dynamically rendered -->
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 20px;">
+      <button class="btn-claim-passport" id="btn-export-winners" style="font-size: 0.9rem; padding: 10px;" disabled>Export Flight Manifest CSV</button>
+      <button class="btn-claim-passport" id="btn-close-settings" style="font-size: 0.9rem; padding: 10px; background: #334155; color: #fff;">Close</button>
+    </div>
   </div>
 </div>
 
 <script>
-// Application Logic
+// HARDCODED PARTICIPANTS DATA (769 Employees)
+const PARTICIPANTS_CSV_DATA = `Rene E. Abad, Regular, Construction Management Division
+Larry J. Abalos, Regular, Building and Facilities Maintenance Division
+Fernando P. Aban Jr., Regular, Public Safety Division
+Katherine T. Abella, Regular, Human Resources Division
+Eric L. Abero, Regular, Assets Management Division
+Alfredo A. Acompañado Jr., Regular, Public Safety Division
+Lovely B. Adobas, Regular, Business Dev't. & Business Enhancement Group
+Krissumpta Maree M. Adona, Regular, Communications Division
+Jeffrey C. Adriano, Regular, Building and Facilities Maintenance Division
+Monica Joy L. Adriano, Regular, Treasury Division
+Lorraine J. Agbilay, Regular, Public Safety Division
+Astrud Q. Aguinaldo, Regular, Communications Division
+Elmer P. Agustin, Regular, Information Technology Department
+Erwin S. Alamares, Regular, Public Safety Division
+Karen H. Alamares, Regular, Human Resources Division
+Agnes A. Alcazar, PBE, Public Safety Division
+John John C. Alfonso, Regular, Assets Management Division
+Edralin S. Allam, Regular, Building and Facilities Permits Division
+Alvin S. Alvaro, Regular, Public Safety Division
+Joaquin B. Ambat, Regular, Building and Facilities Maintenance Division
+Florencio M. Amodo Jr., Regular, Building and Facilities Maintenance Division
+Lito D. Ancajas Jr., Regular, Estate Preservation and Recovery Division
+Noel D. Ancheta, Regular, Public Safety Division
+Anna Lou V. Ang, Regular, Assets Management Division
+Filemon G. Angeles, Regular, Health and Sanitation Division
+Herbert S. Angeles, Regular, Public Safety Division
+Jacob Ceazar P. Anicete II, Regular, Public Safety Division
+Marilen L. Anicete, Regular, Investment Promotions Division II
+Charlen C. Antonio, PBE, Public Safety Division
+Ronald T. Antonio, Regular, CSR and Placement Division
+Liana Bettina D. Apostol, Regular, Communications Division
+Faridha M. Aragon, Regular, Engineering Services Group
+Jan Aldwin B. Arbitrario, Regular, Public Safety Division
+Robert Jessie M. Arce Jr., Regular, Environmental Permits Division
+Allan P. Arceo, Regular, Public Safety Division
+Princess Camille B. Arceo, Regular, Health and Sanitation Division
+Alexandrea Reeva V. Arcilla, Regular, CSR and Placement Division
+Azee T. Arcilla, Regular, Litigation Division
+Rosabelle I. Arenas, Regular, Investment Promotions Division II
+Artemio I. Ariola Jr., PBE, Public Safety Division
+Constante L. Arpilleda Jr., Regular, ESG/Infrastructure Planning Section
+Rowena T. Arroyo, Regular, Environmental Permits Division
+Bella R. Aslarona, Regular, Investment Promotions Division II
+Jason Roy C. Avilla, Regular, Construction Management Division
+Arman T. Bacani, Regular, Building and Facilities Permits Division
+Paul Dexter C. Bacani, Regular, Information Technology Department
+Layola M. Bacuño, Regular, Internal Audit Division
+Manuellito M. Bagguatan, Regular, Public Safety Division
+Rosalinda E. Bajador, Regular, Trade Facilitation Division
+Joel G. Bala, Regular, Public Safety Division
+Neilsen M. Balagot, Regular, Investment Promotions Division I
+Danilo T. Balatbat, Regular, Public Safety Division
+Edwin D. Balatbat, FPE, Assets Management Division
+Ramil P. Balderosa, Regular, Building and Facilities Permits Division
+Dennis C. Balino, Regular, Public Safety Division
+Arthur James C. Balunes, Regular, Trade Facilitation Division
+Abner D. Baluyut, Regular, Estate Preservation and Recovery Division
+Janet D. Baluyut, Regular, Treasury Division
+Kizzel Joi A. Baluyut, Regular, Board Secretariat
+Allan C. Banal, Regular, Internal Audit Division
+Jere May B. Bancolo, Regular, Public Safety Division
+Gerardo D. Bandong, Regular, Public Safety Division
+Samuel G. Bangalan, Regular, Public Safety Division
+Domingo D. Bangit, FPE, Assets Management Division
+Justin C. Baniqued, FPE, Public Safety Division
+Mercedes U. Banting, Regular, Public Safety Division
+Bryan Kier P. Baraquiel, Regular, Information Technology Department
+Anna Gayle T. Barin, Regular, Corporate Services Division
+Ricky C. Baron, Regular, Building and Facilities Maintenance Division
+Mando B. Barrera, Regular, Public Safety Division
+Willy D. Barte, Regular, Investment Promotions Division I
+Angelita T. Basco, Regular, Trade Facilitation Division
+Ramilo D. Bathan, Regular, Accounting Division
+Jennileen C. Bautista, Regular, Purchasing Division
+Ronaldo B. Bautista, Regular, Assets Management Division
+Roberto P. Bernardino, Regular, Assets Management Division
+Arvin M. Bernardo, Regular, Public Safety Division
+Roberto M. Bernardo Jr., Regular, Building and Facilities Maintenance Division
+Natalie L. Bie, Regular, Accounting Division
+Jonathan M. Bingcang, Regular, Information Technology Department
+Rodolfo S. Bingcang, Regular, Public Safety Division
+Robert R. Blanza, Regular, Assets Management Division
+Ador I. Bognot, Regular, Building and Facilities Permits Division
+Erwin C. Bognot, Regular, Construction Management Division
+Chanda B. Bolaton, Regular, Public Safety Division
+Laura Sophia F. Bondoc, FPE, Communications Division
+Roberto R. Brita, Regular, Public Safety Division
+Ma. Bernadette P. Bucad, Regular, Corporate Planning Division
+Omar G. Bucad, Regular, Public Safety Division
+Juanito B. Bucal, Regular, Assets Management Division
+Reynalene C. Bulan, FPE, Purchasing Division
+Pacifico N. Butiu, Regular, Trade Facilitation Division
+Justin Nico D. Caballa, Regular, Trade Facilitation Division
+Nadine Kyrah D. Caballa, Regular, Purchasing Division
+Judy Ann V. Cabarle, Regular, Trade Facilitation Division
+Viktoria Grace P. Cabarle, PBE, Public Safety Division
+Jerry N. Cabigting, FPE, Assets Management Division
+Maria Rosario T. Cabigting, Regular, Assets Management Division
+Ronaldo L. Cabigting, Regular, Building and Facilities Permits Division
+Anthony F. Cacap, Regular, Environmental Permits Division
+Princess Renalyn T. Cadag, FPE, Purchasing Division
+Rodel M. Calderon, Regular, Health and Sanitation Division
+Bay-viz Grace T. Caleon, FPE, Office of the President
+Pepito P. Calimutan, Regular, Public Safety Division
+Anthony C. Calma, Regular, Estate Preservation and Recovery Division
+Marlon L. Calma, Regular, Public Safety Division
+Amor Joseph C. Camaya, COS, Commission on Audit
+Ian Kevin N. Camaya, Regular, Environmental Permits Division
+Ma. Zoraida G. Camello, COS, Office of the President
+Amancio S. Campo Jr., Regular, Building and Facilities Maintenance Division
+Mayflor R. Candelaria, Regular, Environmental Permits Division
+Kyla Mari M. Cangco, PBE, Public Safety Division
+Marcial T. Caniones, Regular, Estate Preservation and Recovery Division
+Jose Jasper V. Canlas, Regular, Assets Management Division
+Luisito S. Canlas, Regular, Building and Facilities Maintenance Division
+Sandra N. Caparas, Regular, Environmental Permits Division
+Maria Socorro Simonette L. Capid, Regular, Human Resources Division
+Socorro L. Capili, Regular, Health and Sanitation Division
+Sahara D. Capitulo, COS, Commission on Audit
+Francisca M. Capulong, Regular, Building and Facilities Permits Division
+Jesusa A. Capulong, Regular, Treasury Division
+Renelito C. Carbungco, Regular, Trade Facilitation Division
+Roy N. Carbungco, Regular, Public Safety Division
+Ronald D. Cardinoza, Regular, Public Safety Division
+Joshua Kevin I. Carreon, Regular, Health and Sanitation Division
+Rolando S. Carreon Jr., Regular, Litigation Division
+Myla P. Casaclang, PBE, Public Safety Division
+Normangel C. Casaclang, Regular, Assets Management Division
+Doni Rey C. Caseñas, Regular, Assets Management Division
+Ricardo Z. Castañeda Jr., Regular, Building and Facilities Permits Division
+Michael D. Castillo, Regular, Human Resources Division
+Ramonito C. Castillo, Regular, Building and Facilities Maintenance Division
+Arvin M. Castro, Regular, Accounting Division
+Justine Ryan B. Castro, PR, Records Management Division
+Marissa M. Castro, Regular, Human Resources Division
+Mary Janet M. Castro, Regular, Corporate Planning Division
+Allan A. Catacutan, Regular, Environmental Permits Division
+Beverly C. Catacutan, Regular, Trade Facilitation Division
+Louie M. Catli, Regular, Environmental Permits Division
+Daisy May C. Cato, Regular, Human Resources Division
+Noemi Rose B. Cayabyab, PBE, Public Safety Division
+Anthony D. Cayanan, Regular, Estate Preservation and Recovery Division
+Ronald L. Cayanan, Regular, Health and Sanitation Division
+Alger C. Cayme, Regular, Public Safety Division
+Leo Cris G. Celeste, Regular, Public Safety Division
+Angelito S. Cendaña, FPE, Assets Management Division
+Renan Joseph A. Cenzon, Regular, Building and Facilities Maintenance Division
+Robin P. Cenzon, Regular, Public Safety Division
+Anne C. Chico, Regular, Purchasing Division
+Andrea-Gayle B. Co, Regular, Investment Promotions Division I
+Edmund G. Conag, Regular, Public Safety Division
+Ferdinand Concepcion, PBE, Public Safety Division
+Luis S. Concepcion, Regular, Public Safety Division
+Mary Abigail D. Consignado, Regular, Investment Promotions Division I
+Gilbert B. Constantino, Regular, Building and Facilities Maintenance Division
+Alexander J. Corachea, Regular, Corporate Services Division
+Chenaryl M. Cordero, Regular, Purchasing Division (BACS)
+Francisco R. Cordero Jr., Regular, Assets Management Division
+Raymond A. Cordero, Regular, Health and Sanitation Division
+Ryan James C. Cordova, Regular, Public Safety Division
+Lhervin L. Coronel, Regular, Public Safety Division
+Edwin S. Cortez, Regular, Building and Facilities Maintenance Division
+Elginne C. Cortez, Regular, Public Safety Division
+Felino R. Cortez, Regular, Building and Facilities Maintenance Division
+Jessy D. Cortez, Regular, Public Safety Division
+Kristin Mae D. Cortez, Regular, Admin. & Finance Group
+Wyda M. Cosme, Regular, Litigation Division
+Precila A. Cruz, Regular, Building and Facilities Permits Division
+Raymund Erwin B. Cruz, Regular, Property Management Division
+Albert T. Cunanan, Regular, Accounting Division
+Allaizza Marie S. Cunanan, Regular, Building and Facilities Permits Division
+Athan Jan M. Cunanan, PBE, Public Safety Division
+Gina P. Cunanan, Regular, Communications Division
+Nicolas P. Cunanan Jr., Regular, Property Management Division
+Julia I. Cunanan, Regular, Communications Division
+Karen Kristel P. Cunanan, PBE, Tourism Promotion Division
+Mario T. Cunanan, Regular, Building and Facilities Maintenance Division
+Francis Louie D. Dacer, Regular, Office of the President/CEO
+Carmelita Y. Dale, Regular, Property Management Division
+Johann Lloyd P. Danan, Regular, Investment Promotions Division I
+Rommel G. Dantes, Regular, Public Safety Division
+Elaine L. Daquis, Regular, Human Resources Division
+Darwin Z. Datu, Regular, Public Safety Division
+Ethel T. Datu, Regular, Board Secretariat
+Aldrin M. David, Regular, Building and Facilities Maintenance Division
+Aline C. David, Regular, Health and Sanitation Division
+Allan V. David, Regular, Public Safety Division
+Anjanette S. David, PBE, Public Safety Division
+Anthony Allen N. David, Regular, Construction Management Division
+Clariza P. David, Regular, Trade Facilitation Division
+Cyryll B. David, Regular, Public Safety Division
+Jake C. David, Regular, Building and Facilities Permits Division
+Jason B. David, Regular, Building and Facilities Permits Division
+Paulino M. David Jr., Regular, Public Safety Division
+Kelvin R. David, COS, Commission on Audit
+Mario Q. David, Regular, Public Safety Division
+Psalms Iriana C. David, Regular, Health and Sanitation Division
+Roselyn T. David, Regular, Public Safety Division
+Danny N. Dayan, FPE, OVP for Legal Affairs Group
+Jesseline S. Dayao, Regular, Accounting Division
+Precious Mariz M. Dayao, Regular, Health and Sanitation Division
+Fredeswindo S. Dayola, Regular, Assets Management Division
+Arthur B. Dayrit, FPE, Public Safety Division
+Michaela A. Dayrit, Regular, Treasury Division
+Russell C. Dayrit, Regular, Building and Facilities Maintenance Division
+Wilfredo T. Dayrit, Regular, Purchasing Division
+Rolet T. De Dios, Regular, Purchasing Division (BACS)
+Ariel A. De Guzman, Regular, Assets Management Division
+Edcel John B. De Guzman, Regular, Public Safety Division
+Nicole Andre D. De Guzman, Regular, Information Technology Department
+Ricardo B. De Guzman, Regular, Building and Facilities Maintenance Division
+Princess Yvette D. De Jesus, Regular, Communications Division
+Rian G. De Jesus, Regular, Assets Management Division
+Jose Miguel R. De La Rosa, Regular, Admin. & Finance Group
+Arvin M. De Leon, Regular, Public Safety Division
+Julie Ann R. De Leon, Regular, Investment Promotions Division II
+Ryan C. De Leon, Regular, Public Safety Division
+Rodgardo M. Deang, Regular, Records Management Division
+Richard G. Del Fin, PBE, Public Safety Division
+Jerry P. Dela Cruz, Regular, Building and Facilities Maintenance Division
+Othello C. Dela Cruz, Regular, Records Management Division
+Reuben H. Dela Cruz, Regular, Building and Facilities Maintenance Division
+Rogel S. Dela Rosa, Regular, Trade Facilitation Division
+Jaypee A. Delantar, Regular, Trade Facilitation Division
+Reynaldo M. Delaserna, Regular, Public Safety Division
+Ernesto O. Delfin Jr., Regular, Assets Management Division
+Alexandra C. Delos Santos, PBE, Public Safety Division
+Melito S. Desales, Regular, Internal Audit Division
+Agnes Vicenta T. Devanadera, Regular, Office of the President/CEO
+Kemzy C. Deza, Regular, Public Safety Division
+Gerardo G. Dia, COS, OVP for Security Services Group
+Hernando R. Dianelo, Regular, Building and Facilities Maintenance Division
+Magda G. Diaz, Regular, Public Safety Division
+Riza B. Diaz, Regular, Investment Promotions Division I
+Jose G. Dimacali Jr., Regular, Building and Facilities Maintenance Division
+Frances Ruth C. Dimalanta, Regular, Communications Division
+Damanique C. Dioquino, Regular, Public Safety Division
+Arnaldo Efren D. Dizon, Regular, Public Safety Division
+Erwin C. Dizon, Regular, Tourism Promotions Division
+Eunice May P. Dizon, Regular, Human Resources Division
+Floyd S. Dizon, Regular, Building and Facilities Permits Division
+Mark Anthony A. Dizon, Regular, Public Safety Division
+Ritzi R. Dizon, Regular, Public Safety Division
+Maria Clemencita D. Dobles, Regular, Health and Sanitation Division
+Rosano Noel Domagas, Regular, Public Safety Division
+Adrian V. Domingo, Regular, Public Safety Division
+Jerry T. Dormido, Regular, Public Safety Division
+Danilo R. Duarte Jr., Regular, Investment Promotions Division I
+Nelson John D. Duenas Jr., Regular, Public Safety Division
+Raoul Andrew J. Dulawan, Regular, Communications Division
+Noel T. Dungca, Regular, Public Safety Division
+Aries P. Duya, Regular, Assets Management Division
+Teddy D. Ellema, Regular, Public Safety Division
+Alvin S. Emperador, Regular, Public Safety Division
+Jeniviv T. Enriquez, Regular, Public Safety Division
+JV V. Enriquez, Regular, Public Safety Division
+Lorna P. Escoto, Regular, Trade Facilitation Division
+Randie L. Escoto, Regular, Assets Management Division
+Jessa C. Esguerra, Regular, Admin. & Finance Group
+Joseph John G. Espanta, FPE, Tourism Promotion Division
+Arnold S. Espinosa, Regular, Public Safety Division
+Rodolfo L Esteban, Regular, Building and Facilities Maintenance Division
+Mary Therese Gabrielle B. Estioko, Regular, Litigation Division
+Ely S. Estrada, Regular, Public Safety Division
+Pelita P. Estrada, Regular, Treasury Division
+Sonny B. Evangelista Jr., FPE, Public Safety Division
+Renante M. Evedes, Regular, Public Safety Division
+Aubrey Bastian P. Fabian, Regular, Health and Sanitation Division
+Aldrin C. Fabros, Regular, Assets Management Division
+Leonora A. Faller, Regular, Property Management Division
+Rolando B. Faller, COS, Office of the President
+Jubie T. Faustorilla, Regular, Public Safety Division
+Mark Alain B. Felker, Regular, Tourism Promotions Division
+Blezilda E. Fernandez, Regular, Records Management Division
+Francis P. Fernandez, Regular, Property Management Division
+Romelito M. Fernandez, Regular, Public Safety Division
+Allan N. Ferrer, Regular, Accounting Division
+Vicente P. Ferrer, Regular, Assets Management Division
+Almar A. Fetalco, Regular, Building and Facilities Maintenance Division
+Adrianne T. Florencio, Regular, Trade Facilitation Division
+Robin G. Flores, Regular, Trade Facilitation Division
+Joseph Robert S. Franco, Regular, Investment Promotions Division I
+Conrado B. Frasco, Regular, Public Safety Division
+Michael B. Frasco, Regular, Public Safety Division
+Nelson A. Fuensalida, Regular, Public Safety Division
+Joseph S. Ga-as Jr., PBE, Public Safety Division
+Darwin E. Gabales, Regular, Public Safety Division
+Randy Paul R. Gabriel, Regular, Public Safety Division
+Jonathan P. Gacutan, Regular, Public Safety Division
+Eugine L. Gagui, FPE, Assets Management Division
+Alona A. Galang, Regular, Special Concerns Division
+Anne Jobelle V. Galang, Regular, Investment Promotions Division I
+Archie P. Galang, Regular, Public Safety Division
+Evelyn S. Galang, Regular, Investment Promotions Division I
+Marinel K. Galang, Regular, Building and Facilities Maintenance Division
+Nestor C. Galang, Regular, Construction Management Division
+Romeo C. Galang, Regular, Environmental Permits Division
+Russel M. Galang, Regular, Property Management Division
+Julius E. Galicia, Regular, Public Safety Division
+Jason R. Gamboa, Regular, Public Safety Division
+Angelito A. Garcia, Regular, Public Safety Division
+Cecile G. Garcia, Regular, Board Secretariat
+Donald P. Garcia, Regular, Public Safety Division
+Irish Ann P. Garcia, Regular, Investment Promotions Division I
+Jamie Ann Garcia, FPE, OVP for Legal Affairs Group
+Jerome M. Garcia, PBE, CSR and Placement Division
+Joseph G. Garcia, Regular, Trade Facilitation Division
+Marites S. Garcia, Regular, Trade Facilitation Division
+Marlon C. Garcia, FPE, Assets Management Division
+Jeffrey D. Garpo, Regular, Public Safety Division
+Nelson J. Garung, Regular, Public Safety Division
+Maricris C. Gepte, Regular, CSR and Placement Division
+Blesilda R. Gimeno, Regular, Internal Audit Division
+Jeric B. Goingco, Regular, Corporate Services Division
+Arvin M. Gomez, Regular, Building and Facilities Maintenance Division
+Glory G. Gomez, Regular, Accounting Division
+Randy G. Gomez, Regular, Special Concerns Division
+Maria Carla A. Gonzales, Regular, Internal Audit Division
+Sara Jane D. Gonzales, Regular, Building and Facilities Permits Division
+Faustino R. Gozum, FPE, Assets Management Division
+Heidi P. Gozun, Regular, Board Secretariat
+Joan G. Guevarra, Regular, Building and Facilities Permits Division
+Marlon Y. Guevarra, Regular, Tourism Promotions Division
+Ronnie C. Guevarra, Regular, Building and Facilities Maintenance Division
+Rose Ann S. Guevarra, Regular, Public Safety Division
+Marylou A. Guiao, Regular, Public Safety Division
+Ricardo C. Guiao, Regular, Public Safety Division
+Ryan V. Guilas, Regular, Public Safety Division
+Shairon Jeff S. Guilas, Regular, Public Safety Division
+Wendell D. Guina, Regular, Information Technology Department
+Raffy G. Guinto, Regular, Public Safety Division
+Jeffrey L. Guiwan, Regular, Public Safety Division
+Ramelo M. Gulatera, Regular, Public Safety Division
+Hermando D. Gutierrez, Regular, Assets Management Division
+Marigrace M. Gutierrez, Regular, Trade Facilitation Division
+Patricio G. Gutierrez, Regular, Building and Facilities Maintenance Division
+Jenzen O. Guzman, Regular, Property Management Division
+Thea Eunice Paz P. Habana, Regular, Communications Division
+Valentin M. Hailes Jr., Regular, Assets Management Division
+Maica Jane C. Halili, PBE, Public Safety Division
+Harden A. Henson, Regular, Records Management Division
+Onid L. Henson, Regular, Public Safety Division
+Orson L. Henson, Regular, Trade Facilitation Division
+Enrico Josh Y. Hernandez, PBE, Tourism Promotion Division
+Priscila T. Hernandez, Regular, Trade Facilitation Division
+Philip M. Herrera, Regular, Environmental Permits Division
+Kristofferson C. Hilario, Regular, Treasury Division
+Ferdinand U. Hipolito, Regular, Building and Facilities Permits Division
+Rustico C. Hipolito Jr., Regular, Public Safety Division
+Jayson L. Ibay, Regular, Trade Facilitation Division
+Prisca Jhane V. Ibay, FPE, OVP for Legal Affairs Group
+Dexter C. Isip, Regular, Assets Management Division
+Lowela L. Isip, Regular, Property Management Division
+Christian Edison M. Jao, Regular, Business Dev't. & Business Enhancement Group
+Manuel L. Jaylo Jr., PBE, Public Safety Division
+Jason Paul C. Jenkins, Regular, Public Safety Division
+Jesusa C. Gamboa, Regular, Treasury Division
+Eric V. Jimenez, Regular, Estate Preservation and Recovery Division
+Mark Aldrin G. Jimenez, Regular, Information Technology Department
+Aimee V. Joves, Regular, Human Resources Division
+Renz Gio G. Juco, Regular, Public Safety Division
+Noemi B. Julian, Regular, Investment Promotions Division II
+Joanne Marie C. Katigbak, Regular, Human Resources Division
+Rosalino D. Kit III, FPE, Communications Division
+Ronnie G. Lacbayo, Regular, Public Safety Division
+Jason R. Lacsa, Regular, Public Safety Division
+Billy L. Lacsina, Regular, Public Safety Division
+Ysrael D. Lacsina, Regular, Trade Facilitation Division
+Charisse Marie F. Lacson, Regular, Tourism Promotions Division
+Mae Ann E. Lacson, Regular, Legal Affairs Group
+Roberto I. Lagman Jr., Regular, Public Safety Division
+Lancel John L. Lagman, Regular, Purchasing Division
+Elsie A. Laguador, COS, Corporate Planning Division
+John Michael P. Lampa, Regular, Tourism Promotions Division
+Julieta P. Lansangan, Regular, Security Services Group
+Renz F. Lansangan, Regular, Tourism Promotions Division
+Walter E. Lansangan, Regular, Public Safety Division
+Elmer L. Lapuz, Regular, Building and Facilities Maintenance Division
+Miracle Faith N. Laquian, Regular, Public Safety Division
+Michael C. Laus, Regular, Public Safety Division
+Dhaenniel C. Laxamana, FPE, Public Safety Division
+Patricia Mae M. Laxamana, PBE, Public Safety Division
+Estrelita Bandong Layug, COS, Commission on Audit
+Jose Evan L. Lee, Regular, Public Safety Division
+Sarah S. Lerum, Regular, Property Management Division
+Daniel A. Lichauco, COS, Office of the President
+Darwin C. Limin, Regular, Human Resources Division
+Jedd C. Limio, Regular, Purchasing Division (BACS)
+Josielyn M. Linga, Regular, Investment Promotions Division I
+Alfred M. Lintag, Regular, CSR and Placement Division
+Bryan B. Lintag, Regular, Estate Preservation and Recovery Division
+Alexander P. Liwanag Jr., Regular, ESG/Infrastructure Planning Section
+Rodrigo M. Liwanag, FPE, Assets Management Division
+Ladylyn M. Lobo, Regular, Security Services Group
+Jed Burt P. Lopez, FPE, Assets Management Division
+Rico T. Lopez, Regular, Assets Management Division
+Romeo G. Lopez, Regular, Building and Facilities Maintenance Division
+Ronaldo M. Lopez, Regular, Assets Management Division
+Elenita S. Lorenzo, Regular, Tourism Promotions Division
+Bryan G. Lozano, Regular, Treasury Division
+Noel J. Lugtu, Regular, Public Safety Division
+Sussette S. Lugtu, Regular, Public Safety Division
+Hilario O. Lulu, Regular, Building and Facilities Permits Division
+Jessie A. Lungos, Regular, Public Safety Division
+Emanuelle A. Luzong, Regular, Public Safety Division
+Jaimee Rose R. Macalino, FPE, Public Safety Division
+Jerome P. Machon, PBE, Public Safety Division
+Mary Elizabeth J. Magat, Regular, Corporate Planning Division
+Rogelio M. Magat, Regular, Environmental Permits Division
+Maria Mercedes A. Maglaya, COS, OVP for Legal Affairs Group
+Patrick Joshua M. Magtibay, PBE, Public Safety Division
+Ruben U. Malagday, Regular, Building and Facilities Maintenance Division
+Joseph A. Malijan, PBE, Public Safety Division
+Catherine Joy E. Mallari, Regular, Tourism Promotions Division
+Evelyn U. Mallari, Regular, Purchasing Division (BACS)
+Marlon G. Mallari, Regular, Public Safety Division
+Mary Anne T. Mallari, Regular, Office of the President/CEO
+Ester S. Malonzo, Regular, Health and Sanitation Division
+Elvira H. Mamaril, Regular, Public Safety Division
+Renato B. Manabat, Regular, Assets Management Division
+Jonell B. Mañalac, Regular, ESG/Infrastructure Planning Section
+Benjie S. Manalastas, Regular, Trade Facilitation Division
+Aries V. Manalili, FPE, Assets Management Division
+Edsel L. Manalili, Regular, Information Technology Department
+Rosanna D. Manalili, Regular, Assets Management Division
+Fernando G. Manalo, Regular, Building and Facilities Permits Division
+Lou Anne T. Manalo, Regular, CSR and Placement Division
+Marlon P. Manalo, Regular, Assets Management Division
+Paulo C. Manalo, Regular, Building and Facilities Permits Division
+Albert G. Manaloto, FPE, Assets Management Division
+Almabeth L. Manaloto, Regular, Public Safety Division
+Arnold D. Manaloto, Regular, Internal Audit Division
+Joanna Marie B. Manaloto, Regular, Trade Facilitation Division
+Roger A. Manaloto, Regular, Building and Facilities Maintenance Division
+Aris G. Manarang, Regular, Public Safety Division
+Eric Dexter D. Manarang, Regular, Public Safety Division
+Vismin L. Manarang, Regular, Property Management Division
+Joel T. Mandap, Regular, Internal Audit Division
+Kristine Joy S. Manese, Regular, Human Resources Division
+Randy C. Manese, Regular, Building and Facilities Maintenance Division
+Nicole R. Mangalino, Regular, Trade Facilitation Division
+Bernadette D. Mangio, Regular, Engineering Services Group
+Cecilia M. Mangio, Regular, Internal Audit Division
+Crispin D. Maniago, Regular, Building and Facilities Maintenance Division
+Jonathan S. Maniago, Regular, Public Safety Division
+Annabelle M. Maniulit, Regular, Human Resources Division
+Adrian M. Manlapat, Regular, Office of the President/CEO
+Ivan Louis M. Manlapat, Regular, Records Management Division
+Denver G. Manzon, PBE, Public Safety Division
+Michael O. Maraña, Regular, Public Safety Division
+Lourdes L. Marasigan, Regular, CSR and Placement Division
+Rodrigo T. Marcelino Jr., Regular, Health and Sanitation Division
+Joemer D. Maristela, Regular, Public Safety Division
+Jocelyn M. Marquez, Regular, Human Resources Division
+Vanessa M. Martinez-Ponio, Regular, Public Safety Division
+Sherlyn Joy M. Marucut, Regular, Public Safety Division
+Kriel M. Marzan, Regular, Records Management Division
+Lycia D. Marzan, Regular, CSR and Placement Division
+Jose Fernando B. Masarate, Regular, Litigation Division
+Antonio S. Mascardo, FPE, Assets Management Division
+Agnes L. Matias, Regular, CSR and Placement Division
+Emilio F. Matias Jr., Regular, Public Safety Division
+Nicole S. Mayled, COS, Commission on Audit
+Joe Marie Dominic M. Medina, Regular, Purchasing Division (BACS)
+Ian Paulo O. Mejia, Regular, Tourism Promotions Division
+Miguelito P. Mejia, Regular, Public Safety Division
+Kim D. Melchor, COS, Commission on Audit
+Ahmed M. Mendoza, Regular, Assets Management Division
+Joel M. Mendoza, Regular, Public Safety Division
+Kate Moira B. Mendoza, Regular, Investment Promotions Division I
+Kristen Anne B. Mendoza, Regular, Tourism Promotions Division
+Nicko Angelo T. Mendoza, Regular, ESG/Infrastructure Planning Section
+Dennis B. Meneses, Regular, Communications Division
+Noelle Mina D. Meneses, Regular, Business Dev't. & Business Enhancement Group
+Danilo C. Menor, Regular, Building and Facilities Maintenance Division
+Aljhon N. Mercado, Regular, Trade Facilitation Division
+Geryme J. Mercado, Regular, Public Safety Division
+Nelson C. Mercado, Regular, Public Safety Division
+Mark Gem S. Mesa, PBE, Tourism Promotion Division
+Louies Angelo Y. Mesia, PBE, Human Resources Division
+Angelo M. Miclat, Regular, Public Safety Division
+Edmund D. Miclat, Regular, Building and Facilities Maintenance Division
+Nelson C. Miclat (transferred to EPD), Regular, Assets Management Division
+Jessica M. Mier, PBE, Public Safety Division
+Conrado N. Miguel Jr., Regular, Environmental Permits Division
+Paula Marie Miller, Regular, Public Safety Division
+Bernardo G. Mirabete, COS, Office of the President
+Jaydee B. Miranda, Regular, Public Safety Division
+Mark Rainier Miranda, Regular, Health and Sanitation Division
+Angeliza H. Montallana, Regular, Health and Sanitation Division
+Arnel G. Montemayor, Regular, Public Safety Division
+Jamaica Riz S. Montoya, PBE, Public Safety Division
+Sheraline F. Morada, Regular, Special Concerns Division
+Daniel V. Moreno (transferred to EPD), Regular, Assets Management Division
+Hector M. Moreno, Regular, ESG/Infrastructure Planning Section
+Belinda K. Mujar, Regular, Records Management Division
+Diosdado C. Musngi, Regular, Environmental Permits Division
+Marvin R. Musni, Regular, Assets Management Division
+Joel P. Nabong, Regular, Public Safety Division
+Philip Oswald G. Nabong, PR, Corporate Services Division
+Renon G. Nacpil, Regular, Public Safety Division
+Jay-en S. Nacu, Regular, Public Safety Division
+Maria Victoria A. Nakpil, Regular, Treasury Division
+Miriam M. Naluz, Regular, Accounting Division
+Annette C. Narciso, Regular, Investment Promotions Division II
+Rommel C. Narciso, Regular, External Affairs Department
+Jun S. Nicolas, Regular, Trade Facilitation Division
+Peter C. Nogoy, Regular, Assets Management Division
+Rommel C. Nogoy, Regular, Public Safety Division
+Brenda M. Novilla, Regular, Trade Facilitation Division
+Brando Marcel C. Nozawa, Regular, Information Technology Department
+Louella T. Nozawa, Regular, Treasury Division
+Wilson M. Nucum, Regular, Public Safety Division
+Alexander D. Nucup, Regular, Assets Management Division
+Roycelin R. Nuguid, FPE, Purchasing Division
+Jose Angelo M. Nunag, Regular, Corporate Planning Division
+June E. Ocampo, Regular, Information Technology Department
+Mellanie T. Ocampo, Regular, Human Resources Division
+Nomer P. Ocampo, FPE, Assets Management Division
+Thelma C. Ocampo, Regular, Business Development Department 1
+Charity Hope T. Oliquiano, PBE, Public Safety Division
+Jerika P. Onofre, Regular, CSR and Placement Division
+Joel U. Orantes, Regular, Public Safety Division
+Jobelle Orejas, Regular, Health and Sanitation Division
+Roberto B. Ortiz, COS, Office of the President
+Michael P. Otero, Regular, Public Safety Division
+Ronald Allan M. Pablo, Regular, Public Safety Division
+Christopher G. Padua, Regular, Assets Management Division
+Elmer M. Pagcu, Regular, Environmental Permits Division
+Christopher Niño R. Palma, Regular, Public Safety Division
+George L. Palo, Regular, Assets Management Division
+Miguel Luis R. Palo, Regular, Public Safety Division
+Ronald N. Palo, Regular, Internal Audit Division
+William Crawford D. Palo, Regular, Communications Division
+Joseph D. Paltep, Regular, Assets Management Division
+Johen P. Pamintuan, Regular, Engineering Services Group
+Jun Y. Pamintuan, Regular, Public Safety Division
+Paula Llana S. Pamintuan, Regular, ESG/Infrastructure Planning Section
+Rafael S. Pan, Regular, Building and Facilities Maintenance Division
+Carmelo G. Pangilinan, Regular, Building and Facilities Permits Division
+Evelyn R. Pangilinan-Tumang, PBE, Public Safety Division
+Adriel Elisha P. Panlilio, Regular, Litigation Division
+Henry P. Panlilio, Regular, Building and Facilities Permits Division
+Jose Philip B. Panlilio, COS, Office of the President
+Natalie Sue L. Panlilio, Regular, Estate Preservation and Recovery Division
+Mylene S. Paraan, Regular, Corporate Planning Division
+Lea T. Paraguas, Regular, Legal Affairs Group
+Alizaido F. Paras, Regular, Finance Department
+Onalee S. Paras, Regular, Health and Sanitation Division
+Alan B. Pare, Regular, Public Safety Division
+Almie B. Pare, Regular, Public Safety Division
+Jonel M. Pasco, Regular, Public Safety Division
+Benjamin Bryan L. Pascual, Regular, Estate Preservation and Recovery Division
+Myra Grace B. Pascual, Regular, Investment Promotions Division II
+Ysmael C. Pascual, Regular, Public Safety Division
+Raymart Pasion, Regular, Public Safety Division
+Mark Anthonie J. Patawaran, Regular, Building and Facilities Permits Division
+Mary Ann A. Patawaran, Regular, Accounting Division
+Eduardo L. Patio Jr., Regular, Environmental Permits Division
+Erwin C. Pattaui, Regular, Investment Promotions Division II
+Kristine Lauren S. Pattaui, Regular, Information Technology Department
+Carlota M. Paule, Regular, Purchasing Division
+Arold Y. Pelayo, Regular, Public Safety Division
+Diana M. Penuliar, Regular, Internal Audit Division
+Ruben C. Peralta, Regular, Special Concerns Division
+Ponciano S. Perez Jr., Regular, Building and Facilities Permits Division
+Rodem R. Perez, Regular, Business Enhancement Department
+Dante C. Periamesa, Regular, Public Safety Division
+Aira Ann May V. Pineda, Regular, Public Safety Division
+Jacqueline D. Pineda, Regular, Building and Facilities Maintenance Division
+Jeannette M. Pineda, Regular, Treasury Division
+Ma. Carmelita A. Pineda, Regular, Accounting Division
+Magdalena P. Pineda, Regular, Assets Management Division
+Leila R. Pingol, Regular, CSR and Placement Division
+Edgardo Gabriel B. Pinlac, Regular, Construction Management Division
+Patrick Plant Jr., Regular, Public Safety Division
+Raidis G. Plateros, Regular, Investment Promotions Division I
+Mark Lou S. Pojas, Regular, Public Safety Division
+Josephine V. Poyaoan, Regular, Purchasing Division
+Eduardo M. Pulili, Regular, Human Resources Division
+Myriam R. Punsalan, Regular, Investment Promotions Division II
+Albert S. Quiambao, Regular, Public Safety Division
+Romar G. Quiambao, Regular, Public Safety Division
+Ranier L. Quinto, Regular, Health and Sanitation Division
+Leila P. Quitalig, Regular, Corporate Services Division
+Reinnier M. Quitalig, Regular, Corporate Planning Division
+Leonardo Q. Quito, PR, Assets Management Division
+Honorato D. Rabara Jr., Regular, Public Safety Division
+Armando T. Racelis, FPE, Assets Management Division
+Ronald C. Ragunton, Regular, Building and Facilities Maintenance Division
+Michael John Ramos, Regular, Information Technology Department
+Feliciano O. Razon Jr., Regular, Purchasing Division
+Jardy D. Reambillo, Regular, Public Safety Division
+Maria Rizza A. Regala, Regular, Public Safety Division
+John Paul B. Relevo, Regular, Investment Promotions Division II
+Edmund T. Respondo, Regular, Public Safety Division
+Analin P. Reyes, Regular, Property Management Division
+Archimedes C. Reyes, Regular, Property Management Division
+Harvey F. Reyes, Regular, Building and Facilities Maintenance Division
+Jamiah Ruth R. Reyes, Regular, Building and Facilities Permits Division
+Mark Laurence M. Reyes, Regular, Corporate Planning Division
+Raquel M. Reynolds, Regular, Human Resources Division
+Armin D. Rivera, Regular, CSR and Placement Division
+Erwin G. Rivera, Regular, Building and Facilities Permits Division
+Victor M. Rivera Jr., Regular, Public Safety Division
+Hazel C. Robles, Regular, Public Safety Division
+Enrique T. Rodriguez, Regular, ESG/Infrastructure Planning Section
+Jade P. Rodriguez, Regular, Environmental Permits Division
+Rasheed R. Rodriguez, Regular, Public Safety Division
+Noel M. Rogales Jr., Regular, Public Safety Division
+Katrin Athea R. Rojo, FPE, OVP for Legal Affairs Group
+Christian G. Romero, FPE, Public Safety Division
+Cloyd C. Romero, Regular, Human Resources Division
+Joselito J. Romero, Regular, Special Concerns Division
+Eric S. Rondolo, Regular, Investment Promotions Division II
+Jeffrey C. Roque, Regular, Public Safety Division
+Lea M. Roque, Regular, Communications Division
+Donny B. Rosales, Regular, Building and Facilities Maintenance Division
+Sarah E. Rucks, Regular, Health and Sanitation Division
+Vincen A. Rufino, FPE, Public Safety Division
+Benjamin B. Ruiz, Regular, Health and Sanitation Division
+Joseph Philip L. Sagaral, FPE, Purchasing Division
+Lani C. Sagmit, Regular, Trade Facilitation Division
+Arnold H. Salac, Regular, Assets Management Division
+Manolito G. Salazar, Regular, Public Safety Division
+Carlo R. Salunga, Regular, Public Safety Division
+Relly Boy M. Salvador, FPE, Assets Management Division
+Ain S. Samson, FPE, Public Safety Division
+Rameses V. Samson, Regular, Assets Management Division
+Walter A. San Diego, Regular, Corporate Planning Division
+Ena Rizia P. San Andres, Regular, Investment Promotions Division II
+Igal Jada P. San Andres, Regular, Tourism Promotions Division
+Maria Cecilia B. San Diego, Regular, Board Secretariat
+Carmen Sofia R. San Juan, Regular, Tourism Promotions Division
+Elijah Jhon S. Sanchez, PBE, Property Management Division
+Eric A. Sanchez, Regular, Environmental Permits Division
+Gerson D. Sanchez, Regular, Public Safety Division
+Joemar N. Sanchez, Regular, Human Resources Division
+Robbie L. Sanchez, Regular, Building and Facilities Maintenance Division
+Krishane C. Sandajan, PBE, Accounting Division
+Edwin B. Sangab, Regular, Environmental Permits Division
+Burt O. Santiago, Regular, Tourism Promotions Division
+Hazel D. Santioque, Regular, Investment Promotions Division II
+Edwin R. Santos, Regular, Trade Facilitation Division
+Eliza L. Santos, Regular, Investment Promotions Division I
+Glenn P. Santos, Regular, Property Management Division
+Jean Ines Q. Santos, Regular, Trade Facilitation Division
+Jedd Hansel D. Santos, Regular, Assets Management Division
+Jovilen G. Santos, Regular, Assets Management Division
+Senen G. Santos, Regular, Trade Facilitation Division
+Tito C. Santos, Regular, Building and Facilities Maintenance Division
+Rodelio A. Sapnu, Regular, Public Safety Division
+Lina C. Sarmiento, Regular, Security Services Group
+Michael F. Sarmiento, Regular, Public Safety Division
+Edgar P. Sebastian, Regular, Public Safety Division
+Ronie B. Sebastian, Regular, Board Secretariat
+Dennis T. Segovia, Regular, Building and Facilities Maintenance Division
+Albert Sebastian D. Sembrano, Regular, Purchasing Division
+Kim Julianne B. Sena, FPE, Information Technology Department
+Ariel E. Senapilo, Regular, Public Safety Division
+Louie H. Sendin, Regular, Public Safety Division
+Jiean Carlo M. Serrano, PBE, Tourism Promotion Division
+June G. Serrano, Regular, Public Safety Division
+Arnold P. Sibug, Regular, Construction Management Division
+Anthony D. Sicat, Regular, Trade Facilitation Division
+Eugene B. Sicat, Regular, Accounting Division
+Joan Marie A. Sicat, Regular, Trade Facilitation Division
+Rhea S. Sicat, Regular, Accounting Division
+Jose S. Sigua, Regular, Building and Facilities Maintenance Division
+Sbe B. Simbahan, Regular, Investment Promotions Division II
+Marlo D. Simbol, Regular, Public Safety Division
+Erickson L. Simon, FPE, Public Safety Division
+Christopher L. Siron, Regular, Human Resources Division
+Jerome B. Sison, Regular, Assets Management Division
+Jewel M. Sison, FPE, Tourism Promotion Division
+Clarisa Bianca M. Soliman, Regular, ESG/Infrastructure Planning Section
+Neil R. Somera, Regular, Public Safety Division
+Rachel Lance G. Somera, Regular, Tourism Promotions Division
+Rommel A. Sorbito, Regular, Building and Facilities Permits Division
+Arvin L. Soriano, Regular, Construction Management Division
+Catherine Rose C. Soriano, Regular, Tourism Promotions Division
+Ronald G. Soriano, Regular, Construction Management Division
+Rogel T. Sorriano, Regular, Building and Facilities Permits Division
+Michael S. Sotto, Regular, Building and Facilities Maintenance Division
+Dennis R. Sta. Maria, Regular, Communications Division
+Niel G. Suanque, PBE, Public Safety Division
+Darwin C. Suerte, Regular, Health and Sanitation Division
+Alberto M. Suller Jr., Regular, Records Management Division
+Mylyn Sunga, Regular, Public Safety Division
+Lou Errol D. Supan, Regular, Records Management Division
+Bryan G. Surla, FPE, Public Safety Division
+Reynold D. Susa, Regular, Building and Facilities Permits Division
+Preciosa Camille S. Tabion, PBE, External Affairs Department
+Archie A. Tadifa, Regular, Building and Facilities Maintenance Division
+Collen Leila M. Tafalla, Regular, Tourism Promotions Division
+Jeffrey P. Taguinod, Regular, Public Safety Division
+Ronaldo G. Talo, Regular, Building and Facilities Permits Division
+Daniel Joseph M. Tan, Regular, ESG/Infrastructure Planning Section
+Leoncio L. Tan, Regular, Building and Facilities Permits Division
+Karriza Dawn P. Tandang, Regular, Health and Sanitation Division
+Ayron S. Tanglao, Regular, Trade Facilitation Division
+Florante G. Tanhueco Jr., Regular, Purchasing Division
+Ricardo C. Tanquilut Jr., Regular, Building and Facilities Permits Division
+Bonifacio O. Tarenio Jr., Regular, Administration Department
+Gloria Victoria Y. Taruc, Regular, Legal Affairs Group
+Antonio M. Tayag, Regular, Investment Promotions Division II
+Bernard D. Tayag, Regular, Public Safety Division
+Maria Jennifer S. Tayag, Regular, Corporate Planning Division
+Nikko P. Tayag, PBE, Public Safety Division
+Rhoneil A. Tayag, Regular, Treasury Division
+Danilo S. Tecson, Regular, Property Management Division
+Angelito L. Tero, Regular, Assets Management Division
+Angelo B. Tero, Regular, Trade Facilitation Division
+Marcelino R. Tiamzon Jr., Regular, Public Safety Division
+Edison J. Timpug, Regular, Assets Management Division
+Venus V. Timpug, Regular, CSR and Placement Division
+Erico P. Tinio, FPE, Assets Management Division
+Angelo N. Tiotuico, Regular, Environmental Permits Division
+Anna Marie N. Tiotuico, Regular, Assets Management Division
+Tarcisius T. Tiotuyco, Regular, Corporate Planning Division
+Teresito T. Tiotuyco, Regular, Engineering Services Group
+Elizabeth M. Tiria, Regular, Public Safety Division
+Aira Jade B. Tolentino, PBE, Public Safety Division
+James Bryan G. Tolentino, PBE, Public Safety Division
+Jamille S. Tolentino, Regular, CSR and Placement Division
+Joanne Bernadette A. Tolentino, Regular, Tourism Promotions Division
+Paolo Gabriel M. Tolentino, PBE, Public Safety Division
+Wilgien Mark G. Tolentino, Regular, Tourism Promotions Division
+Ronino R. Tom, Regular, Public Safety Division
+Kamille Ann M. Tongol, Regular, Accounting Division
+Lady Dianne G. Tongol, Regular, Health and Sanitation Division
+Ansly T. Torio, Regular, Public Safety Division
+Perlito P. Torres, Regular, Information Technology Department
+Greg A. Tubil, Regular, Public Safety Division
+Calvin Ian R. Turla, Regular, Building and Facilities Permits Division
+Jarold T. Turla, Regular, Public Safety Division
+Lucita C. Turla, Regular, Investment Promotions Division I
+Rainhel B. Ubas, Regular, Public Safety Division
+Maria Samantha P. Umali, Regular, Internal Audit Division
+Eddie D. Unato Jr., Regular, Public Safety Division
+Sydric R. Urfano, Regular, Assets Management Division
+Emilio C. Valencia Jr., FPE, Assets Management Division
+Belinda G. Valencia, Regular, Public Safety Division
+Julianne Anthea R. Valerio, Regular, ESG/Infrastructure Planning Section
+Neo Y. Valerio, Regular, Corporate Services Division
+Roel M. Vargas, Regular, Public Safety Division
+Kris Camille S. Venzon, Regular, Public Safety Division
+Marline S. Victoria, Regular, Accounting Division
+Ronald H. Victoria, Regular, Building and Facilities Permits Division
+Veronica P. Victoria, Regular, Treasury Division
+Carl Joshua D. Villanueva, Regular, Building and Facilities Permits Division
+Francis Arnold G. Villanueva, Regular, Public Safety Division
+Maynard D. Villanueva, Regular, Treasury Division
+Jessica M. Villapaña, Regular, Public Safety Division
+Marie Jane T. Vino, Regular, Accounting Division
+Noel A. Viray, Regular, Records Management Division
+Marie Antonette G. Vitug, Regular, Building and Facilities Maintenance Division
+Aaron D. Wong, Regular, Records Management Division
+Genesis L. Yabut, Regular, Trade Facilitation Division
+Walter D. Yalung, Regular, Assets Management Division
+Danica C. Yanga, Regular, Public Safety Division
+Benjamin C. Yatar, Regular, Assets Management Division
+Anlord Z. Yñigo, Regular, Public Safety Division
+Ariel C. Yumul, Regular, Public Safety Division
+Christopher Q. Yusi, Regular, Assets Management Division
+Rachelle S. Yusi, Regular, Human Resources Division
+Arnel D. Zamora, Regular, Building and Facilities Maintenance Division
+Alvin D. Zapata, Regular, Health and Sanitation Division
+Michael E. Zulueta, Regular, Public Safety Division`;
+
+// DOM ELEMENTS
 const DOM = {
   btnSpin: document.getElementById('btn-spin'),
-  poolCount: document.getElementById('pool-count'),
+  countTotal: document.getElementById('count-total'),
+  countBoarded: document.getElementById('count-boarded'),
   chkRemoveWinner: document.getElementById('chk-remove-winner'),
-  winnersList: document.getElementById('winners-list'),
+  winnersLog: document.getElementById('winners-log'),
   btnExportWinners: document.getElementById('btn-export-winners'),
   tickerTrack: document.getElementById('ticker-track'),
   btnAudio: document.getElementById('btn-audio'),
-  btnLoadParticipants: document.getElementById('btn-load-participants'),
   btnSettings: document.getElementById('btn-settings'),
   settingsModal: document.getElementById('settings-modal'),
   btnCloseSettings: document.getElementById('btn-close-settings'),
@@ -554,6 +1568,7 @@ const DOM = {
   btnCloseModal: document.getElementById('btn-close-modal'),
   modalName: document.getElementById('modal-name'),
   modalDept: document.getElementById('modal-dept'),
+  stampSeal: document.getElementById('stamp-seal'),
   confettiCanvas: document.getElementById('confetti-canvas')
 };
 
@@ -561,36 +1576,260 @@ let pool = [];
 let winners = [];
 let audioEnabled = true;
 let isSpinning = false;
-let currentTransformX = 0;
 
-// Audio Context (Web Audio API)
+// PARSE PARTICIPANTS CSV DATA
+function initializePool() {
+  const lines = PARTICIPANTS_CSV_DATA.trim().split('\n');
+  pool = [];
+  lines.forEach(line => {
+    const parts = line.split(/[,;\t]/).map(s => s.trim());
+    if (parts.length >= 1 && parts[0]) {
+      pool.push({
+        id: Math.random().toString(36).substring(2, 11),
+        name: parts[0],
+        dept: parts[parts.length - 1] || 'General Passenger',
+        seat: Math.floor(Math.random() * 30 + 1) + String.fromCharCode(65 + Math.floor(Math.random() * 6))
+      });
+    }
+  });
+  updateCounts();
+  setupInitialTickerTrack();
+  if (pool.length > 0) DOM.btnSpin.disabled = false;
+}
+
+function updateCounts() {
+  DOM.countTotal.textContent = pool.length;
+  DOM.countBoarded.textContent = winners.length;
+}
+
+// BOARDING PASS HTML TEMPLATE
+function createBoardingPassHTML(entry, isWinnerPlaceholder = false) {
+  return `
+    <div class="boarding-pass-card ${isWinnerPlaceholder ? 'winner-placeholder' : ''}" data-id="${entry.id}">
+      <div class="pass-header">
+        <span>BOARDING PASS</span>
+        <span>FLIGHT CDC-2026</span>
+      </div>
+      <div class="pass-body">
+        <span class="passenger-label">PASSENGER NAME</span>
+        <div class="passenger-name" title="${entry.name}">${entry.name}</div>
+        <div>
+          <span class="passenger-dept">${entry.dept}</span>
+        </div>
+      </div>
+      <div class="pass-footer">
+        <span>GATE: 07</span>
+        <span>SEAT: ${entry.seat || '12B'}</span>
+        <span>CLASS: TOURISM</span>
+      </div>
+    </div>
+  `;
+}
+
+function setupInitialTickerTrack() {
+  let html = '';
+  const previewCount = Math.min(30, pool.length);
+  for (let i = 0; i < previewCount; i++) {
+    const item = pool[Math.floor(Math.random() * pool.length)];
+    html += createBoardingPassHTML(item);
+  }
+  DOM.tickerTrack.innerHTML = html;
+  DOM.tickerTrack.style.transform = `translateX(0px)`;
+}
+
+// WEB AUDIO SYNTHESIZER
 let audioCtx = null;
-function playTick(frequency = 800, type = 'sine', duration = 0.05, vol = 0.3) {
+
+function playSplitFlapSound(freq = 600, duration = 0.03, vol = 0.2) {
   if (!audioEnabled) return;
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   if (audioCtx.state === 'suspended') audioCtx.resume();
-  
+
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
-  
-  osc.type = type;
-  osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(frequency / 2, audioCtx.currentTime + duration);
-  
+
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(freq / 3, audioCtx.currentTime + duration);
+
   gain.gain.setValueAtTime(vol, audioCtx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
-  
+
   osc.connect(gain);
   gain.connect(audioCtx.destination);
-  
+
   osc.start();
   osc.stop(audioCtx.currentTime + duration);
 }
 
-// Confetti System
+function playAirportChime() {
+  if (!audioEnabled) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+  notes.forEach((freq, index) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.3, audioCtx.currentTime + index * 0.15);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + index * 0.15 + 0.4);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(audioCtx.currentTime + index * 0.15);
+    osc.stop(audioCtx.currentTime + index * 0.15 + 0.4);
+  });
+}
+
+// SPIN ANIMATION AND TICKER TICKING
+function simulateTicks() {
+  const cardWidthWithMargin = 294; // 270 + 12*2
+  let lastX = 0;
+
+  function checkTick() {
+    if (!isSpinning) return;
+    const style = window.getComputedStyle(DOM.tickerTrack);
+    const matrix = new DOMMatrixReadOnly(style.transform);
+    const currentX = Math.abs(matrix.m41);
+
+    if (Math.floor(currentX / cardWidthWithMargin) > Math.floor(lastX / cardWidthWithMargin)) {
+      playSplitFlapSound(500 + Math.random() * 200, 0.035, 0.25);
+    }
+
+    lastX = currentX;
+    if (isSpinning) requestAnimationFrame(checkTick);
+  }
+  requestAnimationFrame(checkTick);
+}
+
+function spin() {
+  if (pool.length === 0 || isSpinning) return;
+  isSpinning = true;
+  DOM.btnSpin.disabled = true;
+
+  // 1. Pick Winner
+  const winnerIndex = Math.floor(Math.random() * pool.length);
+  const winner = pool[winnerIndex];
+
+  // 2. Build Ticker Strip
+  let strip = [];
+  let shuffled = [...pool].sort(() => Math.random() - 0.5);
+
+  while (strip.length < 80) {
+    strip.push(...shuffled);
+    shuffled = [...pool].sort(() => Math.random() - 0.5);
+  }
+
+  if (strip.length > 1500) strip = strip.slice(0, 1500);
+
+  const WINNER_POS = strip.length - 12;
+  strip[WINNER_POS] = winner;
+
+  DOM.tickerTrack.style.transition = 'none';
+  DOM.tickerTrack.style.transform = 'translateX(0px)';
+
+  let html = '';
+  strip.forEach((item, idx) => {
+    html += createBoardingPassHTML(item, idx === WINNER_POS);
+  });
+  DOM.tickerTrack.innerHTML = html;
+
+  // 3. Target Position
+  const cardTotalWidth = 294; // 270 + 24
+  const offsetToCenter = cardTotalWidth / 2;
+  const randomOffset = (Math.random() * 140) - 70;
+  const targetX = -(WINNER_POS * cardTotalWidth) - offsetToCenter - randomOffset;
+
+  DOM.tickerTrack.offsetHeight; // Reflow
+
+  // 4. Spin Animation Execution
+  const durInput = parseFloat(document.getElementById('spin-duration').value);
+  const spinDuration = isNaN(durInput) || durInput <= 0 ? 5500 : durInput * 1000;
+
+  DOM.tickerTrack.style.transition = `transform ${spinDuration}ms cubic-bezier(0.1, 0.82, 0.25, 1)`;
+  DOM.tickerTrack.style.transform = `translateX(${targetX}px)`;
+
+  simulateTicks();
+
+  setTimeout(() => {
+    isSpinning = false;
+    const cards = DOM.tickerTrack.querySelectorAll('.boarding-pass-card');
+    const winnerCard = cards[WINNER_POS];
+    if (winnerCard) winnerCard.classList.add('winner-active');
+
+    playAirportChime();
+
+    showWinnerModal(winner, winnerIndex);
+  }, spinDuration + 150);
+}
+
+// WINNER REVEAL PASSPORT MODAL
+function showWinnerModal(winner, winnerIndex) {
+  const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  winners.push({ ...winner, timestamp });
+
+  renderWinnersLog();
+  updateCounts();
+
+  DOM.modalName.textContent = winner.name;
+  DOM.modalDept.textContent = winner.dept;
+  DOM.stampSeal.classList.remove('stamped');
+
+  DOM.winnerModal.classList.add('active');
+  launchConfetti();
+
+  // Stamp slamming animation delay
+  setTimeout(() => {
+    DOM.stampSeal.classList.add('stamped');
+    playSplitFlapSound(200, 0.08, 0.4); // Thud sound
+  }, 400);
+
+  if (DOM.chkRemoveWinner.checked) {
+    pool.splice(winnerIndex, 1);
+  }
+
+  if (pool.length > 0) DOM.btnSpin.disabled = false;
+}
+
+function renderWinnersLog() {
+  DOM.winnersLog.innerHTML = '';
+  [...winners].reverse().forEach(w => {
+    const el = document.createElement('div');
+    el.className = 'winner-log-item';
+    el.innerHTML = `
+      <div>
+        <strong>${w.name}</strong>
+        <div style="font-size:0.75rem; color:var(--airport-cyan);">${w.dept}</div>
+      </div>
+      <span style="font-family:monospace; font-size:0.75rem; color:var(--text-muted);">${w.timestamp}</span>
+    `;
+    DOM.winnersLog.appendChild(el);
+  });
+  DOM.btnExportWinners.disabled = winners.length === 0;
+}
+
+function exportWinnersCSV() {
+  if (winners.length === 0) return;
+  let csv = "Passenger Name,Department,Boarding Time\n";
+  winners.forEach(w => {
+    csv += `"${w.name}","${w.dept}","${w.timestamp}"\n`;
+  });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.setAttribute('download', `Tourism_Month_Winners_${new Date().toISOString().slice(0, 10)}.csv`);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+// CANVAS CONFETTI SYSTEM
 const ctx = DOM.confettiCanvas.getContext('2d');
 let particles = [];
-let confettiAnimationId = null;
+let confettiId = null;
 
 function resizeCanvas() {
   DOM.confettiCanvas.width = window.innerWidth;
@@ -599,10 +1838,10 @@ function resizeCanvas() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-function createConfetti() {
+function launchConfetti() {
   particles = [];
-  const colors = ['#fbbf24', '#3b82f6', '#10b981', '#f472b6', '#f8fafc', '#a855f7'];
-  for (let i = 0; i < 200; i++) {
+  const colors = ['#ffb703', '#fb8500', '#00b4d8', '#f8fafc', '#fbbf24', '#e63946'];
+  for (let i = 0; i < 220; i++) {
     particles.push({
       x: Math.random() * DOM.confettiCanvas.width,
       y: Math.random() * DOM.confettiCanvas.height - DOM.confettiCanvas.height,
@@ -613,6 +1852,7 @@ function createConfetti() {
       tilt: Math.random() * 10
     });
   }
+  drawConfetti();
 }
 
 function drawConfetti() {
@@ -621,287 +1861,43 @@ function drawConfetti() {
     p.y += p.dy;
     p.x += p.dx;
     p.tilt += 0.1;
-    
+
     ctx.beginPath();
     ctx.lineWidth = p.r;
     ctx.strokeStyle = p.color;
     ctx.moveTo(p.x + p.tilt + p.r, p.y);
     ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
     ctx.stroke();
-    
-    // Reset particle at top if it goes off screen
+
     if (p.y > DOM.confettiCanvas.height) {
       particles[index] = { ...p, y: -20, x: Math.random() * DOM.confettiCanvas.width };
     }
   });
-  confettiAnimationId = requestAnimationFrame(drawConfetti);
+  confettiId = requestAnimationFrame(drawConfetti);
 }
 
 function stopConfetti() {
-  cancelAnimationFrame(confettiAnimationId);
+  cancelAnimationFrame(confettiId);
   ctx.clearRect(0, 0, DOM.confettiCanvas.width, DOM.confettiCanvas.height);
 }
 
-
-// Utility Functions
-function getDeptClass(deptName) {
-  const normalized = deptName.toLowerCase().replace(/[^a-z0-9]/g, '-');
-  if (normalized.includes('admin')) return 'dept-administration';
-  if (normalized.includes('public') || normalized.includes('work')) return 'dept-public-works';
-  if (normalized.includes('health') || normalized.includes('medic')) return 'dept-health';
-  if (normalized.includes('social') || normalized.includes('welfare')) return 'dept-social-welfare';
-  if (normalized.includes('it') || normalized.includes('info') || normalized.includes('tech')) return 'dept-it';
-  if (normalized.includes('treasury') || normalized.includes('finance')) return 'dept-treasury';
-  return 'dept-default';
-}
-
-
-
-function parseInput() {
-  const text = DOM.dataInput.value.trim();
-  if(!text) return;
-  const lines = text.split('\n');
-  pool = [];
-  lines.forEach(line => {
-    // split by comma or tab
-    const parts = line.split(/[,;\t]/).map(s => s.trim());
-    if (parts.length >= 1 && parts[0]) {
-      pool.push({
-        id: Math.random().toString(36).substr(2, 9),
-        name: parts[0] || 'Unknown',
-        dept: parts[parts.length - 1] || 'General'
-      });
-    }
-  });
-  updatePoolCount();
-  if (pool.length > 0) {
-    DOM.btnSpin.disabled = false;
-    setupInitialTicker();
-  }
-}
-
-function updatePoolCount() {
-  DOM.poolCount.textContent = pool.length;
-}
-
-function createCardHTML(entry, isWinnerPlaceholder = false) {
-  const deptClass = getDeptClass(entry.dept);
-  return `
-    <div class="card ${isWinnerPlaceholder ? 'winner-placeholder' : ''}" data-id="${entry.id}">
-      <div class="name" title="${entry.name}">${entry.name}</div>
-      <div class="dept ${deptClass}">${entry.dept}</div>
-    </div>
-  `;
-}
-
-function setupInitialTicker() {
-  let html = '';
-  // Show random preview
-  for(let i=0; i<Math.min(30, pool.length); i++) {
-    const item = pool[Math.floor(Math.random() * pool.length)];
-    html += createCardHTML(item);
-  }
-  DOM.tickerTrack.innerHTML = html;
-  DOM.tickerTrack.style.transform = `translateX(0px)`;
-  currentTransformX = 0;
-}
-
-// Tick Audio simulation during spin
-function simulateTicks() {
-  const cardWidthWithMargin = 270; // 250 + 10*2
-  let lastX = 0;
-  
-  function checkTick() {
-    if(!isSpinning) return;
-    
-    // Read the live computed transform matrix
-    const style = window.getComputedStyle(DOM.tickerTrack);
-    const matrix = new DOMMatrixReadOnly(style.transform);
-    const currentX = Math.abs(matrix.m41);
-    
-    // If we've crossed a card threshold boundary
-    if (Math.floor(currentX / cardWidthWithMargin) > Math.floor(lastX / cardWidthWithMargin)) {
-      playTick(500 + Math.random()*100, 'square', 0.03, 0.15);
-    }
-    
-    lastX = currentX;
-    if (isSpinning) {
-      requestAnimationFrame(checkTick);
-    }
-  }
-  
-  requestAnimationFrame(checkTick);
-}
-
-function spin() {
-  if (pool.length === 0 || isSpinning) return;
-  isSpinning = true;
-  DOM.btnSpin.disabled = true;
-    
-  // 1. Pick a winner
-  const winnerIndex = Math.floor(Math.random() * pool.length);
-  const winner = pool[winnerIndex];
-  
-  // 2. Build the strip
-  // Ensure the strip contains every participant at least once so it genuinely goes through all.
-  let strip = [];
-  let shuffled = [...pool].sort(() => Math.random() - 0.5);
-  
-  // We want a minimum strip length for the animation, but we also want all participants included.
-  while (strip.length < 70 || strip.length < pool.length) {
-    strip.push(...shuffled);
-    shuffled = [...pool].sort(() => Math.random() - 0.5); // reshuffle for next batch if needed
-  }
-  
-  // Cap at a reasonable DOM limit to prevent browser crash if pool is massive.
-  if (strip.length > 2000) {
-    strip = strip.slice(0, 2000);
-  }
-  
-  // Place the winner near the end of the strip
-  const WINNER_POS = strip.length - Math.min(10, Math.floor(strip.length / 4));
-  strip[WINNER_POS] = winner;
-  
-  // Reset track to starting position instantly without transition
-  DOM.tickerTrack.style.transition = 'none';
-  DOM.tickerTrack.style.transform = 'translateX(0px)';
-  
-  let html = '';
-  strip.forEach((item, idx) => {
-    html += createCardHTML(item, idx === WINNER_POS);
-  });
-  DOM.tickerTrack.innerHTML = html;
-  
-  // 3. Calculate Target Position
-  const cardWidth = 250;
-  const cardMargin = 10;
-  const totalCardWidth = cardWidth + cardMargin * 2; // 270
-  
-  // Distance to shift so the card's center aligns with the reticle
-  // Since the track starts at left: 50%, we just shift left by the card's center position.
-  const offsetToCenterCard = totalCardWidth / 2;
-  
-  // Add a random offset so it doesn't land perfectly dead center every time
-  // Bounds: -90px to +90px within the 250px card width
-  const randomOffset = (Math.random() * 180) - 90;
-  
-  const targetX = -(WINNER_POS * totalCardWidth) - offsetToCenterCard - randomOffset;
-  
-  // Force a browser reflow so the 'none' transition applies instantly
-  DOM.tickerTrack.offsetHeight; 
-  
-  // 4. Start Animation
-  const durInput = parseFloat(document.getElementById('spin-duration').value);
-  const spinDuration = isNaN(durInput) || durInput <= 0 ? 5500 : durInput * 1000;
-  DOM.tickerTrack.style.transition = `transform ${spinDuration}ms cubic-bezier(0.12, 0.8, 0.2, 1)`;
-  DOM.tickerTrack.style.transform = `translateX(${targetX}px)`;
-  currentTransformX = targetX;
-  
-  // 5. Start audio ticking
-  simulateTicks();
-  
-  // 6. Handle End of Spin
-  setTimeout(() => {
-    isSpinning = false;
-    
-    // Visually highlight the winner card in the DOM
-    const cards = DOM.tickerTrack.querySelectorAll('.card');
-    const winnerCard = cards[WINNER_POS];
-    if (winnerCard) {
-      winnerCard.classList.add('winner');
-    }
-    
-    // Play celebratory sound
-    playTick(800, 'sine', 0.1, 0.5);
-    setTimeout(() => playTick(1200, 'sine', 0.4, 0.5), 150);
-    
-    // Launch Modal and Confetti
-    showWinner(winner);
-    
-    // Remove winner from pool if checked
-    if (DOM.chkRemoveWinner.checked) {
-      pool.splice(winnerIndex, 1);
-      updatePoolCount();
-    }
-    
-    // Re-enable controls
-    if (pool.length > 0) DOM.btnSpin.disabled = false;
-    
-  }, spinDuration + 150); // slight delay to ensure CSS transition completes
-}
-
-function showWinner(winner) {
-  // Log the winner
-  const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
-  winners.push({ ...winner, timestamp });
-  renderWinners();
-  
-  // Populate Modal
-  DOM.modalName.textContent = winner.name;
-  DOM.modalDept.textContent = winner.dept;
-  DOM.modalDept.className = 'winner-dept ' + getDeptClass(winner.dept);
-  
-  // Launch celebration
-  createConfetti();
-  drawConfetti();
-  DOM.winnerModal.classList.add('active');
-}
-
-function renderWinners() {
-  DOM.winnersList.innerHTML = '';
-  // Render in reverse chronological order
-  [...winners].reverse().forEach(w => {
-    const el = document.createElement('div');
-    el.className = 'winner-item';
-    el.innerHTML = `
-      <div class="winner-name">${w.name}</div>
-      <div class="winner-meta">
-        <span class="${getDeptClass(w.dept)}" style="padding: 2px 8px; border-radius: 4px; font-size:0.7rem; font-weight: 600;">${w.dept}</span>
-        <span>${w.timestamp}</span>
-      </div>
-    `;
-    DOM.winnersList.appendChild(el);
-  });
-  DOM.btnExportWinners.disabled = winners.length === 0;
-}
-
-function exportWinners() {
-  if (winners.length === 0) return;
-  let csv = "Name,Department,Time\n";
-  winners.forEach(w => {
-    csv += `"${w.name}","${w.dept}","${w.timestamp}"\n`;
-  });
-  
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.setAttribute('download', `raffle_winners_${new Date().toISOString().slice(0,10)}.csv`);
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
-// Event Listeners
-DOM.btnLoadParticipants.addEventListener('click', parseInput);
+// EVENT LISTENERS
+DOM.btnSpin.addEventListener('click', spin);
 DOM.btnSettings.addEventListener('click', () => DOM.settingsModal.classList.add('active'));
 DOM.btnCloseSettings.addEventListener('click', () => DOM.settingsModal.classList.remove('active'));
-DOM.btnSpin.addEventListener('click', spin);
 DOM.btnCloseModal.addEventListener('click', () => {
   DOM.winnerModal.classList.remove('active');
   stopConfetti();
 });
-DOM.btnExportWinners.addEventListener('click', exportWinners);
+DOM.btnExportWinners.addEventListener('click', exportWinnersCSV);
 
 DOM.btnAudio.addEventListener('click', () => {
   audioEnabled = !audioEnabled;
   DOM.btnAudio.textContent = audioEnabled ? '🔊' : '🔇';
-  // Resume context if user enables it after loading
-  if(audioEnabled && audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
-  }
 });
 
+// INITIALIZE APP ON LOAD
+initializePool();
 </script>
 </body>
 </html>
