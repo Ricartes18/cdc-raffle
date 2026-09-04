@@ -1430,7 +1430,7 @@ function parseInput() {
     if (parts.length >= 1 && parts[0]) {
       pool.push({
         id: Math.random().toString(36).substr(2, 9),
-        name: parts.join(', ') || 'Unknown',
+        name: parts[0] || 'Unknown',
         dept: parts[parts.length - 1] || 'General'
       });
     }
