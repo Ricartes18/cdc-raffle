@@ -494,11 +494,7 @@ button:disabled {
     <h2 style="margin-top: 0;">Settings & Data</h2>
     
     <div style="overflow-y: auto; flex: 1; padding-right: 10px; text-align: left;">
-      <div class="control-group">
-        <label for="data-input">Paste CSV/TSV (Name, Department)</label>
-        <textarea id="data-input" placeholder="Juan Dela Cruz, Public Works&#10;Maria Santos, IT"></textarea>
-        <button id="btn-import" style="margin-top: 10px; width: 100%;">Import Data</button>
-      </div>
+
 
       <div class="control-group">
         <label class="checkbox-group">
@@ -540,8 +536,6 @@ button:disabled {
 <script>
 // Application Logic
 const DOM = {
-  dataInput: document.getElementById('data-input'),
-  btnImport: document.getElementById('btn-import'),
   btnSpin: document.getElementById('btn-spin'),
   poolCount: document.getElementById('pool-count'),
   chkRemoveWinner: document.getElementById('chk-remove-winner'),
@@ -739,8 +733,7 @@ function spin() {
   if (pool.length === 0 || isSpinning) return;
   isSpinning = true;
   DOM.btnSpin.disabled = true;
-  DOM.btnImport.disabled = true;
-  
+    
   // 1. Pick a winner
   const winnerIndex = Math.floor(Math.random() * pool.length);
   const winner = pool[winnerIndex];
@@ -829,7 +822,6 @@ function spin() {
     
     // Re-enable controls
     if (pool.length > 0) DOM.btnSpin.disabled = false;
-    DOM.btnImport.disabled = false;
     
   }, spinDuration + 150); // slight delay to ensure CSS transition completes
 }
@@ -889,7 +881,6 @@ function exportWinners() {
 // Event Listeners
 DOM.btnSettings.addEventListener('click', () => DOM.settingsModal.classList.add('active'));
 DOM.btnCloseSettings.addEventListener('click', () => DOM.settingsModal.classList.remove('active'));
-DOM.btnImport.addEventListener('click', parseInput);
 DOM.btnSpin.addEventListener('click', spin);
 DOM.btnCloseModal.addEventListener('click', () => {
   DOM.winnerModal.classList.remove('active');
