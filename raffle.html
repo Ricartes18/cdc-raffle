@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clark Tourism Month 2026 Grand Raffle • CDC International Airport</title>
+<title>Clark Tourism Month 2026 Grand Raffle • CDC-TPD Boarding</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
@@ -20,9 +20,9 @@
   --passport-red: #d90429;
   --text-bright: #f8fafc;
   --text-muted: #94a3b8;
-  --border-glow: rgba(255, 183, 3, 0.3);
-  --card-width: 270px;
-  --card-margin: 12px;
+  --border-glow: rgba(255, 183, 3, 0.35);
+  --card-width: 360px;
+  --card-margin: 16px;
   --total-card-width: calc(var(--card-width) + var(--card-margin) * 2);
 }
 
@@ -42,8 +42,8 @@ body {
   flex-direction: column;
   position: relative;
   background-image: 
-    radial-gradient(circle at 50% 20%, rgba(2, 62, 138, 0.25) 0%, transparent 60%),
-    radial-gradient(circle at 80% 80%, rgba(255, 183, 3, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 20%, rgba(2, 62, 138, 0.3) 0%, transparent 65%),
+    radial-gradient(circle at 80% 80%, rgba(255, 183, 3, 0.1) 0%, transparent 55%),
     linear-gradient(to bottom, #070b14 0%, #0a0f1d 100%);
 }
 
@@ -53,9 +53,9 @@ body::before {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 50px 50px;
   pointer-events: none;
   z-index: 1;
 }
@@ -67,29 +67,29 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  background: rgba(10, 15, 29, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 2px solid var(--border-glow);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  padding: 24px 40px;
+  background: rgba(10, 15, 29, 0.9);
+  backdrop-filter: blur(14px);
+  border-bottom: 3px solid var(--border-glow);
+  box-shadow: 0 6px 40px rgba(0, 0, 0, 0.6);
 }
 
 .brand-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .airplane-badge {
   background: linear-gradient(135deg, var(--airport-amber), var(--airport-orange));
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  box-shadow: 0 0 20px rgba(255, 183, 3, 0.4);
+  font-size: 2.3rem;
+  box-shadow: 0 0 25px rgba(255, 183, 3, 0.45);
 }
 
 .title-group {
@@ -99,21 +99,21 @@ body::before {
 
 .airport-tag {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 3px;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
   color: var(--airport-amber);
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .live-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background-color: #10b981;
   border-radius: 50%;
-  box-shadow: 0 0 8px #10b981;
+  box-shadow: 0 0 12px #10b981;
   animation: blink 1.5s infinite;
 }
 
@@ -123,10 +123,10 @@ body::before {
 }
 
 .main-title {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: 900;
   letter-spacing: 1px;
-  background: linear-gradient(90deg, #ffffff, #e2e8f0);
+  background: linear-gradient(90deg, #ffffff, #cbd5e1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
@@ -135,19 +135,19 @@ body::before {
 /* Flight Stats Display Board */
 .stats-board {
   display: flex;
-  gap: 15px;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 8px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 183, 3, 0.2);
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 10px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 183, 3, 0.25);
 }
 
 .stat-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 12px;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .stat-box:last-child {
@@ -155,43 +155,43 @@ body::before {
 }
 
 .stat-label {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   color: var(--text-muted);
 }
 
 .stat-value {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--airport-amber);
-  text-shadow: 0 0 10px rgba(255, 183, 3, 0.3);
+  text-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
 }
 
 .header-controls {
   display: flex;
-  gap: 12px;
+  gap: 14px;
 }
 
 .icon-btn {
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text-bright);
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
 }
 
 .icon-btn:hover {
-  background: rgba(255, 183, 3, 0.2);
+  background: rgba(255, 183, 3, 0.25);
   border-color: var(--airport-amber);
   transform: translateY(-2px);
 }
@@ -205,48 +205,68 @@ body::before {
   align-items: center;
   position: relative;
   z-index: 5;
+  padding: 20px;
 }
 
 /* Flight Departure Board Ticker Screen */
 .departure-board-frame {
-  width: 100%;
-  max-width: 1400px;
+  width: 96%;
+  max-width: 1750px;
   position: relative;
-  background: rgba(10, 14, 26, 0.9);
-  border: 3px solid rgba(255, 183, 3, 0.4);
-  border-radius: 20px;
-  padding: 30px 0;
+  background: rgba(10, 14, 26, 0.92);
+  border: 4px solid rgba(255, 183, 3, 0.45);
+  border-radius: 24px;
+  padding: 40px 0;
   box-shadow: 
-    0 0 50px rgba(0, 0, 0, 0.8),
-    inset 0 0 30px rgba(0, 0, 0, 0.9),
-    0 0 20px rgba(255, 183, 3, 0.2);
+    0 0 70px rgba(0, 0, 0, 0.85),
+    inset 0 0 40px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(255, 183, 3, 0.25);
   overflow: hidden;
 }
 
 .board-header-bar {
   position: absolute;
-  top: 10px;
-  left: 30px;
-  right: 30px;
+  top: 12px;
+  left: 40px;
+  right: 40px;
   display: flex;
   justify-content: space-between;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
   color: var(--airport-amber);
   text-transform: uppercase;
-  border-bottom: 1px dashed rgba(255, 183, 3, 0.3);
-  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(255, 183, 3, 0.35);
+  padding-bottom: 8px;
 }
 
 .ticker-container {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 310px;
   display: flex;
   align-items: center;
   overflow: hidden;
-  margin-top: 15px;
+  margin-top: 20px;
+}
+
+.ticker-container::before, .ticker-container::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 180px;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.ticker-container::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(10, 14, 26, 0.95) 0%, transparent 100%);
+}
+
+.ticker-container::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(10, 14, 26, 0.95) 0%, transparent 100%);
 }
 
 .ticker-track {
@@ -257,17 +277,17 @@ body::before {
   will-change: transform;
 }
 
-/* Reticle / Runway Target Scanner */
+/* Reticle Target Scanner */
 .reticle {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 4px;
+  width: 6px;
   background: linear-gradient(to bottom, var(--airport-amber), var(--airport-orange));
   transform: translateX(-50%);
-  z-index: 30;
-  box-shadow: 0 0 20px var(--airport-amber);
+  z-index: 35;
+  box-shadow: 0 0 30px var(--airport-amber);
 }
 
 .reticle::before, .reticle::after {
@@ -276,36 +296,50 @@ body::before {
   left: 50%;
   transform: translateX(-50%);
   color: var(--airport-amber);
-  font-size: 1.4rem;
-  text-shadow: 0 0 10px var(--airport-amber);
+  font-size: 1.8rem;
+  text-shadow: 0 0 15px var(--airport-amber);
 }
 
-.reticle::before { top: -2px; }
-.reticle::after { bottom: -2px; content: '▲'; }
+.reticle::before { top: -4px; }
+.reticle::after { bottom: -4px; content: '▲'; }
 
 /* Boarding Pass Card Styling */
 .boarding-pass-card {
   width: var(--card-width);
-  height: 180px;
+  height: 230px;
   margin: 0 var(--card-margin);
   background: linear-gradient(145deg, #1e293b, #0f172a);
-  border: 2px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  padding: 14px 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 18px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7);
+  opacity: 1 !important;
+  visibility: visible !important;
+  contain: layout style paint;
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Winner Spotlight Expansion */
+.boarding-pass-card.winner-active {
+  transform: scale(1.14) !important;
+  opacity: 1 !important;
+  border-color: var(--airport-amber) !important;
+  box-shadow: 0 0 50px rgba(255, 183, 3, 0.75) !important;
+  background: linear-gradient(145deg, #2a374c, #131f30) !important;
+  z-index: 40;
 }
 
 .boarding-pass-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; height: 5px;
+  top: 0; left: 0; right: 0; height: 6px;
   background: linear-gradient(90deg, var(--airport-cyan), var(--airport-amber));
 }
 
@@ -314,28 +348,28 @@ body::before {
   justify-content: space-between;
   align-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   color: var(--airport-amber);
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .pass-body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin: 10px 0;
+  gap: 8px;
+  margin: 12px 0;
 }
 
 .passenger-label {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   color: var(--text-muted);
 }
 
 .passenger-name {
-  font-size: 1.15rem;
-  font-weight: 800;
+  font-size: 1.55rem;
+  font-weight: 900;
   color: var(--text-bright);
   white-space: nowrap;
   overflow: hidden;
@@ -345,11 +379,11 @@ body::before {
 
 .passenger-dept {
   display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
   color: #90e0ef;
   white-space: nowrap;
   overflow: hidden;
@@ -361,20 +395,11 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px dashed rgba(255, 255, 255, 0.15);
-  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+  padding-top: 10px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-}
-
-/* Winner Card Highlight */
-.boarding-pass-card.winner-active {
-  border-color: var(--airport-amber);
-  transform: scale(1.08);
-  box-shadow: 0 0 35px rgba(255, 183, 3, 0.5);
-  z-index: 10;
-  background: linear-gradient(145deg, #2d3748, #1a202c);
 }
 
 .boarding-pass-card.winner-active::before {
@@ -383,7 +408,7 @@ body::before {
 
 /* Boarding Call Control Button */
 .control-zone {
-  margin-top: 40px;
+  margin-top: 45px;
   position: relative;
   z-index: 20;
 }
@@ -392,28 +417,28 @@ body::before {
   background: linear-gradient(135deg, var(--airport-amber) 0%, var(--airport-orange) 100%);
   color: #070b14;
   font-family: 'Inter', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.65rem;
   font-weight: 900;
-  letter-spacing: 2px;
-  padding: 18px 45px;
+  letter-spacing: 3px;
+  padding: 24px 60px;
   border: none;
-  border-radius: 50px;
+  border-radius: 60px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   box-shadow: 
-    0 10px 30px rgba(255, 183, 3, 0.4),
-    0 0 0 4px rgba(255, 183, 3, 0.2);
+    0 15px 45px rgba(255, 183, 3, 0.45),
+    0 0 0 5px rgba(255, 183, 3, 0.25);
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-transform: uppercase;
 }
 
 .btn-boarding-call:hover:not(:disabled) {
-  transform: translateY(-3px) scale(1.03);
+  transform: translateY(-4px) scale(1.04);
   box-shadow: 
-    0 15px 40px rgba(255, 183, 3, 0.6),
-    0 0 0 6px rgba(255, 183, 3, 0.3);
+    0 20px 55px rgba(255, 183, 3, 0.65),
+    0 0 0 8px rgba(255, 183, 3, 0.35);
 }
 
 .btn-boarding-call:disabled {
@@ -446,16 +471,16 @@ body::before {
 
 /* Official Passport Winner Modal */
 .passport-modal {
-  width: 520px;
-  max-width: 92%;
+  width: 650px;
+  max-width: 95%;
   background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
-  border: 3px solid var(--airport-amber);
-  border-radius: 24px;
-  padding: 40px;
+  border: 4px solid var(--airport-amber);
+  border-radius: 28px;
+  padding: 45px;
   position: relative;
   box-shadow: 
-    0 30px 60px rgba(0, 0, 0, 0.8),
-    0 0 60px rgba(255, 183, 3, 0.25);
+    0 35px 80px rgba(0, 0, 0, 0.85),
+    0 0 80px rgba(255, 183, 3, 0.3);
   transform: scale(0.85) translateY(20px);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
@@ -470,7 +495,7 @@ body::before {
   position: absolute;
   top: -50px;
   right: -50px;
-  font-size: 15rem;
+  font-size: 18rem;
   opacity: 0.04;
   pointer-events: none;
   user-select: none;
@@ -478,64 +503,64 @@ body::before {
 
 .passport-header {
   border-bottom: 2px solid rgba(255, 183, 3, 0.3);
-  padding-bottom: 15px;
-  margin-bottom: 25px;
+  padding-bottom: 18px;
+  margin-bottom: 28px;
 }
 
 .passport-emblem {
-  font-size: 2.5rem;
-  margin-bottom: 6px;
+  font-size: 3rem;
+  margin-bottom: 8px;
 }
 
 .passport-title {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  letter-spacing: 4px;
+  font-size: 1rem;
+  letter-spacing: 5px;
   color: var(--airport-amber);
   text-transform: uppercase;
 }
 
 .passport-subtitle {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--text-bright);
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .winner-info-card {
-  background: rgba(10, 14, 26, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 25px;
+  background: rgba(10, 14, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 28px;
   position: relative;
 }
 
 .info-row {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   text-align: left;
 }
 .info-row:last-child { margin-bottom: 0; }
 
 .info-label {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-family: 'JetBrains Mono', monospace;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .info-value-name {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 900;
   color: var(--text-bright);
   line-height: 1.2;
 }
 
 .info-value-dept {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--airport-cyan);
 }
@@ -543,11 +568,11 @@ body::before {
 /* Stamp Graphic Animation */
 .stamp-seal {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 110px;
-  height: 110px;
-  border: 4px double var(--passport-red);
+  top: 20px;
+  right: 20px;
+  width: 130px;
+  height: 130px;
+  border: 5px double var(--passport-red);
   border-radius: 50%;
   color: var(--passport-red);
   display: flex;
@@ -556,7 +581,7 @@ body::before {
   justify-content: center;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 900;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -668,7 +693,7 @@ body::before {
     <div class="airplane-badge">✈️</div>
     <div class="title-group">
       <div class="airport-tag">
-        <span class="live-dot"></span> CDC INT'L AIRPORT • TERMINAL 2026
+        <span class="live-dot"></span> CDC-TPD BOARDING • TERMINAL 2026
       </div>
       <h1 class="main-title">Clark Tourism Month 2026</h1>
     </div>
@@ -686,6 +711,7 @@ body::before {
   </div>
 
   <div class="header-controls">
+    <button class="icon-btn" id="btn-fullscreen" title="Toggle Projector Fullscreen">⛶</button>
     <button class="icon-btn" id="btn-settings" title="Flight Settings">⚙️</button>
     <button class="icon-btn" id="btn-audio" title="Toggle Terminal Audio">🔊</button>
   </div>
@@ -708,9 +734,12 @@ body::before {
     </div>
   </div>
 
-  <div class="control-zone">
+  <div class="control-zone" style="display: flex; gap: 20px; align-items: center;">
     <button class="btn-boarding-call" id="btn-spin">
       <span>✈️</span> ANNOUNCE BOARDING / DRAW WINNER
+    </button>
+    <button class="btn-boarding-call" id="btn-test-spin" style="background: linear-gradient(135deg, #023e8a, #0077b6); color: #fff; font-size: 1.2rem; padding: 18px 35px; box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);">
+      <span>🧪</span> TEST SPIN (DEMO)
     </button>
   </div>
 </main>
@@ -753,16 +782,20 @@ body::before {
   <div class="settings-box">
     <h3>⚙️ Flight Settings & Roster Log</h3>
     
-    <div class="form-group">
-      <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-        <input type="checkbox" id="chk-remove-winner" checked style="width: 18px; height: 18px;">
-        Remove boarded passenger from future flight draws
+    <div class="form-group" style="background: rgba(255, 255, 255, 0.05); padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.12);">
+      <label style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-weight: 700; color: var(--text-bright);">
+        <span>Remove winners from passenger pool</span>
+        <input type="checkbox" id="chk-remove-winner" checked style="width: 22px; height: 22px; accent-color: var(--airport-amber); cursor: pointer;">
       </label>
+      <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+        ✓ <strong>Checked:</strong> Winner is removed from pool after winning.<br>
+        ☐ <strong>Unchecked:</strong> Winner remains in pool for future draws (repeat winners allowed).
+      </div>
     </div>
 
     <div class="form-group">
       <label for="spin-duration">Boarding Board Spin Duration (seconds)</label>
-      <input type="number" id="spin-duration" class="form-control" value="5.5" min="1" max="20" step="0.5">
+      <input type="number" id="spin-duration" class="form-control" value="10" min="1" max="30" step="0.5">
     </div>
 
     <div class="form-group" style="margin-top: 20px;">
@@ -1604,17 +1637,20 @@ function updateCounts() {
 
 // BOARDING PASS HTML TEMPLATE
 function createBoardingPassHTML(entry, isWinnerPlaceholder = false) {
+  if (!entry) {
+    entry = { id: '00', name: 'Passenger', dept: 'Tourism Division', seat: '12A' };
+  }
   return `
-    <div class="boarding-pass-card ${isWinnerPlaceholder ? 'winner-placeholder' : ''}" data-id="${entry.id}">
+    <div class="boarding-pass-card ${isWinnerPlaceholder ? 'winner-placeholder' : ''}" data-id="${entry.id || '0'}">
       <div class="pass-header">
         <span>BOARDING PASS</span>
         <span>FLIGHT CDC-2026</span>
       </div>
       <div class="pass-body">
         <span class="passenger-label">PASSENGER NAME</span>
-        <div class="passenger-name" title="${entry.name}">${entry.name}</div>
+        <div class="passenger-name" title="${entry.name || ''}">${entry.name || ''}</div>
         <div>
-          <span class="passenger-dept">${entry.dept}</span>
+          <span class="passenger-dept">${entry.dept || ''}</span>
         </div>
       </div>
       <div class="pass-footer">
@@ -1627,39 +1663,148 @@ function createBoardingPassHTML(entry, isWinnerPlaceholder = false) {
 }
 
 function setupInitialTickerTrack() {
+  if (!pool || pool.length === 0) return;
   let html = '';
-  const previewCount = Math.min(30, pool.length);
-  for (let i = 0; i < previewCount; i++) {
-    const item = pool[Math.floor(Math.random() * pool.length)];
-    html += createBoardingPassHTML(item);
+  const cardTotalWidth = 392;
+  const offsetToCenter = cardTotalWidth / 2;
+  const START_POS = 5;
+
+  let shuffledPool = [...pool].sort(() => Math.random() - 0.5);
+  let previewStrip = [];
+  while (previewStrip.length < 25) {
+    previewStrip.push(...shuffledPool);
+    shuffledPool = [...pool].sort(() => Math.random() - 0.5);
   }
+  previewStrip = previewStrip.slice(0, 25);
+
+  previewStrip.forEach(item => {
+    html += createBoardingPassHTML(item);
+  });
   DOM.tickerTrack.innerHTML = html;
-  DOM.tickerTrack.style.transform = `translateX(0px)`;
+  const initialX = -(START_POS * cardTotalWidth) - offsetToCenter;
+  DOM.tickerTrack.style.transition = 'none';
+  DOM.tickerTrack.style.transform = `translateX(${initialX}px)`;
 }
 
-// WEB AUDIO SYNTHESIZER
+// WEB AUDIO SYNTHESIZER (AIRPORT RADAR SONAR PING & JET TURBINE HUM)
 let audioCtx = null;
+let jetEngineSource = null;
+let jetEngineGain = null;
 
-function playSplitFlapSound(freq = 600, duration = 0.03, vol = 0.2) {
+function playRadarPingSound() {
   if (!audioEnabled) return;
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   if (audioCtx.state === 'suspended') audioCtx.resume();
 
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
+  const now = audioCtx.currentTime;
 
-  osc.type = 'triangle';
-  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(freq / 3, audioCtx.currentTime + duration);
+  // 1. Crystal Sonar Radar Ping (1400Hz -> 900Hz sine drop with resonance)
+  const pingOsc = audioCtx.createOscillator();
+  const pingGain = audioCtx.createGain();
 
-  gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+  pingOsc.type = 'sine';
+  pingOsc.frequency.setValueAtTime(1400 + Math.random() * 200, now);
+  pingOsc.frequency.exponentialRampToValueAtTime(880, now + 0.05);
 
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
+  pingGain.gain.setValueAtTime(0.28, now);
+  pingGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
 
-  osc.start();
-  osc.stop(audioCtx.currentTime + duration);
+  pingOsc.connect(pingGain);
+  pingGain.connect(audioCtx.destination);
+  pingOsc.start(now);
+  pingOsc.stop(now + 0.05);
+
+  // 2. High-Tech Sub-Beacon Echo (Subtle 2200Hz top accent)
+  const echoOsc = audioCtx.createOscillator();
+  const echoGain = audioCtx.createGain();
+
+  echoOsc.type = 'sine';
+  echoOsc.frequency.setValueAtTime(2200, now);
+  echoGain.gain.setValueAtTime(0.06, now);
+  echoGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+
+  echoOsc.connect(echoGain);
+  echoGain.connect(audioCtx.destination);
+  echoOsc.start(now);
+  echoOsc.stop(now + 0.03);
+}
+
+// Low Jet Engine Turbine Ambient Atmosphere
+function startJetEngineHum() {
+  if (!audioEnabled) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  try {
+    const bufferSize = audioCtx.sampleRate * 2; // 2 sec noise loop
+    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1;
+    }
+
+    jetEngineSource = audioCtx.createBufferSource();
+    jetEngineSource.buffer = buffer;
+    jetEngineSource.loop = true;
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(180, audioCtx.currentTime);
+
+    jetEngineGain = audioCtx.createGain();
+    jetEngineGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+    jetEngineGain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.6); // Ramp up
+
+    jetEngineSource.connect(filter);
+    filter.connect(jetEngineGain);
+    jetEngineGain.connect(audioCtx.destination);
+
+    jetEngineSource.start();
+  } catch (e) { console.log(e); }
+}
+
+function stopJetEngineHum() {
+  if (jetEngineGain && audioCtx) {
+    try {
+      jetEngineGain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+      setTimeout(() => {
+        if (jetEngineSource) {
+          jetEngineSource.stop();
+          jetEngineSource = null;
+        }
+      }, 500);
+    } catch (e) {}
+  }
+}
+
+function playPreSpinAnnouncement() {
+  if (!audioEnabled) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  // Authentic 4-Note Airport Terminal Announcement Chime (A4 -> F#5 -> D5 -> A5)
+  const notes = [
+    { freq: 440.00, time: 0 },
+    { freq: 739.99, time: 0.18 },
+    { freq: 587.33, time: 0.36 },
+    { freq: 880.00, time: 0.54 }
+  ];
+
+  notes.forEach(n => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(n.freq, audioCtx.currentTime + n.time);
+
+    gain.gain.setValueAtTime(0.35, audioCtx.currentTime + n.time);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + n.time + 0.6);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start(audioCtx.currentTime + n.time);
+    osc.stop(audioCtx.currentTime + n.time + 0.6);
+  });
 }
 
 function playAirportChime() {
@@ -1667,25 +1812,69 @@ function playAirportChime() {
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   if (audioCtx.state === 'suspended') audioCtx.resume();
 
-  const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
-  notes.forEach((freq, index) => {
+  // 1. Victory Fanfare Arpeggio (C4 -> G4 -> C5 -> E5 -> G5 -> C6)
+  const fanfareNotes = [
+    { freq: 261.63, time: 0, duration: 0.25 },
+    { freq: 392.00, time: 0.1, duration: 0.25 },
+    { freq: 523.25, time: 0.2, duration: 0.3 },
+    { freq: 659.25, time: 0.3, duration: 0.3 },
+    { freq: 783.99, time: 0.4, duration: 0.4 },
+    { freq: 1046.50, time: 0.52, duration: 0.9 }
+  ];
+
+  fanfareNotes.forEach(n => {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.value = freq;
-    gain.gain.setValueAtTime(0.3, audioCtx.currentTime + index * 0.15);
-    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + index * 0.15 + 0.4);
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(n.freq, audioCtx.currentTime + n.time);
+
+    gain.gain.setValueAtTime(0.4, audioCtx.currentTime + n.time);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + n.time + n.duration);
+
     osc.connect(gain);
     gain.connect(audioCtx.destination);
-    osc.start(audioCtx.currentTime + index * 0.15);
-    osc.stop(audioCtx.currentTime + index * 0.15 + 0.4);
+
+    osc.start(audioCtx.currentTime + n.time);
+    osc.stop(audioCtx.currentTime + n.time + n.duration);
   });
+
+  // 2. Synthesized "HOORAY!" Crowd Cheer Sweep Simulation
+  const cheerOsc1 = audioCtx.createOscillator();
+  const cheerOsc2 = audioCtx.createOscillator();
+  const cheerGain = audioCtx.createGain();
+
+  cheerOsc1.type = 'sawtooth';
+  cheerOsc2.type = 'sine';
+
+  const startTime = audioCtx.currentTime + 0.3;
+
+  // Pitch sweep simulating a rising "Hoo-ray!" cheer
+  cheerOsc1.frequency.setValueAtTime(320, startTime);
+  cheerOsc1.frequency.exponentialRampToValueAtTime(850, startTime + 0.3);
+  cheerOsc1.frequency.exponentialRampToValueAtTime(650, startTime + 0.8);
+
+  cheerOsc2.frequency.setValueAtTime(480, startTime);
+  cheerOsc2.frequency.exponentialRampToValueAtTime(1200, startTime + 0.3);
+  cheerOsc2.frequency.exponentialRampToValueAtTime(950, startTime + 0.8);
+
+  cheerGain.gain.setValueAtTime(0.01, startTime);
+  cheerGain.gain.linearRampToValueAtTime(0.25, startTime + 0.15);
+  cheerGain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.85);
+
+  cheerOsc1.connect(cheerGain);
+  cheerOsc2.connect(cheerGain);
+  cheerGain.connect(audioCtx.destination);
+
+  cheerOsc1.start(startTime);
+  cheerOsc2.start(startTime);
+  cheerOsc1.stop(startTime + 0.85);
+  cheerOsc2.stop(startTime + 0.85);
 }
 
-// SPIN ANIMATION AND TICKER TICKING
-function simulateTicks() {
-  const cardWidthWithMargin = 294; // 270 + 12*2
-  let lastX = 0;
+// SPIN ANIMATION AND TICKER TICKING (RADAR PINGS & JET HUM)
+function simulateTicks(initialXVal) {
+  const cardWidthWithMargin = 392; // 360 + 16*2
+  let lastX = Math.abs(initialXVal);
 
   function checkTick() {
     if (!isSpinning) return;
@@ -1693,8 +1882,9 @@ function simulateTicks() {
     const matrix = new DOMMatrixReadOnly(style.transform);
     const currentX = Math.abs(matrix.m41);
 
+    // Sonar radar ping audio trigger
     if (Math.floor(currentX / cardWidthWithMargin) > Math.floor(lastX / cardWidthWithMargin)) {
-      playSplitFlapSound(500 + Math.random() * 200, 0.035, 0.25);
+      playRadarPingSound();
     }
 
     lastX = currentX;
@@ -1703,93 +1893,299 @@ function simulateTicks() {
   requestAnimationFrame(checkTick);
 }
 
-function spin() {
+function spin(isTestMode = false) {
+  if (pool.length === 0) initializePool();
   if (pool.length === 0 || isSpinning) return;
   isSpinning = true;
   DOM.btnSpin.disabled = true;
+  if (DOM.btnTestSpin) DOM.btnTestSpin.disabled = true;
 
-  // 1. Pick Winner
+  // Play pre-spin airport chime announcement and start jet turbine hum
+  playPreSpinAnnouncement();
+  startJetEngineHum();
+
+  // 1. Pick Winner from pool
   const winnerIndex = Math.floor(Math.random() * pool.length);
   const winner = pool[winnerIndex];
 
-  // 2. Build Ticker Strip
-  let strip = [];
-  let shuffled = [...pool].sort(() => Math.random() - 0.5);
+  const safePool = pool.filter(p => p && p.name);
+  if (safePool.length === 0) return;
 
-  while (strip.length < 80) {
-    strip.push(...shuffled);
-    shuffled = [...pool].sort(() => Math.random() - 0.5);
+  const durInput = parseFloat(document.getElementById('spin-duration').value);
+  const totalDuration = isNaN(durInput) || durInput <= 0 ? 10000 : durInput * 1000;
+
+  const cardTotalWidth = 392; // 360 + 32
+  const offsetToCenter = cardTotalWidth / 2;
+  const START_POS = 5;
+
+  // 25 cards MAX in DOM to guarantee container width = 9,800px <= 16,384px GPU texture limit!
+  const TOTAL_CARDS_IN_SPIN = 70;
+  const WINNER_CARD_INDEX = TOTAL_CARDS_IN_SPIN;
+
+  const targetScrollDistance = WINNER_CARD_INDEX * cardTotalWidth;
+  const initialX = -(START_POS * cardTotalWidth) - offsetToCenter;
+  const randomOffset = (Math.random() * 120) - 60;
+
+  // Build initial 25 cards sampling from all 769 participants
+  let cyclePool = [...safePool].sort(() => Math.random() - 0.5);
+  let currentWindow = [];
+  while (currentWindow.length < 25) {
+    currentWindow.push(...cyclePool);
+    cyclePool = [...safePool].sort(() => Math.random() - 0.5);
   }
-
-  if (strip.length > 1500) strip = strip.slice(0, 1500);
-
-  const WINNER_POS = strip.length - 12;
-  strip[WINNER_POS] = winner;
-
-  DOM.tickerTrack.style.transition = 'none';
-  DOM.tickerTrack.style.transform = 'translateX(0px)';
+  currentWindow = currentWindow.slice(0, 25);
 
   let html = '';
-  strip.forEach((item, idx) => {
-    html += createBoardingPassHTML(item, idx === WINNER_POS);
+  currentWindow.forEach(item => {
+    html += createBoardingPassHTML(item);
   });
   DOM.tickerTrack.innerHTML = html;
+  DOM.tickerTrack.style.transition = 'none';
+  DOM.tickerTrack.style.transform = `translateX(${initialX}px)`;
 
-  // 3. Target Position
-  const cardTotalWidth = 294; // 270 + 24
-  const offsetToCenter = cardTotalWidth / 2;
-  const randomOffset = (Math.random() * 140) - 70;
-  const targetX = -(WINNER_POS * cardTotalWidth) - offsetToCenter - randomOffset;
+  let nextCardIndexToAppend = 25;
+  let lastCardsPassed = 0;
+  const startTime = performance.now();
+  let animId = null;
 
-  DOM.tickerTrack.offsetHeight; // Reflow
+  // Butter-Smooth C1 Continuous Physics Curve (Fast 8s spin, smooth matched deceleration over final 2s)
+  function getProgress(s) {
+    if (s <= 0) return 0;
+    if (s >= 1) return 1;
+    if (s < 0.06) {
+      // Smooth initial acceleration (0s to 0.6s)
+      const t = s / 0.06;
+      return 0.0335 * (t * t);
+    } else if (s <= 0.80) {
+      // Constant high-speed spin across 769 pool (0.6s to 8.0s)
+      const t = (s - 0.06) / 0.74;
+      return 0.0335 + 0.8615 * t;
+    } else {
+      // Velocity-matched smooth deceleration curve (8.0s to 10.0s - final 2 seconds)
+      const t = (s - 0.80) / 0.20;
+      const easeOut = t * (2 - t); // Quadratic ease-out matching slope exactly at 8.0s
+      return 0.895 + 0.105 * easeOut;
+    }
+  }
 
-  // 4. Spin Animation Execution
-  const durInput = parseFloat(document.getElementById('spin-duration').value);
-  const spinDuration = isNaN(durInput) || durInput <= 0 ? 5500 : durInput * 1000;
+  function spinStep(now) {
+    if (!isSpinning) return;
+    const elapsed = now - startTime;
+    const s = Math.min(elapsed / totalDuration, 1.0);
 
-  DOM.tickerTrack.style.transition = `transform ${spinDuration}ms cubic-bezier(0.1, 0.82, 0.25, 1)`;
-  DOM.tickerTrack.style.transform = `translateX(${targetX}px)`;
+    const progress = getProgress(s);
+    const distanceTraveled = (targetScrollDistance + randomOffset) * progress;
 
-  simulateTicks();
+    // Use local modulo offset so tickerTrack ALWAYS stays inside the visible container window (-2156px to -2548px)
+    const localOffset = distanceTraveled % cardTotalWidth;
+    const currentX = initialX - localOffset;
 
-  setTimeout(() => {
-    isSpinning = false;
-    const cards = DOM.tickerTrack.querySelectorAll('.boarding-pass-card');
-    const winnerCard = cards[WINNER_POS];
-    if (winnerCard) winnerCard.classList.add('winner-active');
+    DOM.tickerTrack.style.transition = 'none';
+    DOM.tickerTrack.style.transform = `translateX(${currentX}px)`;
 
-    playAirportChime();
+    // Node Reordering (Moves card off-screen left to the right end)
+    const cardsPassed = Math.floor(distanceTraveled / cardTotalWidth);
+    if (cardsPassed > lastCardsPassed) {
+      const steps = cardsPassed - lastCardsPassed;
+      for (let i = 0; i < steps; i++) {
+        const cardToMove = DOM.tickerTrack.firstElementChild;
+        if (cardToMove) {
+          DOM.tickerTrack.appendChild(cardToMove); // O(1) DOM move to right end
 
-    showWinnerModal(winner, winnerIndex);
-  }, spinDuration + 150);
+          let nextItem;
+          let isWinnerCard = false;
+
+          if (nextCardIndexToAppend === WINNER_CARD_INDEX + START_POS) {
+            nextItem = winner;
+            isWinnerCard = true;
+          } else {
+            nextItem = cyclePool[nextCardIndexToAppend % cyclePool.length];
+          }
+
+          const nameEl = cardToMove.querySelector('.passenger-name');
+          const deptEl = cardToMove.querySelector('.passenger-dept');
+          if (nameEl) {
+            nameEl.textContent = nextItem.name || '';
+            nameEl.title = nextItem.name || '';
+          }
+          if (deptEl) {
+            deptEl.textContent = nextItem.dept || '';
+          }
+          cardToMove.setAttribute('data-id', nextItem.id || '0');
+
+          if (isWinnerCard) {
+            cardToMove.classList.add('winner-placeholder');
+          } else {
+            cardToMove.classList.remove('winner-placeholder', 'winner-active');
+          }
+
+          nextCardIndexToAppend++;
+          playRadarPingSound();
+        }
+      }
+      lastCardsPassed = cardsPassed;
+    }
+
+    if (s < 1.0) {
+      animId = requestAnimationFrame(spinStep);
+    } else {
+      // Spin finished cleanly!
+      isSpinning = false;
+      stopJetEngineHum();
+
+      // Find and highlight winner card
+      const cards = DOM.tickerTrack.querySelectorAll('.boarding-pass-card');
+      cards.forEach(c => {
+        if (c.getAttribute('data-id') === (winner.id || '0')) {
+          c.classList.add('winner-active');
+        }
+      });
+
+      playAirportChime();
+      showWinnerModal(winner, winnerIndex, isTestMode);
+
+      if (pool.length > 0) {
+        DOM.btnSpin.disabled = false;
+        if (DOM.btnTestSpin) DOM.btnTestSpin.disabled = false;
+      }
+    }
+  }
+
+  animId = requestAnimationFrame(spinStep);
+}
+
+// SYNTHESIZED CROWD APPLAUSE & CLAPPING SOUND EFFECT (LOUD & DENSE)
+function playApplauseClapSound() {
+  if (!audioEnabled) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const masterApplauseGain = audioCtx.createGain();
+  masterApplauseGain.gain.setValueAtTime(1.2, audioCtx.currentTime);
+  masterApplauseGain.connect(audioCtx.destination);
+
+  const totalClaps = 160; // Denser crowd clapping
+  for (let i = 0; i < totalClaps; i++) {
+    const timeOffset = Math.pow(Math.random(), 0.8) * 2.5; // Dense peak at start, trailing off over 2.5s
+    
+    // Create short 40ms noise buffer for crisp hand clap
+    const bufferSize = Math.floor(audioCtx.sampleRate * 0.04);
+    const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let j = 0; j < bufferSize; j++) {
+      data[j] = Math.random() * 2 - 1;
+    }
+
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = buffer;
+
+    // Acoustic bandpass filter for hand clapping spectrum
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 800 + Math.random() * 1600;
+    filter.Q.value = 1.5;
+
+    const gain = audioCtx.createGain();
+    const startTime = audioCtx.currentTime + timeOffset;
+
+    // Loud, snappy clap envelope
+    const clapVol = 0.7 + Math.random() * 0.3;
+    gain.gain.setValueAtTime(clapVol, startTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.038);
+
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(masterApplauseGain);
+
+    noise.start(startTime);
+    noise.stop(startTime + 0.04);
+  }
+}
+
+// REALISTIC RUBBER PASSPORT STAMP IMPACT SOUND EFFECT
+function playPassportStampImpactSound() {
+  if (!audioEnabled) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  const now = audioCtx.currentTime;
+
+  // 1. Heavy Wooden Desk Thud Impact (160Hz -> 35Hz drop)
+  const thudOsc = audioCtx.createOscillator();
+  const thudGain = audioCtx.createGain();
+
+  thudOsc.type = 'sine';
+  thudOsc.frequency.setValueAtTime(170, now);
+  thudOsc.frequency.exponentialRampToValueAtTime(32, now + 0.08);
+
+  thudGain.gain.setValueAtTime(0.85, now);
+  thudGain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+
+  thudOsc.connect(thudGain);
+  thudGain.connect(audioCtx.destination);
+  thudOsc.start(now);
+  thudOsc.stop(now + 0.09);
+
+  // 2. Rubber Ink Pad Slap (Lowpass Filtered Slap Burst)
+  const bufferSize = Math.floor(audioCtx.sampleRate * 0.04);
+  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = Math.random() * 2 - 1;
+  }
+
+  const noise = audioCtx.createBufferSource();
+  noise.buffer = buffer;
+
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(500, now);
+
+  const noiseGain = audioCtx.createGain();
+  noiseGain.gain.setValueAtTime(0.7, now);
+  noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+
+  noise.connect(filter);
+  filter.connect(noiseGain);
+  noiseGain.connect(audioCtx.destination);
+
+  noise.start(now);
+  noise.stop(now + 0.045);
 }
 
 // WINNER REVEAL PASSPORT MODAL
-function showWinnerModal(winner, winnerIndex) {
-  const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  winners.push({ ...winner, timestamp });
+function showWinnerModal(winner, winnerIndex, isTestMode = false) {
+  if (!isTestMode) {
+    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    winners.push({ ...winner, timestamp });
 
-  renderWinnersLog();
-  updateCounts();
+    if (DOM.chkRemoveWinner.checked) {
+      const idx = pool.findIndex(p => p.name === winner.name);
+      if (idx !== -1) {
+        pool.splice(idx, 1);
+      }
+    }
+
+    renderWinnersLog();
+    updateCounts();
+  }
 
   DOM.modalName.textContent = winner.name;
-  DOM.modalDept.textContent = winner.dept;
+  DOM.modalDept.textContent = winner.dept + (isTestMode ? " (TEST DEMO)" : "");
   DOM.stampSeal.classList.remove('stamped');
+  DOM.stampSeal.innerHTML = isTestMode ? "TEST<br>DRAW<br>★ DEMO ★" : "PRIZE<br>BOARDED<br>★ 2026 ★";
 
   DOM.winnerModal.classList.add('active');
   launchConfetti();
 
-  // Stamp slamming animation delay
+  // Play crowd applause & clapping
+  playApplauseClapSound();
+
+  // Stamp slamming animation & sound delay
   setTimeout(() => {
     DOM.stampSeal.classList.add('stamped');
-    playSplitFlapSound(200, 0.08, 0.4); // Thud sound
+    playPassportStampImpactSound();
   }, 400);
-
-  if (DOM.chkRemoveWinner.checked) {
-    pool.splice(winnerIndex, 1);
-  }
-
-  if (pool.length > 0) DOM.btnSpin.disabled = false;
 }
 
 function renderWinnersLog() {
@@ -1830,6 +2226,7 @@ function exportWinnersCSV() {
 const ctx = DOM.confettiCanvas.getContext('2d');
 let particles = [];
 let confettiId = null;
+let confettiStartTime = 0;
 
 function resizeCanvas() {
   DOM.confettiCanvas.width = window.innerWidth;
@@ -1840,24 +2237,31 @@ resizeCanvas();
 
 function launchConfetti() {
   particles = [];
+  confettiStartTime = Date.now();
   const colors = ['#ffb703', '#fb8500', '#00b4d8', '#f8fafc', '#fbbf24', '#e63946'];
-  for (let i = 0; i < 220; i++) {
+  for (let i = 0; i < 150; i++) {
     particles.push({
       x: Math.random() * DOM.confettiCanvas.width,
-      y: Math.random() * DOM.confettiCanvas.height - DOM.confettiCanvas.height,
-      r: Math.random() * 6 + 3,
+      y: Math.random() * (DOM.confettiCanvas.height * 0.5) - 50,
+      r: Math.random() * 5 + 3,
       dx: Math.random() * 4 - 2,
-      dy: Math.random() * 5 + 3,
+      dy: Math.random() * 4 + 2,
       color: colors[Math.floor(Math.random() * colors.length)],
       tilt: Math.random() * 10
     });
   }
+  if (confettiId) cancelAnimationFrame(confettiId);
   drawConfetti();
+
+  // Auto stop confetti after 3.2 seconds
+  setTimeout(() => {
+    stopConfetti();
+  }, 3200);
 }
 
 function drawConfetti() {
   ctx.clearRect(0, 0, DOM.confettiCanvas.width, DOM.confettiCanvas.height);
-  particles.forEach((p, index) => {
+  particles.forEach((p) => {
     p.y += p.dy;
     p.x += p.dx;
     p.tilt += 0.1;
@@ -1868,21 +2272,26 @@ function drawConfetti() {
     ctx.moveTo(p.x + p.tilt + p.r, p.y);
     ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
     ctx.stroke();
-
-    if (p.y > DOM.confettiCanvas.height) {
-      particles[index] = { ...p, y: -20, x: Math.random() * DOM.confettiCanvas.width };
-    }
   });
-  confettiId = requestAnimationFrame(drawConfetti);
+
+  if (particles.some(p => p.y < DOM.confettiCanvas.height)) {
+    confettiId = requestAnimationFrame(drawConfetti);
+  } else {
+    ctx.clearRect(0, 0, DOM.confettiCanvas.width, DOM.confettiCanvas.height);
+  }
 }
 
 function stopConfetti() {
-  cancelAnimationFrame(confettiId);
+  if (confettiId) cancelAnimationFrame(confettiId);
   ctx.clearRect(0, 0, DOM.confettiCanvas.width, DOM.confettiCanvas.height);
 }
 
 // EVENT LISTENERS
-DOM.btnSpin.addEventListener('click', spin);
+DOM.btnSpin.addEventListener('click', () => spin(false));
+DOM.btnTestSpin = document.getElementById('btn-test-spin');
+if (DOM.btnTestSpin) {
+  DOM.btnTestSpin.addEventListener('click', () => spin(true));
+}
 DOM.btnSettings.addEventListener('click', () => DOM.settingsModal.classList.add('active'));
 DOM.btnCloseSettings.addEventListener('click', () => DOM.settingsModal.classList.remove('active'));
 DOM.btnCloseModal.addEventListener('click', () => {
@@ -1896,8 +2305,25 @@ DOM.btnAudio.addEventListener('click', () => {
   DOM.btnAudio.textContent = audioEnabled ? '🔊' : '🔇';
 });
 
-// INITIALIZE APP ON LOAD
-initializePool();
+// FULLSCREEN TOGGLE FOR PROJECTOR STAGE
+DOM.btnFullscreen = document.getElementById('btn-fullscreen');
+DOM.btnFullscreen.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => console.log(err));
+  } else {
+    document.exitFullscreen().catch(err => console.log(err));
+  }
+});
+
+// INITIALIZE APP ON LOAD (FAIL-SAFE AUTO-LOAD)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializePool);
+} else {
+  initializePool();
+}
+window.addEventListener('load', () => {
+  if (pool.length === 0) initializePool();
+});
 </script>
 </body>
 </html>
