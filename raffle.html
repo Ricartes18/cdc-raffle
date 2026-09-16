@@ -693,9 +693,9 @@ body::before {
     <div class="airplane-badge">✈️</div>
     <div class="title-group">
       <div class="airport-tag">
-        <span class="live-dot"></span> CDC-TPD BOARDING • TERMINAL 2026
+        <span class="live-dot"></span> <span id="header-subtitle">CDC-TPD BOARDING • TERMINAL 2026</span>
       </div>
-      <h1 class="main-title">Clark Tourism Month 2026</h1>
+      <h1 class="main-title" id="header-title">Clark Tourism Month 2026</h1>
     </div>
   </div>
 
@@ -738,9 +738,7 @@ body::before {
     <button class="btn-boarding-call" id="btn-spin">
       <span>✈️</span> ANNOUNCE BOARDING / DRAW WINNER
     </button>
-    <button class="btn-boarding-call" id="btn-test-spin" style="background: linear-gradient(135deg, #023e8a, #0077b6); color: #fff; font-size: 1.2rem; padding: 18px 35px; box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);">
-      <span>🧪</span> TEST SPIN (DEMO)
-    </button>
+
   </div>
 </main>
 
@@ -791,6 +789,15 @@ body::before {
         ✓ <strong>Checked:</strong> Winner is removed from pool after winning.<br>
         ☐ <strong>Unchecked:</strong> Winner remains in pool for future draws (repeat winners allowed).
       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input-header-title">Main Title Text</label>
+      <input type="text" id="input-header-title" class="form-control" value="Clark Tourism Month 2026">
+    </div>
+    <div class="form-group">
+      <label for="input-header-subtitle">Subtitle Text</label>
+      <input type="text" id="input-header-subtitle" class="form-control" value="CDC-TPD BOARDING • TERMINAL 2026">
     </div>
 
     <div class="form-group">
@@ -1898,7 +1905,6 @@ function spin(isTestMode = false) {
   if (pool.length === 0 || isSpinning) return;
   isSpinning = true;
   DOM.btnSpin.disabled = true;
-  if (DOM.btnTestSpin) DOM.btnTestSpin.disabled = true;
 
   // Play pre-spin airport chime announcement and start jet turbine hum
   playPreSpinAnnouncement();
@@ -2046,7 +2052,6 @@ function spin(isTestMode = false) {
 
       if (pool.length > 0) {
         DOM.btnSpin.disabled = false;
-        if (DOM.btnTestSpin) DOM.btnTestSpin.disabled = false;
       }
     }
   }
@@ -2288,10 +2293,19 @@ function stopConfetti() {
 
 // EVENT LISTENERS
 DOM.btnSpin.addEventListener('click', () => spin(false));
-DOM.btnTestSpin = document.getElementById('btn-test-spin');
-if (DOM.btnTestSpin) {
-  DOM.btnTestSpin.addEventListener('click', () => spin(true));
-}
+const headerTitle = document.getElementById('header-title');
+const headerSubtitle = document.getElementById('header-subtitle');
+const inputHeaderTitle = document.getElementById('input-header-title');
+const inputHeaderSubtitle = document.getElementById('input-header-subtitle');
+
+inputHeaderTitle.addEventListener('input', (e) => {
+  headerTitle.textContent = e.target.value;
+  document.title = `${e.target.value} Grand Raffle • CDC-TPD Boarding`;
+});
+
+inputHeaderSubtitle.addEventListener('input', (e) => {
+  headerSubtitle.textContent = e.target.value;
+});
 DOM.btnSettings.addEventListener('click', () => DOM.settingsModal.classList.add('active'));
 DOM.btnCloseSettings.addEventListener('click', () => DOM.settingsModal.classList.remove('active'));
 DOM.btnCloseModal.addEventListener('click', () => {
