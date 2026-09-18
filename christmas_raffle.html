@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas in our Hearts 🎄 Grand Holiday Raffle • CDC 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;800&family=Mountains+of+Christmas:wght@700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* CSS Reset & Variables - Christmas Theme */
+    :root {
+      --bg-dark: #07120e;
+      --bg-card: rgba(15, 33, 25, 0.92);
+      --xmas-red: #ef4444;
+      --xmas-red-dark: #991b1b;
+      --xmas-red-bright: #ff3344;
+      --xmas-green: #10b981;
+      --xmas-green-dark: #064e3b;
+      --xmas-green-bright: #00f090;
+      --xmas-gold: #f59e0b;
+      --xmas-gold-bright: #fbbf24;
+      --xmas-gold-glow: rgba(245, 158, 11, 0.5);
+      --snow-white: #f8fafc;
+      --text-bright: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-gold: #fde047;
+      --border-glow: rgba(245, 158, 11, 0.45);
+      --card-width: 360px;
+      --card-margin: 16px;
+      --total-card-width: calc(var(--card-width) + var(--card-margin) * 2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-bright);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-image:
+        radial-gradient(circle at 50% 15%, rgba(16, 185, 129, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(239, 68, 68, 0.15) 0%, transparent 55%),
+        radial-gradient(circle at 15% 75%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
+        linear-gradient(to bottom, #050d0a 0%, #0a1812 50%, #06110c 100%);
+    }
+
+    /* Snowfall Canvas */
+    #snow-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Festive Fairy Lights Banner */
+    .fairy-lights {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 18px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 20;
+      pointer-events: none;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .light-bulb {
+      width: 10px;
+      height: 14px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: lightFlicker 1.8s infinite alternate ease-in-out;
+    }
+
+    .light-bulb:nth-child(5n+1) {
+      background: #ef4444;
+      box-shadow: 0 0 10px #ef4444;
+      animation-delay: 0s;
+    }
+
+    .light-bulb:nth-child(5n+2) {
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation-delay: 0.4s;
+    }
+
+    .light-bulb:nth-child(5n+3) {
+      background: #fbbf24;
+      box-shadow: 0 0 10px #fbbf24;
+      animation-delay: 0.8s;
+    }
+
+    .light-bulb:nth-child(5n+4) {
+      background: #3b82f6;
+      box-shadow: 0 0 10px #3b82f6;
+      animation-delay: 1.2s;
+    }
+
+    .light-bulb:nth-child(5n+5) {
+      background: #ec4899;
+      box-shadow: 0 0 10px #ec4899;
+      animation-delay: 1.6s;
+    }
+
+    @keyframes lightFlicker {
+      0% {
+        opacity: 0.4;
+        filter: brightness(0.8);
+      }
+
+      100% {
+        opacity: 1;
+        filter: brightness(1.5);
+      }
+    }
+
+    /* Top Christmas Header */
+    .christmas-header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 40px;
+      margin-top: 8px;
+      background: rgba(10, 24, 18, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid rgba(245, 158, 11, 0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .christmas-badge {
+      background: linear-gradient(135deg, #b91c1c, #ef4444, #f59e0b);
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.4);
+      border: 2px solid #fef08a;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+      }
+
+      100% {
+        box-shadow: 0 0 35px rgba(245, 158, 11, 0.7);
+      }
+    }
+
+    .title-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .christmas-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88rem;
+      letter-spacing: 3px;
+      color: var(--xmas-gold-bright);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #10b981;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.3rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #ffffff 0%, #fef08a 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Christmas Stats Board */
+    .stats-board {
+      display: none;
+      gap: 20px;
+      background: rgba(5, 15, 10, 0.75);
+      padding: 10px 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .stats-board.show {
+      display: flex;
+    }
+
+    .stat-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .stat-box:last-child {
+      border-right: none;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--xmas-gold-bright);
+      text-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+    }
+
+    .header-controls {
+      display: flex;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      background: rgba(20, 45, 33, 0.85);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--text-bright);
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      cursor: pointer;
+      transition: all 0.25 ease;
+      backdrop-filter: blur(6px);
+      position: relative;
+    }
+
+    .icon-btn:hover {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: var(--xmas-gold-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+    }
+
+    .icon-btn.active-toggle {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: var(--xmas-green);
+    }
+
+    /* Main Display Stage */
+    .main-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+      padding: 20px;
+    }
+
+    /* Ticker UI - Replicated from raffle.html */
+    .departure-board-frame {
+      width: 96%;
+      max-width: 1600px;
+      position: relative;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 0;
+      background: rgba(10, 24, 18, 0.85);
+      border: 4px solid var(--xmas-green);
+      border-radius: 24px;
+      box-shadow:
+        0 0 40px rgba(16, 185, 129, 0.4),
+        inset 0 0 20px rgba(239, 68, 68, 0.3),
+        0 0 20px rgba(245, 158, 11, 0.2);
+    }
+
+    .departure-board-frame::before,
+    .departure-board-frame::after {
+      content: '';
+      position: absolute;
+      top: -35px;
+      width: 85px;
+      height: 85px;
+      z-index: 50;
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.6));
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .departure-board-frame::before {
+      left: -5px;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNIDMyIDQ1IEMgMjAgMzAgNSAxNSAxNSA1IEMgMjUgMTAgMzAgMjUgMzIgNDUgWiIgZmlsbD0iIzA1OTY2OSIvPjxwYXRoIGQ9Ik0gMzIgNDUgQyA0NCAzMCA1OSAxNSA0OSA1IEMgMzkgMTAgMzQgMjUgMzIgNDUgWiIgZmlsbD0iIzEwYjk4MSIvPjxwYXRoIGQ9Ik0gMzIgNDUgQyAyOCAyOCAyMCAxMCAzMiA1IEMgNDQgMTAgMzYgMjggMzIgNDUgWiIgZmlsbD0iIzM0ZDM5OSIvPjxjaXJjbGUgY3g9IjMyIiBjeT0iNTAiIHI9IjUiIGZpbGw9IiNlZjQ0NDQiLz48Y2lyY2xlIGN4PSIyNCIgY3k9IjQ2IiByPSI1IiBmaWxsPSIjZGMyNjI2Ii8+PGNpcmNsZSBjeD0iNDAiIGN5PSI0NiIgcj0iNSIgZmlsbD0iI2I5MWMxYyIvPjwvc3ZnPg==');
+      transform: rotate(-15deg);
+    }
+
+    .departure-board-frame::after {
+      right: -5px;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNIDQwIDkwIEwgNDAgMzUgQSAxNSAxNSAwIDAgMSA3MCAzNSBMIDcwIDQ1IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0gNDAgOTAgTCA0MCAzNSBBIDE1IDE1IDAgMCAxIDcwIDM1IEwgNzAgNDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2VmNDQ0NCIgc3Ryb2tlLXdpZHRoPSIxNiIgc3Ryb2tlLWRhc2hhcnJheT0iMTAgMTAiLz48L3N2Zz4=');
+      transform: rotate(15deg);
+    }
+
+    .ticker-container {
+      position: relative;
+      width: 100%;
+      height: 310px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .ticker-container::before,
+    .ticker-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 180px;
+      z-index: 25;
+      pointer-events: none;
+    }
+
+    .ticker-container::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg-dark) 0%, transparent 100%);
+    }
+
+    .ticker-container::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--bg-dark) 0%, transparent 100%);
+    }
+
+    .ticker-track {
+      display: flex;
+      position: absolute;
+      left: 50%;
+      transform: translateX(0);
+      will-change: transform;
+    }
+
+    /* Reticle Target Scanner (Gold/Orange style for Christmas) */
+    .reticle {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: repeating-linear-gradient(45deg,
+          #ef4444,
+          #ef4444 8px,
+          #ffffff 8px,
+          #ffffff 16px);
+      opacity: 0.4;
+      transform: translateX(-50%);
+      z-index: 35;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    }
+
+    .reticle::before,
+    .reticle::after {
+      content: '▼';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ef4444;
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+      opacity: 0.7;
+    }
+
+    .reticle::before {
+      top: -24px;
+    }
+
+    .reticle::after {
+      content: '▲';
+      bottom: -24px;
+    }
+
+
+    /* Christmas Gift Card Design (Matching original structure UI) */
+    .christmas-card {
+      width: var(--card-width);
+      height: 205px;
+      margin: 0 var(--card-margin);
+      background: linear-gradient(145deg, rgba(22, 45, 34, 0.95), rgba(10, 24, 18, 0.98));
+      border-radius: 20px;
+      border: 2px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px 22px;
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .christmas-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .christmas-card.winner-placeholder {
+      border-color: var(--xmas-gold-bright);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+    }
+
+    .christmas-card.winner-active {
+      border-color: #ef4444;
+      background: linear-gradient(145deg, rgba(153, 27, 27, 0.95), rgba(88, 14, 14, 0.98));
+      box-shadow: 0 0 45px rgba(239, 68, 68, 0.9), inset 0 0 20px rgba(254, 240, 138, 0.5);
+      animation: cardWinnerPulse 1s infinite alternate;
+    }
+
+    @keyframes cardWinnerPulse {
+      0% {
+        transform: scale(1.02);
+        border-color: #f59e0b;
+      }
+
+      100% {
+        transform: scale(1.05);
+        border-color: #ef4444;
+        box-shadow: 0 0 50px rgba(239, 68, 68, 1);
+      }
+    }
+
+    .card-top-tag {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed rgba(245, 158, 11, 0.3);
+      padding-bottom: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      color: var(--xmas-gold-bright);
+    }
+
+    .card-holiday-badge {
+      background: rgba(239, 68, 68, 0.25);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #feccae;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.68rem;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 8px 0;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .card-name {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    .card-dept {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #a7f3d0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 8px;
+    }
+
+    /* Spin Control Section */
+    .controls-stage {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-draw-main {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      padding: 20px 60px;
+      border-radius: 50px;
+      border: 3px solid #fef08a;
+      cursor: pointer;
+      box-shadow:
+        0 0 35px rgba(239, 68, 68, 0.7),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+    }
+
+    .btn-draw-main:hover:not(:disabled) {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow:
+        0 0 50px rgba(245, 158, 11, 0.9),
+        inset 0 2px 6px rgba(255, 255, 255, 0.6),
+        0 15px 35px rgba(0, 0, 0, 0.6);
+      border-color: #ffffff;
+    }
+
+    .btn-draw-main:active:not(:disabled) {
+      transform: translateY(2px) scale(0.98);
+    }
+
+    .btn-draw-main:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      filter: grayscale(0.5);
+    }
+
+    .keyboard-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .kbd {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: var(--xmas-gold-bright);
+    }
+
+    /* Winner Certificate Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(2, 8, 5, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .christmas-certificate {
+      background: linear-gradient(145deg, #0e241b, #071610);
+      width: 90%;
+      max-width: 660px;
+      border-radius: 28px;
+      border: 3px solid var(--xmas-gold-bright);
+      box-shadow:
+        0 0 70px rgba(245, 158, 11, 0.6),
+        inset 0 0 30px rgba(0, 0, 0, 0.8);
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transform: scale(0.85);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .modal-overlay.active .christmas-certificate {
+      transform: scale(1);
+    }
+
+    .cert-ribbon-header {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      color: var(--xmas-gold-bright);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .cert-main-title {
+      font-family: 'Mountains of Christmas', cursive, sans-serif;
+      font-size: 3rem;
+      color: #ef4444;
+      text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .cert-winner-card {
+      background: rgba(18, 42, 32, 0.95);
+      border: 2px solid rgba(245, 158, 11, 0.5);
+      border-radius: 20px;
+      padding: 24px 145px 24px 28px;
+      /* Extra 145px right padding so stamp seal never overlaps text! */
+      width: 100%;
+      margin: 12px 0 20px 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+      text-align: left;
+    }
+
+    .info-label {
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .cert-winner-name {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      line-height: 1.25;
+      word-break: break-word;
+    }
+
+    .cert-winner-dept {
+      font-size: 1.2rem;
+      color: #6ee7b7;
+      font-weight: 700;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .santa-seal {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 115px;
+      height: 115px;
+      border: 4px double #f59e0b;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: #f59e0b;
+      text-transform: uppercase;
+      transform: rotate(-15deg) scale(2);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: rgba(245, 158, 11, 0.1);
+      pointer-events: none;
+    }
+
+    .santa-seal.stamped {
+      opacity: 0.95;
+      transform: rotate(-12deg) scale(1);
+    }
+
+    .btn-claim-gift {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      padding: 16px 40px;
+      border-radius: 40px;
+      border: 2px solid #a7f3d0;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+      margin-top: 5px;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn-claim-gift:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 35px rgba(16, 185, 129, 0.8);
+    }
+
+    /* Settings Modal */
+    .settings-box {
+      background: #091a13;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 24px;
+      border: 2px solid var(--xmas-gold);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      color: var(--text-bright);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .settings-box h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--xmas-gold-bright);
+      font-size: 1.4rem;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.3);
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--xmas-gold-bright);
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+    }
+
+    .winners-log {
+      max-height: 180px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .winner-log-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Snowfall Background Canvas -->
+  <canvas id="snow-canvas"></canvas>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Top Fairy Lights Banner -->
+  <div class="fairy-lights">
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+    <div class="light-bulb"></div>
+  </div>
+
+  <!-- Christmas Header -->
+  <header class="christmas-header">
+    <div class="brand-section">
+      <div class="christmas-badge">🎄</div>
+      <div class="title-group">
+        <div class="christmas-tag">
+          <span class="live-dot"></span>
+          <span id="header-subtitle">CDC FLAG RAISING CEREMONY A JOYFUL CHRISTMAS PRELUDE</span>
+        </div>
+        <h1 class="main-title" id="header-title">Christmas in our hearts</h1>
+      </div>
+    </div>
+
+    <div class="stats-board">
+      <div class="stat-box">
+        <span class="stat-label">Total Pool</span>
+        <span class="stat-value" id="count-total">0</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Gifts Drawn</span>
+        <span class="stat-value" id="count-boarded" style="color: #ef4444;">0</span>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <button class="icon-btn" id="btn-audio" title="Toggle Sound">🔊</button>
+      <button class="icon-btn active-toggle" id="btn-snow" title="Toggle Snowfall">❄️</button>
+      <button class="icon-btn" id="btn-settings" title="Settings & History">⚙️</button>
+      <button class="icon-btn" id="btn-fullscreen" title="Toggle Fullscreen">⛶</button>
+    </div>
+  </header>
+
+  <!-- Main Raffle Stage -->
+  <main class="main-stage">
+    <div class="departure-board-frame">
+      <div class="ticker-container">
+        <div class="reticle"></div>
+        <div class="ticker-track" id="ticker-track">
+          <!-- Cards dynamically appended -->
+        </div>
+      </div>
+    </div>
+
+    <div class="controls-stage">
+      <button class="btn-draw-main" id="btn-spin">🎄 DRAW CHRISTMAS WINNER ✨</button>
+      <div class="keyboard-hint">
+        Press <span class="kbd">SPACE</span> to draw winner
+      </div>
+    </div>
+  </main>
+
+  <!-- Winner Certificate Modal -->
+  <div class="modal-overlay" id="winner-modal">
+    <div class="christmas-certificate">
+      <div class="cert-ribbon-header">★ OFFICIAL HOLIDAY CERTIFICATE ★</div>
+      <div class="cert-main-title">Christmas in our Hearts</div>
+
+      <div class="cert-winner-card">
+        <div class="santa-seal" id="santa-seal">
+          SANTA<br>APPROVED<br>★ 2026 ★
+        </div>
+
+        <div class="info-label">PARTICIPANT NAME</div>
+        <div class="cert-winner-name" id="modal-name">---</div>
+
+        <div class="info-label" style="margin-top: 10px;">DIVISION / DEPARTMENT</div>
+        <div class="cert-winner-dept" id="modal-dept">---</div>
+      </div>
+
+      <button class="btn-claim-gift" id="btn-close-modal">CLAIM CHRISTMAS GIFT 🎁</button>
+    </div>
+  </div>
+
+  <!-- Settings & Log Modal -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="settings-box">
+      <h3>⚙️ Christmas Raffle Settings & History Log</h3>
+
+      <div class="form-group"
+        style="background: rgba(255, 255, 255, 0.05); padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.12);">
+        <label
+          style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-weight: 700; color: var(--text-bright);">
+          <span>Remove winners from participant pool</span>
+          <input type="checkbox" id="chk-remove-winner" checked
+            style="width: 22px; height: 22px; accent-color: var(--xmas-gold); cursor: pointer;">
+        </label>
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+          ✓ <strong>Checked:</strong> Winner is removed from pool after winning.<br>
+          ☐ <strong>Unchecked:</strong> Winner remains in pool for future draws.
+        </div>
+      </div>
+
+      <div class="form-group"
+        style="background: rgba(255, 255, 255, 0.05); padding: 14px 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.12);">
+        <label
+          style="display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-weight: 700; color: var(--text-bright);">
+          <span>Show Total Pool & Gifts Drawn Stats</span>
+          <input type="checkbox" id="chk-show-stats"
+            style="width: 22px; height: 22px; accent-color: var(--xmas-gold); cursor: pointer;">
+        </label>
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+          ✓ <strong>Checked:</strong> The stats board is visible on the main screen.<br>
+          ☐ <strong>Unchecked:</strong> The stats board is hidden (Cleaner look).
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="input-header-title">Main Title Text</label>
+        <input type="text" id="input-header-title" class="form-control" value="Christmas in our hearts">
+      </div>
+      <div class="form-group">
+        <label for="input-header-subtitle">Subtitle Text</label>
+        <input type="text" id="input-header-subtitle" class="form-control"
+          value="CDC FLAG RAISING CEREMONY A JOYFUL CHRISTMAS PRELUDE">
+      </div>
+
+      <div class="form-group">
+        <label for="spin-duration">Spin Duration (seconds)</label>
+        <input type="number" id="spin-duration" class="form-control" value="10" min="1" max="30" step="0.5">
+      </div>
+
+      <div class="form-group" style="margin-top: 10px;">
+        <label>🎁 Drawn Winners History Log</label>
+        <div class="winners-log" id="winners-log">
+          <!-- Dynamic Log -->
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 10px;">
+        <button class="btn-claim-gift" id="btn-export-winners" style="font-size: 0.9rem; padding: 10px; flex: 1;"
+          disabled>Export Winners CSV</button>
+        <button class="btn-claim-gift" id="btn-close-settings"
+          style="font-size: 0.9rem; padding: 10px; background: #334155; color: #fff; border-color: #475569;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // HARDCODED PARTICIPANTS DATA (769 Employees)
+    const PARTICIPANTS_CSV_DATA = `Rene E. Abad, Regular, Construction Management Division
+Larry J. Abalos, Regular, Building and Facilities Maintenance Division
+Fernando P. Aban Jr., Regular, Public Safety Division
+Katherine T. Abella, Regular, Human Resources Division
+Eric L. Abero, Regular, Assets Management Division
+Alfredo A. Acompañado Jr., Regular, Public Safety Division
+Lovely B. Adobas, Regular, Business Dev't. & Business Enhancement Group
+Krissumpta Maree M. Adona, Regular, Communications Division
+Jeffrey C. Adriano, Regular, Building and Facilities Maintenance Division
+Monica Joy L. Adriano, Regular, Treasury Division
+Lorraine J. Agbilay, Regular, Public Safety Division
+Astrud Q. Aguinaldo, Regular, Communications Division
+Elmer P. Agustin, Regular, Information Technology Department
+Erwin S. Alamares, Regular, Public Safety Division
+Karen H. Alamares, Regular, Human Resources Division
+Agnes A. Alcazar, PBE, Public Safety Division
+John John C. Alfonso, Regular, Assets Management Division
+Edralin S. Allam, Regular, Building and Facilities Permits Division
+Alvin S. Alvaro, Regular, Public Safety Division
+Joaquin B. Ambat, Regular, Building and Facilities Maintenance Division
+Florencio M. Amodo Jr., Regular, Building and Facilities Maintenance Division
+Lito D. Ancajas Jr., Regular, Estate Preservation and Recovery Division
+Noel D. Ancheta, Regular, Public Safety Division
+Anna Lou V. Ang, Regular, Assets Management Division
+Filemon G. Angeles, Regular, Health and Sanitation Division
+Herbert S. Angeles, Regular, Public Safety Division
+Jacob Ceazar P. Anicete II, Regular, Public Safety Division
+Marilen L. Anicete, Regular, Investment Promotions Division II
+Charlen C. Antonio, PBE, Public Safety Division
+Ronald T. Antonio, Regular, CSR and Placement Division
+Liana Bettina D. Apostol, Regular, Communications Division
+Faridha M. Aragon, Regular, Engineering Services Group
+Jan Aldwin B. Arbitrario, Regular, Public Safety Division
+Robert Jessie M. Arce Jr., Regular, Environmental Permits Division
+Allan P. Arceo, Regular, Public Safety Division
+Princess Camille B. Arceo, Regular, Health and Sanitation Division
+Alexandrea Reeva V. Arcilla, Regular, CSR and Placement Division
+Azee T. Arcilla, Regular, Litigation Division
+Rosabelle I. Arenas, Regular, Investment Promotions Division II
+Artemio I. Ariola Jr., PBE, Public Safety Division
+Constante L. Arpilleda Jr., Regular, ESG/Infrastructure Planning Section
+Rowena T. Arroyo, Regular, Environmental Permits Division
+Bella R. Aslarona, Regular, Investment Promotions Division II
+Jason Roy C. Avilla, Regular, Construction Management Division
+Arman T. Bacani, Regular, Building and Facilities Permits Division
+Paul Dexter C. Bacani, Regular, Information Technology Department
+Layola M. Bacuño, Regular, Internal Audit Division
+Manuellito M. Bagguatan, Regular, Public Safety Division
+Rosalinda E. Bajador, Regular, Trade Facilitation Division
+Joel G. Bala, Regular, Public Safety Division
+Neilsen M. Balagot, Regular, Investment Promotions Division I
+Danilo T. Balatbat, Regular, Public Safety Division
+Edwin D. Balatbat, FPE, Assets Management Division
+Ramil P. Balderosa, Regular, Building and Facilities Permits Division
+Dennis C. Balino, Regular, Public Safety Division
+Arthur James C. Balunes, Regular, Trade Facilitation Division
+Abner D. Baluyut, Regular, Estate Preservation and Recovery Division
+Janet D. Baluyut, Regular, Treasury Division
+Kizzel Joi A. Baluyut, Regular, Board Secretariat
+Allan C. Banal, Regular, Internal Audit Division
+Jere May B. Bancolo, Regular, Public Safety Division
+Gerardo D. Bandong, Regular, Public Safety Division
+Samuel G. Bangalan, Regular, Public Safety Division
+Domingo D. Bangit, FPE, Assets Management Division
+Justin C. Baniqued, FPE, Public Safety Division
+Mercedes U. Banting, Regular, Public Safety Division
+Bryan Kier P. Baraquiel, Regular, Information Technology Department
+Anna Gayle T. Barin, Regular, Corporate Services Division
+Ricky C. Baron, Regular, Building and Facilities Maintenance Division
+Mando B. Barrera, Regular, Public Safety Division
+Willy D. Barte, Regular, Investment Promotions Division I
+Angelita T. Basco, Regular, Trade Facilitation Division
+Ramilo D. Bathan, Regular, Accounting Division
+Jennileen C. Bautista, Regular, Purchasing Division
+Ronaldo B. Bautista, Regular, Assets Management Division
+Roberto P. Bernardino, Regular, Assets Management Division
+Arvin M. Bernardo, Regular, Public Safety Division
+Roberto M. Bernardo Jr., Regular, Building and Facilities Maintenance Division
+Natalie L. Bie, Regular, Accounting Division
+Jonathan M. Bingcang, Regular, Information Technology Department
+Rodolfo S. Bingcang, Regular, Public Safety Division
+Robert R. Blanza, Regular, Assets Management Division
+Ador I. Bognot, Regular, Building and Facilities Permits Division
+Erwin C. Bognot, Regular, Construction Management Division
+Chanda B. Bolaton, Regular, Public Safety Division
+Laura Sophia F. Bondoc, FPE, Communications Division
+Roberto R. Brita, Regular, Public Safety Division
+Ma. Bernadette P. Bucad, Regular, Corporate Planning Division
+Omar G. Bucad, Regular, Public Safety Division
+Juanito B. Bucal, Regular, Assets Management Division
+Reynalene C. Bulan, FPE, Purchasing Division
+Pacifico N. Butiu, Regular, Trade Facilitation Division
+Justin Nico D. Caballa, Regular, Trade Facilitation Division
+Nadine Kyrah D. Caballa, Regular, Purchasing Division
+Judy Ann V. Cabarle, Regular, Trade Facilitation Division
+Viktoria Grace P. Cabarle, PBE, Public Safety Division
+Jerry N. Cabigting, FPE, Assets Management Division
+Maria Rosario T. Cabigting, Regular, Assets Management Division
+Ronaldo L. Cabigting, Regular, Building and Facilities Permits Division
+Anthony F. Cacap, Regular, Environmental Permits Division
+Princess Renalyn T. Cadag, FPE, Purchasing Division
+Rodel M. Calderon, Regular, Health and Sanitation Division
+Bay-viz Grace T. Caleon, FPE, Office of the President
+Pepito P. Calimutan, Regular, Public Safety Division
+Anthony C. Calma, Regular, Estate Preservation and Recovery Division
+Marlon L. Calma, Regular, Public Safety Division
+Amor Joseph C. Camaya, COS, Commission on Audit
+Ian Kevin N. Camaya, Regular, Environmental Permits Division
+Ma. Zoraida G. Camello, COS, Office of the President
+Amancio S. Campo Jr., Regular, Building and Facilities Maintenance Division
+Mayflor R. Candelaria, Regular, Environmental Permits Division
+Kyla Mari M. Cangco, PBE, Public Safety Division
+Marcial T. Caniones, Regular, Estate Preservation and Recovery Division
+Jose Jasper V. Canlas, Regular, Assets Management Division
+Luisito S. Canlas, Regular, Building and Facilities Maintenance Division
+Sandra N. Caparas, Regular, Environmental Permits Division
+Maria Socorro Simonette L. Capid, Regular, Human Resources Division
+Socorro L. Capili, Regular, Health and Sanitation Division
+Sahara D. Capitulo, COS, Commission on Audit
+Francisca M. Capulong, Regular, Building and Facilities Permits Division
+Jesusa A. Capulong, Regular, Treasury Division
+Renelito C. Carbungco, Regular, Trade Facilitation Division
+Roy N. Carbungco, Regular, Public Safety Division
+Ronald D. Cardinoza, Regular, Public Safety Division
+Joshua Kevin I. Carreon, Regular, Health and Sanitation Division
+Rolando S. Carreon Jr., Regular, Litigation Division
+Myla P. Casaclang, PBE, Public Safety Division
+Normangel C. Casaclang, Regular, Assets Management Division
+Doni Rey C. Caseñas, Regular, Assets Management Division
+Ricardo Z. Castañeda Jr., Regular, Building and Facilities Permits Division
+Michael D. Castillo, Regular, Human Resources Division
+Ramonito C. Castillo, Regular, Building and Facilities Maintenance Division
+Arvin M. Castro, Regular, Accounting Division
+Justine Ryan B. Castro, PR, Records Management Division
+Marissa M. Castro, Regular, Human Resources Division
+Mary Janet M. Castro, Regular, Corporate Planning Division
+Allan A. Catacutan, Regular, Environmental Permits Division
+Beverly C. Catacutan, Regular, Trade Facilitation Division
+Louie M. Catli, Regular, Environmental Permits Division
+Daisy May C. Cato, Regular, Human Resources Division
+Noemi Rose B. Cayabyab, PBE, Public Safety Division
+Anthony D. Cayanan, Regular, Estate Preservation and Recovery Division
+Ronald L. Cayanan, Regular, Health and Sanitation Division
+Alger C. Cayme, Regular, Public Safety Division
+Leo Cris G. Celeste, Regular, Public Safety Division
+Angelito S. Cendaña, FPE, Assets Management Division
+Renan Joseph A. Cenzon, Regular, Building and Facilities Maintenance Division
+Robin P. Cenzon, Regular, Public Safety Division
+Anne C. Chico, Regular, Purchasing Division
+Andrea-Gayle B. Co, Regular, Investment Promotions Division I
+Edmund G. Conag, Regular, Public Safety Division
+Ferdinand Concepcion, PBE, Public Safety Division
+Luis S. Concepcion, Regular, Public Safety Division
+Mary Abigail D. Consignado, Regular, Investment Promotions Division I
+Gilbert B. Constantino, Regular, Building and Facilities Maintenance Division
+Alexander J. Corachea, Regular, Corporate Services Division
+Chenaryl M. Cordero, Regular, Purchasing Division (BACS)
+Francisco R. Cordero Jr., Regular, Assets Management Division
+Raymond A. Cordero, Regular, Health and Sanitation Division
+Ryan James C. Cordova, Regular, Public Safety Division
+Lhervin L. Coronel, Regular, Public Safety Division
+Edwin S. Cortez, Regular, Building and Facilities Maintenance Division
+Elginne C. Cortez, Regular, Public Safety Division
+Felino R. Cortez, Regular, Building and Facilities Maintenance Division
+Jessy D. Cortez, Regular, Public Safety Division
+Kristin Mae D. Cortez, Regular, Admin. & Finance Group
+Wyda M. Cosme, Regular, Litigation Division
+Precila A. Cruz, Regular, Building and Facilities Permits Division
+Raymund Erwin B. Cruz, Regular, Property Management Division
+Albert T. Cunanan, Regular, Accounting Division
+Allaizza Marie S. Cunanan, Regular, Building and Facilities Permits Division
+Athan Jan M. Cunanan, PBE, Public Safety Division
+Gina P. Cunanan, Regular, Communications Division
+Nicolas P. Cunanan Jr., Regular, Property Management Division
+Julia I. Cunanan, Regular, Communications Division
+Karen Kristel P. Cunanan, PBE, Tourism Promotion Division
+Mario T. Cunanan, Regular, Building and Facilities Maintenance Division
+Francis Louie D. Dacer, Regular, Office of the President/CEO
+Carmelita Y. Dale, Regular, Property Management Division
+Johann Lloyd P. Danan, Regular, Investment Promotions Division I
+Rommel G. Dantes, Regular, Public Safety Division
+Elaine L. Daquis, Regular, Human Resources Division
+Darwin Z. Datu, Regular, Public Safety Division
+Ethel T. Datu, Regular, Board Secretariat
+Aldrin M. David, Regular, Building and Facilities Maintenance Division
+Aline C. David, Regular, Health and Sanitation Division
+Allan V. David, Regular, Public Safety Division
+Anjanette S. David, PBE, Public Safety Division
+Anthony Allen N. David, Regular, Construction Management Division
+Clariza P. David, Regular, Trade Facilitation Division
+Cyryll B. David, Regular, Public Safety Division
+Jake C. David, Regular, Building and Facilities Permits Division
+Jason B. David, Regular, Building and Facilities Permits Division
+Paulino M. David Jr., Regular, Public Safety Division
+Kelvin R. David, COS, Commission on Audit
+Mario Q. David, Regular, Public Safety Division
+Psalms Iriana C. David, Regular, Health and Sanitation Division
+Roselyn T. David, Regular, Public Safety Division
+Danny N. Dayan, FPE, OVP for Legal Affairs Group
+Jesseline S. Dayao, Regular, Accounting Division
+Precious Mariz M. Dayao, Regular, Health and Sanitation Division
+Fredeswindo S. Dayola, Regular, Assets Management Division
+Arthur B. Dayrit, FPE, Public Safety Division
+Michaela A. Dayrit, Regular, Treasury Division
+Russell C. Dayrit, Regular, Building and Facilities Maintenance Division
+Wilfredo T. Dayrit, Regular, Purchasing Division
+Rolet T. De Dios, Regular, Purchasing Division (BACS)
+Ariel A. De Guzman, Regular, Assets Management Division
+Edcel John B. De Guzman, Regular, Public Safety Division
+Nicole Andre D. De Guzman, Regular, Information Technology Department
+Ricardo B. De Guzman, Regular, Building and Facilities Maintenance Division
+Princess Yvette D. De Jesus, Regular, Communications Division
+Rian G. De Jesus, Regular, Assets Management Division
+Jose Miguel R. De La Rosa, Regular, Admin. & Finance Group
+Arvin M. De Leon, Regular, Public Safety Division
+Julie Ann R. De Leon, Regular, Investment Promotions Division II
+Ryan C. De Leon, Regular, Public Safety Division
+Rodgardo M. Deang, Regular, Records Management Division
+Richard G. Del Fin, PBE, Public Safety Division
+Jerry P. Dela Cruz, Regular, Building and Facilities Maintenance Division
+Othello C. Dela Cruz, Regular, Records Management Division
+Reuben H. Dela Cruz, Regular, Building and Facilities Maintenance Division
+Rogel S. Dela Rosa, Regular, Trade Facilitation Division
+Jaypee A. Delantar, Regular, Trade Facilitation Division
+Reynaldo M. Delaserna, Regular, Public Safety Division
+Ernesto O. Delfin Jr., Regular, Assets Management Division
+Alexandra C. Delos Santos, PBE, Public Safety Division
+Melito S. Desales, Regular, Internal Audit Division
+Agnes Vicenta T. Devanadera, Regular, Office of the President/CEO
+Kemzy C. Deza, Regular, Public Safety Division
+Gerardo G. Dia, COS, OVP for Security Services Group
+Hernando R. Dianelo, Regular, Building and Facilities Maintenance Division
+Magda G. Diaz, Regular, Public Safety Division
+Riza B. Diaz, Regular, Investment Promotions Division I
+Jose G. Dimacali Jr., Regular, Building and Facilities Maintenance Division
+Frances Ruth C. Dimalanta, Regular, Communications Division
+Damanique C. Dioquino, Regular, Public Safety Division
+Arnaldo Efren D. Dizon, Regular, Public Safety Division
+Erwin C. Dizon, Regular, Tourism Promotions Division
+Eunice May P. Dizon, Regular, Human Resources Division
+Floyd S. Dizon, Regular, Building and Facilities Permits Division
+Mark Anthony A. Dizon, Regular, Public Safety Division
+Ritzi R. Dizon, Regular, Public Safety Division
+Maria Clemencita D. Dobles, Regular, Health and Sanitation Division
+Rosano Noel Domagas, Regular, Public Safety Division
+Adrian V. Domingo, Regular, Public Safety Division
+Jerry T. Dormido, Regular, Public Safety Division
+Danilo R. Duarte Jr., Regular, Investment Promotions Division I
+Nelson John D. Duenas Jr., Regular, Public Safety Division
+Raoul Andrew J. Dulawan, Regular, Communications Division
+Noel T. Dungca, Regular, Public Safety Division
+Aries P. Duya, Regular, Assets Management Division
+Teddy D. Ellema, Regular, Public Safety Division
+Alvin S. Emperador, Regular, Public Safety Division
+Jeniviv T. Enriquez, Regular, Public Safety Division
+JV V. Enriquez, Regular, Public Safety Division
+Lorna P. Escoto, Regular, Trade Facilitation Division
+Randie L. Escoto, Regular, Assets Management Division
+Jessa C. Esguerra, Regular, Admin. & Finance Group
+Joseph John G. Espanta, FPE, Tourism Promotion Division
+Arnold S. Espinosa, Regular, Public Safety Division
+Rodolfo L Esteban, Regular, Building and Facilities Maintenance Division
+Mary Therese Gabrielle B. Estioko, Regular, Litigation Division
+Ely S. Estrada, Regular, Public Safety Division
+Pelita P. Estrada, Regular, Treasury Division
+Sonny B. Evangelista Jr., FPE, Public Safety Division
+Renante M. Evedes, Regular, Public Safety Division
+Aubrey Bastian P. Fabian, Regular, Health and Sanitation Division
+Aldrin C. Fabros, Regular, Assets Management Division
+Leonora A. Faller, Regular, Property Management Division
+Rolando B. Faller, COS, Office of the President
+Jubie T. Faustorilla, Regular, Public Safety Division
+Mark Alain B. Felker, Regular, Tourism Promotions Division
+Blezilda E. Fernandez, Regular, Records Management Division
+Francis P. Fernandez, Regular, Property Management Division
+Romelito M. Fernandez, Regular, Public Safety Division
+Allan N. Ferrer, Regular, Accounting Division
+Vicente P. Ferrer, Regular, Assets Management Division
+Almar A. Fetalco, Regular, Building and Facilities Maintenance Division
+Adrianne T. Florencio, Regular, Trade Facilitation Division
+Robin G. Flores, Regular, Trade Facilitation Division
+Joseph Robert S. Franco, Regular, Investment Promotions Division I
+Conrado B. Frasco, Regular, Public Safety Division
+Michael B. Frasco, Regular, Public Safety Division
+Nelson A. Fuensalida, Regular, Public Safety Division
+Joseph S. Ga-as Jr., PBE, Public Safety Division
+Darwin E. Gabales, Regular, Public Safety Division
+Randy Paul R. Gabriel, Regular, Public Safety Division
+Jonathan P. Gacutan, Regular, Public Safety Division
+Eugine L. Gagui, FPE, Assets Management Division
+Alona A. Galang, Regular, Special Concerns Division
+Anne Jobelle V. Galang, Regular, Investment Promotions Division I
+Archie P. Galang, Regular, Public Safety Division
+Evelyn S. Galang, Regular, Investment Promotions Division I
+Marinel K. Galang, Regular, Building and Facilities Maintenance Division
+Nestor C. Galang, Regular, Construction Management Division
+Romeo C. Galang, Regular, Environmental Permits Division
+Russel M. Galang, Regular, Property Management Division
+Julius E. Galicia, Regular, Public Safety Division
+Jason R. Gamboa, Regular, Public Safety Division
+Angelito A. Garcia, Regular, Public Safety Division
+Cecile G. Garcia, Regular, Board Secretariat
+Donald P. Garcia, Regular, Public Safety Division
+Irish Ann P. Garcia, Regular, Investment Promotions Division I
+Jamie Ann Garcia, FPE, OVP for Legal Affairs Group
+Jerome M. Garcia, PBE, CSR and Placement Division
+Joseph G. Garcia, Regular, Trade Facilitation Division
+Marites S. Garcia, Regular, Trade Facilitation Division
+Marlon C. Garcia, FPE, Assets Management Division
+Jeffrey D. Garpo, Regular, Public Safety Division
+Nelson J. Garung, Regular, Public Safety Division
+Maricris C. Gepte, Regular, CSR and Placement Division
+Blesilda R. Gimeno, Regular, Internal Audit Division
+Jeric B. Goingco, Regular, Corporate Services Division
+Arvin M. Gomez, Regular, Building and Facilities Maintenance Division
+Glory G. Gomez, Regular, Accounting Division
+Randy G. Gomez, Regular, Special Concerns Division
+Maria Carla A. Gonzales, Regular, Internal Audit Division
+Sara Jane D. Gonzales, Regular, Building and Facilities Permits Division
+Faustino R. Gozum, FPE, Assets Management Division
+Heidi P. Gozun, Regular, Board Secretariat
+Joan G. Guevarra, Regular, Building and Facilities Permits Division
+Marlon Y. Guevarra, Regular, Tourism Promotions Division
+Ronnie C. Guevarra, Regular, Building and Facilities Maintenance Division
+Rose Ann S. Guevarra, Regular, Public Safety Division
+Marylou A. Guiao, Regular, Public Safety Division
+Ricardo C. Guiao, Regular, Public Safety Division
+Ryan V. Guilas, Regular, Public Safety Division
+Shairon Jeff S. Guilas, Regular, Public Safety Division
+Wendell D. Guina, Regular, Information Technology Department
+Raffy G. Guinto, Regular, Public Safety Division
+Jeffrey L. Guiwan, Regular, Public Safety Division
+Ramelo M. Gulatera, Regular, Public Safety Division
+Hermando D. Gutierrez, Regular, Assets Management Division
+Marigrace M. Gutierrez, Regular, Trade Facilitation Division
+Patricio G. Gutierrez, Regular, Building and Facilities Maintenance Division
+Jenzen O. Guzman, Regular, Property Management Division
+Thea Eunice Paz P. Habana, Regular, Communications Division
+Valentin M. Hailes Jr., Regular, Assets Management Division
+Maica Jane C. Halili, PBE, Public Safety Division
+Harden A. Henson, Regular, Records Management Division
+Onid L. Henson, Regular, Public Safety Division
+Orson L. Henson, Regular, Trade Facilitation Division
+Enrico Josh Y. Hernandez, PBE, Tourism Promotion Division
+Priscila T. Hernandez, Regular, Trade Facilitation Division
+Philip M. Herrera, Regular, Environmental Permits Division
+Kristofferson C. Hilario, Regular, Treasury Division
+Ferdinand U. Hipolito, Regular, Building and Facilities Permits Division
+Rustico C. Hipolito Jr., Regular, Public Safety Division
+Jayson L. Ibay, Regular, Trade Facilitation Division
+Prisca Jhane V. Ibay, FPE, OVP for Legal Affairs Group
+Dexter C. Isip, Regular, Assets Management Division
+Lowela L. Isip, Regular, Property Management Division
+Christian Edison M. Jao, Regular, Business Dev't. & Business Enhancement Group
+Manuel L. Jaylo Jr., PBE, Public Safety Division
+Jason Paul C. Jenkins, Regular, Public Safety Division
+Jesusa C. Gamboa, Regular, Treasury Division
+Eric V. Jimenez, Regular, Estate Preservation and Recovery Division
+Mark Aldrin G. Jimenez, Regular, Information Technology Department
+Aimee V. Joves, Regular, Human Resources Division
+Renz Gio G. Juco, Regular, Public Safety Division
+Noemi B. Julian, Regular, Investment Promotions Division II
+Joanne Marie C. Katigbak, Regular, Human Resources Division
+Rosalino D. Kit III, FPE, Communications Division
+Ronnie G. Lacbayo, Regular, Public Safety Division
+Jason R. Lacsa, Regular, Public Safety Division
+Billy L. Lacsina, Regular, Public Safety Division
+Ysrael D. Lacsina, Regular, Trade Facilitation Division
+Charisse Marie F. Lacson, Regular, Tourism Promotions Division
+Mae Ann E. Lacson, Regular, Legal Affairs Group
+Roberto I. Lagman Jr., Regular, Public Safety Division
+Lancel John L. Lagman, Regular, Purchasing Division
+Elsie A. Laguador, COS, Corporate Planning Division
+John Michael P. Lampa, Regular, Tourism Promotions Division
+Julieta P. Lansangan, Regular, Security Services Group
+Renz F. Lansangan, Regular, Tourism Promotions Division
+Walter E. Lansangan, Regular, Public Safety Division
+Elmer L. Lapuz, Regular, Building and Facilities Maintenance Division
+Miracle Faith N. Laquian, Regular, Public Safety Division
+Michael C. Laus, Regular, Public Safety Division
+Dhaenniel C. Laxamana, FPE, Public Safety Division
+Patricia Mae M. Laxamana, PBE, Public Safety Division
+Estrelita Bandong Layug, COS, Commission on Audit
+Jose Evan L. Lee, Regular, Public Safety Division
+Sarah S. Lerum, Regular, Property Management Division
+Daniel A. Lichauco, COS, Office of the President
+Darwin C. Limin, Regular, Human Resources Division
+Jedd C. Limio, Regular, Purchasing Division (BACS)
+Josielyn M. Linga, Regular, Investment Promotions Division I
+Alfred M. Lintag, Regular, CSR and Placement Division
+Bryan B. Lintag, Regular, Estate Preservation and Recovery Division
+Alexander P. Liwanag Jr., Regular, ESG/Infrastructure Planning Section
+Rodrigo M. Liwanag, FPE, Assets Management Division
+Ladylyn M. Lobo, Regular, Security Services Group
+Jed Burt P. Lopez, FPE, Assets Management Division
+Rico T. Lopez, Regular, Assets Management Division
+Romeo G. Lopez, Regular, Building and Facilities Maintenance Division
+Ronaldo M. Lopez, Regular, Assets Management Division
+Elenita S. Lorenzo, Regular, Tourism Promotions Division
+Bryan G. Lozano, Regular, Treasury Division
+Noel J. Lugtu, Regular, Public Safety Division
+Sussette S. Lugtu, Regular, Public Safety Division
+Hilario O. Lulu, Regular, Building and Facilities Permits Division
+Jessie A. Lungos, Regular, Public Safety Division
+Emanuelle A. Luzong, Regular, Public Safety Division
+Jaimee Rose R. Macalino, FPE, Public Safety Division
+Jerome P. Machon, PBE, Public Safety Division
+Mary Elizabeth J. Magat, Regular, Corporate Planning Division
+Rogelio M. Magat, Regular, Environmental Permits Division
+Maria Mercedes A. Maglaya, COS, OVP for Legal Affairs Group
+Patrick Joshua M. Magtibay, PBE, Public Safety Division
+Ruben U. Malagday, Regular, Building and Facilities Maintenance Division
+Joseph A. Malijan, PBE, Public Safety Division
+Catherine Joy E. Mallari, Regular, Tourism Promotions Division
+Evelyn U. Mallari, Regular, Purchasing Division (BACS)
+Marlon G. Mallari, Regular, Public Safety Division
+Mary Anne T. Mallari, Regular, Office of the President/CEO
+Ester S. Malonzo, Regular, Health and Sanitation Division
+Elvira H. Mamaril, Regular, Public Safety Division
+Renato B. Manabat, Regular, Assets Management Division
+Jonell B. Mañalac, Regular, ESG/Infrastructure Planning Section
+Benjie S. Manalastas, Regular, Trade Facilitation Division
+Aries V. Manalili, FPE, Assets Management Division
+Edsel L. Manalili, Regular, Information Technology Department
+Rosanna D. Manalili, Regular, Assets Management Division
+Fernando G. Manalo, Regular, Building and Facilities Permits Division
+Lou Anne T. Manalo, Regular, CSR and Placement Division
+Marlon P. Manalo, Regular, Assets Management Division
+Paulo C. Manalo, Regular, Building and Facilities Permits Division
+Albert G. Manaloto, FPE, Assets Management Division
+Almabeth L. Manaloto, Regular, Public Safety Division
+Arnold D. Manaloto, Regular, Internal Audit Division
+Joanna Marie B. Manaloto, Regular, Trade Facilitation Division
+Roger A. Manaloto, Regular, Building and Facilities Maintenance Division
+Aris G. Manarang, Regular, Public Safety Division
+Eric Dexter D. Manarang, Regular, Public Safety Division
+Vismin L. Manarang, Regular, Property Management Division
+Joel T. Mandap, Regular, Internal Audit Division
+Kristine Joy S. Manese, Regular, Human Resources Division
+Randy C. Manese, Regular, Building and Facilities Maintenance Division
+Nicole R. Mangalino, Regular, Trade Facilitation Division
+Bernadette D. Mangio, Regular, Engineering Services Group
+Cecilia M. Mangio, Regular, Internal Audit Division
+Crispin D. Maniago, Regular, Building and Facilities Maintenance Division
+Jonathan S. Maniago, Regular, Public Safety Division
+Annabelle M. Maniulit, Regular, Human Resources Division
+Adrian M. Manlapat, Regular, Office of the President/CEO
+Ivan Louis M. Manlapat, Regular, Records Management Division
+Denver G. Manzon, PBE, Public Safety Division
+Michael O. Maraña, Regular, Public Safety Division
+Lourdes L. Marasigan, Regular, CSR and Placement Division
+Rodrigo T. Marcelino Jr., Regular, Health and Sanitation Division
+Joemer D. Maristela, Regular, Public Safety Division
+Jocelyn M. Marquez, Regular, Human Resources Division
+Vanessa M. Martinez-Ponio, Regular, Public Safety Division
+Sherlyn Joy M. Marucut, Regular, Public Safety Division
+Kriel M. Marzan, Regular, Records Management Division
+Lycia D. Marzan, Regular, CSR and Placement Division
+Jose Fernando B. Masarate, Regular, Litigation Division
+Antonio S. Mascardo, FPE, Assets Management Division
+Agnes L. Matias, Regular, CSR and Placement Division
+Emilio F. Matias Jr., Regular, Public Safety Division
+Nicole S. Mayled, COS, Commission on Audit
+Joe Marie Dominic M. Medina, Regular, Purchasing Division (BACS)
+Ian Paulo O. Mejia, Regular, Tourism Promotions Division
+Miguelito P. Mejia, Regular, Public Safety Division
+Kim D. Melchor, COS, Commission on Audit
+Ahmed M. Mendoza, Regular, Assets Management Division
+Joel M. Mendoza, Regular, Public Safety Division
+Kate Moira B. Mendoza, Regular, Investment Promotions Division I
+Kristen Anne B. Mendoza, Regular, Tourism Promotions Division
+Nicko Angelo T. Mendoza, Regular, ESG/Infrastructure Planning Section
+Dennis B. Meneses, Regular, Communications Division
+Noelle Mina D. Meneses, Regular, Business Dev't. & Business Enhancement Group
+Danilo C. Menor, Regular, Building and Facilities Maintenance Division
+Aljhon N. Mercado, Regular, Trade Facilitation Division
+Geryme J. Mercado, Regular, Public Safety Division
+Nelson C. Mercado, Regular, Public Safety Division
+Mark Gem S. Mesa, PBE, Tourism Promotion Division
+Louies Angelo Y. Mesia, PBE, Human Resources Division
+Angelo M. Miclat, Regular, Public Safety Division
+Edmund D. Miclat, Regular, Building and Facilities Maintenance Division
+Nelson C. Miclat (transferred to EPD), Regular, Assets Management Division
+Jessica M. Mier, PBE, Public Safety Division
+Conrado N. Miguel Jr., Regular, Environmental Permits Division
+Paula Marie Miller, Regular, Public Safety Division
+Bernardo G. Mirabete, COS, Office of the President
+Jaydee B. Miranda, Regular, Public Safety Division
+Mark Rainier Miranda, Regular, Health and Sanitation Division
+Angeliza H. Montallana, Regular, Health and Sanitation Division
+Arnel G. Montemayor, Regular, Public Safety Division
+Jamaica Riz S. Montoya, PBE, Public Safety Division
+Sheraline F. Morada, Regular, Special Concerns Division
+Daniel V. Moreno (transferred to EPD), Regular, Assets Management Division
+Hector M. Moreno, Regular, ESG/Infrastructure Planning Section
+Belinda K. Mujar, Regular, Records Management Division
+Diosdado C. Musngi, Regular, Environmental Permits Division
+Marvin R. Musni, Regular, Assets Management Division
+Joel P. Nabong, Regular, Public Safety Division
+Philip Oswald G. Nabong, PR, Corporate Services Division
+Renon G. Nacpil, Regular, Public Safety Division
+Jay-en S. Nacu, Regular, Public Safety Division
+Maria Victoria A. Nakpil, Regular, Treasury Division
+Miriam M. Naluz, Regular, Accounting Division
+Annette C. Narciso, Regular, Investment Promotions Division II
+Rommel C. Narciso, Regular, External Affairs Department
+Jun S. Nicolas, Regular, Trade Facilitation Division
+Peter C. Nogoy, Regular, Assets Management Division
+Rommel C. Nogoy, Regular, Public Safety Division
+Brenda M. Novilla, Regular, Trade Facilitation Division
+Brando Marcel C. Nozawa, Regular, Information Technology Department
+Louella T. Nozawa, Regular, Treasury Division
+Wilson M. Nucum, Regular, Public Safety Division
+Alexander D. Nucup, Regular, Assets Management Division
+Roycelin R. Nuguid, FPE, Purchasing Division
+Jose Angelo M. Nunag, Regular, Corporate Planning Division
+June E. Ocampo, Regular, Information Technology Department
+Mellanie T. Ocampo, Regular, Human Resources Division
+Nomer P. Ocampo, FPE, Assets Management Division
+Thelma C. Ocampo, Regular, Business Development Department 1
+Charity Hope T. Oliquiano, PBE, Public Safety Division
+Jerika P. Onofre, Regular, CSR and Placement Division
+Joel U. Orantes, Regular, Public Safety Division
+Jobelle Orejas, Regular, Health and Sanitation Division
+Roberto B. Ortiz, COS, Office of the President
+Michael P. Otero, Regular, Public Safety Division
+Ronald Allan M. Pablo, Regular, Public Safety Division
+Christopher G. Padua, Regular, Assets Management Division
+Elmer M. Pagcu, Regular, Environmental Permits Division
+Christopher Niño R. Palma, Regular, Public Safety Division
+George L. Palo, Regular, Assets Management Division
+Miguel Luis R. Palo, Regular, Public Safety Division
+Ronald N. Palo, Regular, Internal Audit Division
+William Crawford D. Palo, Regular, Communications Division
+Joseph D. Paltep, Regular, Assets Management Division
+Johen P. Pamintuan, Regular, Engineering Services Group
+Jun Y. Pamintuan, Regular, Public Safety Division
+Paula Llana S. Pamintuan, Regular, ESG/Infrastructure Planning Section
+Rafael S. Pan, Regular, Building and Facilities Maintenance Division
+Carmelo G. Pangilinan, Regular, Building and Facilities Permits Division
+Evelyn R. Pangilinan-Tumang, PBE, Public Safety Division
+Adriel Elisha P. Panlilio, Regular, Litigation Division
+Henry P. Panlilio, Regular, Building and Facilities Permits Division
+Jose Philip B. Panlilio, COS, Office of the President
+Natalie Sue L. Panlilio, Regular, Estate Preservation and Recovery Division
+Mylene S. Paraan, Regular, Corporate Planning Division
+Lea T. Paraguas, Regular, Legal Affairs Group
+Alizaido F. Paras, Regular, Finance Department
+Onalee S. Paras, Regular, Health and Sanitation Division
+Alan B. Pare, Regular, Public Safety Division
+Almie B. Pare, Regular, Public Safety Division
+Jonel M. Pasco, Regular, Public Safety Division
+Benjamin Bryan L. Pascual, Regular, Estate Preservation and Recovery Division
+Myra Grace B. Pascual, Regular, Investment Promotions Division II
+Ysmael C. Pascual, Regular, Public Safety Division
+Raymart Pasion, Regular, Public Safety Division
+Mark Anthonie J. Patawaran, Regular, Building and Facilities Permits Division
+Mary Ann A. Patawaran, Regular, Accounting Division
+Eduardo L. Patio Jr., Regular, Environmental Permits Division
+Erwin C. Pattaui, Regular, Investment Promotions Division II
+Kristine Lauren S. Pattaui, Regular, Information Technology Department
+Carlota M. Paule, Regular, Purchasing Division
+Arold Y. Pelayo, Regular, Public Safety Division
+Diana M. Penuliar, Regular, Internal Audit Division
+Ruben C. Peralta, Regular, Special Concerns Division
+Ponciano S. Perez Jr., Regular, Building and Facilities Permits Division
+Rodem R. Perez, Regular, Business Enhancement Department
+Dante C. Periamesa, Regular, Public Safety Division
+Aira Ann May V. Pineda, Regular, Public Safety Division
+Jacqueline D. Pineda, Regular, Building and Facilities Maintenance Division
+Jeannette M. Pineda, Regular, Treasury Division
+Ma. Carmelita A. Pineda, Regular, Accounting Division
+Magdalena P. Pineda, Regular, Assets Management Division
+Leila R. Pingol, Regular, CSR and Placement Division
+Edgardo Gabriel B. Pinlac, Regular, Construction Management Division
+Patrick Plant Jr., Regular, Public Safety Division
+Raidis G. Plateros, Regular, Investment Promotions Division I
+Mark Lou S. Pojas, Regular, Public Safety Division
+Josephine V. Poyaoan, Regular, Purchasing Division
+Eduardo M. Pulili, Regular, Human Resources Division
+Myriam R. Punsalan, Regular, Investment Promotions Division II
+Albert S. Quiambao, Regular, Public Safety Division
+Romar G. Quiambao, Regular, Public Safety Division
+Ranier L. Quinto, Regular, Health and Sanitation Division
+Leila P. Quitalig, Regular, Corporate Services Division
+Reinnier M. Quitalig, Regular, Corporate Planning Division
+Leonardo Q. Quito, PR, Assets Management Division
+Honorato D. Rabara Jr., Regular, Public Safety Division
+Armando T. Racelis, FPE, Assets Management Division
+Ronald C. Ragunton, Regular, Building and Facilities Maintenance Division
+Michael John Ramos, Regular, Information Technology Department
+Feliciano O. Razon Jr., Regular, Purchasing Division
+Jardy D. Reambillo, Regular, Public Safety Division
+Maria Rizza A. Regala, Regular, Public Safety Division
+John Paul B. Relevo, Regular, Investment Promotions Division II
+Edmund T. Respondo, Regular, Public Safety Division
+Analin P. Reyes, Regular, Property Management Division
+Archimedes C. Reyes, Regular, Property Management Division
+Harvey F. Reyes, Regular, Building and Facilities Maintenance Division
+Jamiah Ruth R. Reyes, Regular, Building and Facilities Permits Division
+Mark Laurence M. Reyes, Regular, Corporate Planning Division
+Raquel M. Reynolds, Regular, Human Resources Division
+Armin D. Rivera, Regular, CSR and Placement Division
+Erwin G. Rivera, Regular, Building and Facilities Permits Division
+Victor M. Rivera Jr., Regular, Public Safety Division
+Hazel C. Robles, Regular, Public Safety Division
+Enrique T. Rodriguez, Regular, ESG/Infrastructure Planning Section
+Jade P. Rodriguez, Regular, Environmental Permits Division
+Rasheed R. Rodriguez, Regular, Public Safety Division
+Noel M. Rogales Jr., Regular, Public Safety Division
+Katrin Athea R. Rojo, FPE, OVP for Legal Affairs Group
+Christian G. Romero, FPE, Public Safety Division
+Cloyd C. Romero, Regular, Human Resources Division
+Joselito J. Romero, Regular, Special Concerns Division
+Eric S. Rondolo, Regular, Investment Promotions Division II
+Jeffrey C. Roque, Regular, Public Safety Division
+Lea M. Roque, Regular, Communications Division
+Donny B. Rosales, Regular, Building and Facilities Maintenance Division
+Sarah E. Rucks, Regular, Health and Sanitation Division
+Vincen A. Rufino, FPE, Public Safety Division
+Benjamin B. Ruiz, Regular, Health and Sanitation Division
+Joseph Philip L. Sagaral, FPE, Purchasing Division
+Lani C. Sagmit, Regular, Trade Facilitation Division
+Arnold H. Salac, Regular, Assets Management Division
+Manolito G. Salazar, Regular, Public Safety Division
+Carlo R. Salunga, Regular, Public Safety Division
+Relly Boy M. Salvador, FPE, Assets Management Division
+Ain S. Samson, FPE, Public Safety Division
+Rameses V. Samson, Regular, Assets Management Division
+Walter A. San Diego, Regular, Corporate Planning Division
+Ena Rizia P. San Andres, Regular, Investment Promotions Division II
+Igal Jada P. San Andres, Regular, Tourism Promotions Division
+Maria Cecilia B. San Diego, Regular, Board Secretariat
+Carmen Sofia R. San Juan, Regular, Tourism Promotions Division
+Elijah Jhon S. Sanchez, PBE, Property Management Division
+Eric A. Sanchez, Regular, Environmental Permits Division
+Gerson D. Sanchez, Regular, Public Safety Division
+Joemar N. Sanchez, Regular, Human Resources Division
+Robbie L. Sanchez, Regular, Building and Facilities Maintenance Division
+Krishane C. Sandajan, PBE, Accounting Division
+Edwin B. Sangab, Regular, Environmental Permits Division
+Burt O. Santiago, Regular, Tourism Promotions Division
+Hazel D. Santioque, Regular, Investment Promotions Division II
+Edwin R. Santos, Regular, Trade Facilitation Division
+Eliza L. Santos, Regular, Investment Promotions Division I
+Glenn P. Santos, Regular, Property Management Division
+Jean Ines Q. Santos, Regular, Trade Facilitation Division
+Jedd Hansel D. Santos, Regular, Assets Management Division
+Jovilen G. Santos, Regular, Assets Management Division
+Senen G. Santos, Regular, Trade Facilitation Division
+Tito C. Santos, Regular, Building and Facilities Maintenance Division
+Rodelio A. Sapnu, Regular, Public Safety Division
+Lina C. Sarmiento, Regular, Security Services Group
+Michael F. Sarmiento, Regular, Public Safety Division
+Edgar P. Sebastian, Regular, Public Safety Division
+Ronie B. Sebastian, Regular, Board Secretariat
+Dennis T. Segovia, Regular, Building and Facilities Maintenance Division
+Albert Sebastian D. Sembrano, Regular, Purchasing Division
+Kim Julianne B. Sena, FPE, Information Technology Department
+Ariel E. Senapilo, Regular, Public Safety Division
+Louie H. Sendin, Regular, Public Safety Division
+Jiean Carlo M. Serrano, PBE, Tourism Promotion Division
+June G. Serrano, Regular, Public Safety Division
+Arnold P. Sibug, Regular, Construction Management Division
+Anthony D. Sicat, Regular, Trade Facilitation Division
+Eugene B. Sicat, Regular, Accounting Division
+Joan Marie A. Sicat, Regular, Trade Facilitation Division
+Rhea S. Sicat, Regular, Accounting Division
+Jose S. Sigua, Regular, Building and Facilities Maintenance Division
+Sbe B. Simbahan, Regular, Investment Promotions Division II
+Marlo D. Simbol, Regular, Public Safety Division
+Erickson L. Simon, FPE, Public Safety Division
+Christopher L. Siron, Regular, Human Resources Division
+Jerome B. Sison, Regular, Assets Management Division
+Jewel M. Sison, FPE, Tourism Promotion Division
+Clarisa Bianca M. Soliman, Regular, ESG/Infrastructure Planning Section
+Neil R. Somera, Regular, Public Safety Division
+Rachel Lance G. Somera, Regular, Tourism Promotions Division
+Rommel A. Sorbito, Regular, Building and Facilities Permits Division
+Arvin L. Soriano, Regular, Construction Management Division
+Catherine Rose C. Soriano, Regular, Tourism Promotions Division
+Ronald G. Soriano, Regular, Construction Management Division
+Rogel T. Sorriano, Regular, Building and Facilities Permits Division
+Michael S. Sotto, Regular, Building and Facilities Maintenance Division
+Dennis R. Sta. Maria, Regular, Communications Division
+Niel G. Suanque, PBE, Public Safety Division
+Darwin C. Suerte, Regular, Health and Sanitation Division
+Alberto M. Suller Jr., Regular, Records Management Division
+Mylyn Sunga, Regular, Public Safety Division
+Lou Errol D. Supan, Regular, Records Management Division
+Bryan G. Surla, FPE, Public Safety Division
+Reynold D. Susa, Regular, Building and Facilities Permits Division
+Preciosa Camille S. Tabion, PBE, External Affairs Department
+Archie A. Tadifa, Regular, Building and Facilities Maintenance Division
+Collen Leila M. Tafalla, Regular, Tourism Promotions Division
+Jeffrey P. Taguinod, Regular, Public Safety Division
+Ronaldo G. Talo, Regular, Building and Facilities Permits Division
+Daniel Joseph M. Tan, Regular, ESG/Infrastructure Planning Section
+Leoncio L. Tan, Regular, Building and Facilities Permits Division
+Karriza Dawn P. Tandang, Regular, Health and Sanitation Division
+Ayron S. Tanglao, Regular, Trade Facilitation Division
+Florante G. Tanhueco Jr., Regular, Purchasing Division
+Ricardo C. Tanquilut Jr., Regular, Building and Facilities Permits Division
+Bonifacio O. Tarenio Jr., Regular, Administration Department
+Gloria Victoria Y. Taruc, Regular, Legal Affairs Group
+Antonio M. Tayag, Regular, Investment Promotions Division II
+Bernard D. Tayag, Regular, Public Safety Division
+Maria Jennifer S. Tayag, Regular, Corporate Planning Division
+Nikko P. Tayag, PBE, Public Safety Division
+Rhoneil A. Tayag, Regular, Treasury Division
+Danilo S. Tecson, Regular, Property Management Division
+Angelito L. Tero, Regular, Assets Management Division
+Angelo B. Tero, Regular, Trade Facilitation Division
+Marcelino R. Tiamzon Jr., Regular, Public Safety Division
+Edison J. Timpug, Regular, Assets Management Division
+Venus V. Timpug, Regular, CSR and Placement Division
+Erico P. Tinio, FPE, Assets Management Division
+Angelo N. Tiotuico, Regular, Environmental Permits Division
+Anna Marie N. Tiotuico, Regular, Assets Management Division
+Tarcisius T. Tiotuyco, Regular, Corporate Planning Division
+Teresito T. Tiotuyco, Regular, Engineering Services Group
+Elizabeth M. Tiria, Regular, Public Safety Division
+Aira Jade B. Tolentino, PBE, Public Safety Division
+James Bryan G. Tolentino, PBE, Public Safety Division
+Jamille S. Tolentino, Regular, CSR and Placement Division
+Joanne Bernadette A. Tolentino, Regular, Tourism Promotions Division
+Paolo Gabriel M. Tolentino, PBE, Public Safety Division
+Wilgien Mark G. Tolentino, Regular, Tourism Promotions Division
+Ronino R. Tom, Regular, Public Safety Division
+Kamille Ann M. Tongol, Regular, Accounting Division
+Lady Dianne G. Tongol, Regular, Health and Sanitation Division
+Ansly T. Torio, Regular, Public Safety Division
+Perlito P. Torres, Regular, Information Technology Department
+Greg A. Tubil, Regular, Public Safety Division
+Calvin Ian R. Turla, Regular, Building and Facilities Permits Division
+Jarold T. Turla, Regular, Public Safety Division
+Lucita C. Turla, Regular, Investment Promotions Division I
+Rainhel B. Ubas, Regular, Public Safety Division
+Maria Samantha P. Umali, Regular, Internal Audit Division
+Eddie D. Unato Jr., Regular, Public Safety Division
+Sydric R. Urfano, Regular, Assets Management Division
+Emilio C. Valencia Jr., FPE, Assets Management Division
+Belinda G. Valencia, Regular, Public Safety Division
+Julianne Anthea R. Valerio, Regular, ESG/Infrastructure Planning Section
+Neo Y. Valerio, Regular, Corporate Services Division
+Roel M. Vargas, Regular, Public Safety Division
+Kris Camille S. Venzon, Regular, Public Safety Division
+Marline S. Victoria, Regular, Accounting Division
+Ronald H. Victoria, Regular, Building and Facilities Permits Division
+Veronica P. Victoria, Regular, Treasury Division
+Carl Joshua D. Villanueva, Regular, Building and Facilities Permits Division
+Francis Arnold G. Villanueva, Regular, Public Safety Division
+Maynard D. Villanueva, Regular, Treasury Division
+Jessica M. Villapaña, Regular, Public Safety Division
+Marie Jane T. Vino, Regular, Accounting Division
+Noel A. Viray, Regular, Records Management Division
+Marie Antonette G. Vitug, Regular, Building and Facilities Maintenance Division
+Aaron D. Wong, Regular, Records Management Division
+Genesis L. Yabut, Regular, Trade Facilitation Division
+Walter D. Yalung, Regular, Assets Management Division
+Danica C. Yanga, Regular, Public Safety Division
+Benjamin C. Yatar, Regular, Assets Management Division
+Anlord Z. Yñigo, Regular, Public Safety Division
+Ariel C. Yumul, Regular, Public Safety Division
+Christopher Q. Yusi, Regular, Assets Management Division
+Rachelle S. Yusi, Regular, Human Resources Division
+Arnel D. Zamora, Regular, Building and Facilities Maintenance Division
+Alvin D. Zapata, Regular, Health and Sanitation Division
+Michael E. Zulueta, Regular, Public Safety Division`;
+
+    // DOM ELEMENTS
+    const DOM = {
+      btnSpin: document.getElementById('btn-spin'),
+      countTotal: document.getElementById('count-total'),
+      countBoarded: document.getElementById('count-boarded'),
+      chkRemoveWinner: document.getElementById('chk-remove-winner'),
+      winnersLog: document.getElementById('winners-log'),
+      btnExportWinners: document.getElementById('btn-export-winners'),
+      tickerTrack: document.getElementById('ticker-track'),
+      chkShowStats: document.getElementById('chk-show-stats'),
+      statsBoard: document.querySelector('.stats-board'),
+      btnAudio: document.getElementById('btn-audio'),
+      btnSnow: document.getElementById('btn-snow'),
+      btnSettings: document.getElementById('btn-settings'),
+      settingsModal: document.getElementById('settings-modal'),
+      btnCloseSettings: document.getElementById('btn-close-settings'),
+      winnerModal: document.getElementById('winner-modal'),
+      btnCloseModal: document.getElementById('btn-close-modal'),
+      modalName: document.getElementById('modal-name'),
+      modalDept: document.getElementById('modal-dept'),
+      santaSeal: document.getElementById('santa-seal'),
+      confettiCanvas: document.getElementById('confetti-canvas'),
+      snowCanvas: document.getElementById('snow-canvas')
+    };
+
+    let pool = [];
+    let winners = [];
+    let audioEnabled = true;
+    let snowEnabled = true;
+    let isSpinning = false;
+
+    // PARSE PARTICIPANTS CSV DATA
+    function initializePool() {
+      const lines = PARTICIPANTS_CSV_DATA.trim().split('\n');
+      pool = [];
+      lines.forEach(line => {
+        const parts = line.split(/[,;\t]/).map(s => s.trim());
+        if (parts.length >= 1 && parts[0]) {
+          pool.push({
+            id: Math.random().toString(36).substring(2, 11),
+            name: parts[0],
+            dept: parts[parts.length - 1] || 'General CDC Staff',
+            ticketNo: 'XMAS-' + Math.floor(1000 + Math.random() * 9000)
+          });
+        }
+      });
+      updateCounts();
+      setupInitialTickerTrack();
+      if (pool.length > 0) DOM.btnSpin.disabled = false;
+    }
+
+    function updateCounts() {
+      DOM.countTotal.textContent = pool.length;
+      DOM.countBoarded.textContent = winners.length;
+    }
+
+    // CHRISTMAS CARD HTML TEMPLATE (Matches original raffle card layout structure)
+    function createChristmasCardHTML(entry, isWinnerPlaceholder = false) {
+      if (!entry) {
+        entry = { id: '00', name: 'Participant', dept: 'CDC Staff', ticketNo: 'XMAS-2026' };
+      }
+      return `
+    <div class="christmas-card ${isWinnerPlaceholder ? 'winner-placeholder' : ''}" data-id="${entry.id || '0'}">
+      <div class="card-top-tag">
+        <span>🎄 HOLIDAY TICKET</span>
+        <span class="card-holiday-badge">${entry.ticketNo || 'XMAS-2026'}</span>
+      </div>
+      <div class="card-body">
+        <span class="card-label">PARTICIPANT NAME</span>
+        <div class="card-name" title="${entry.name || ''}">${entry.name || ''}</div>
+        <div>
+          <span class="card-dept">${entry.dept || ''}</span>
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
+    function setupInitialTickerTrack() {
+      if (!pool || pool.length === 0) return;
+      let html = '';
+      const cardTotalWidth = 392; // 360px card + 16px*2 margin
+      const offsetToCenter = cardTotalWidth / 2;
+      const START_POS = 5;
+
+      let shuffledPool = [...pool].sort(() => Math.random() - 0.5);
+      let previewStrip = [];
+      while (previewStrip.length < 25) {
+        previewStrip.push(...shuffledPool);
+        shuffledPool = [...pool].sort(() => Math.random() - 0.5);
+      }
+      previewStrip = previewStrip.slice(0, 25);
+
+      previewStrip.forEach(item => {
+        html += createChristmasCardHTML(item);
+      });
+      DOM.tickerTrack.innerHTML = html;
+
+      // Calculate initial offset. Because .ticker-track is `left: 50%`,
+      // we shift it left by offsetToCenter to perfectly center the first card
+      // then shift it further left by START_POS * cardTotalWidth to align the 6th card.
+      const initialX = -(START_POS * cardTotalWidth) - offsetToCenter;
+      DOM.tickerTrack.style.transition = 'none';
+      DOM.tickerTrack.style.transform = `translateX(${initialX}px)`;
+    }
+
+    // WEB AUDIO SYNTHESIZER (SLEIGH BELLS, CHRISTMAS CHIMES & APPLAUSE)
+    let audioCtx = null;
+
+    function playSleighBellTick() {
+      if (!audioEnabled) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const now = audioCtx.currentTime;
+
+      // Realistic Sleigh Bell Multi-tone Jingle
+      const frequencies = [2400, 3200, 4800];
+      frequencies.forEach(freq => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq + (Math.random() * 200 - 100), now);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      });
+    }
+
+    function playReindeerGallop() {
+      if (!audioEnabled) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const now = audioCtx.currentTime;
+      const gallops = 6;
+      const speed = 0.22;
+
+      for (let i = 0; i < gallops; i++) {
+        const t1 = now + i * speed;
+        const t2 = t1 + 0.08;
+
+        [t1, t2].forEach((time, index) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(index === 0 ? 140 : 100, time);
+          osc.frequency.exponentialRampToValueAtTime(30, time + 0.12);
+
+          gain.gain.setValueAtTime(0.8, time);
+          gain.gain.exponentialRampToValueAtTime(0.001, time + 0.12);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(time);
+          osc.stop(time + 0.12);
+        });
+      }
+    }
+
+    function playChristmasVictoryFanfare() {
+      if (!audioEnabled) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      // Christmas Victory Arpeggio (C5 -> E5 -> G5 -> C6 -> E6)
+      const fanfareNotes = [
+        { freq: 523.25, time: 0, duration: 0.25 },
+        { freq: 659.25, time: 0.1, duration: 0.25 },
+        { freq: 783.99, time: 0.2, duration: 0.3 },
+        { freq: 1046.50, time: 0.32, duration: 0.4 },
+        { freq: 1318.51, time: 0.5, duration: 1.0 }
+      ];
+
+      fanfareNotes.forEach(n => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(n.freq, audioCtx.currentTime + n.time);
+
+        gain.gain.setValueAtTime(0.4, audioCtx.currentTime + n.time);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + n.time + n.duration);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(audioCtx.currentTime + n.time);
+        osc.stop(audioCtx.currentTime + n.time + n.duration);
+      });
+    }
+
+    function playApplauseClapSound() {
+      if (!audioEnabled) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const masterGain = audioCtx.createGain();
+      masterGain.gain.setValueAtTime(1.1, audioCtx.currentTime);
+      masterGain.connect(audioCtx.destination);
+
+      const totalClaps = 150;
+      for (let i = 0; i < totalClaps; i++) {
+        const timeOffset = Math.pow(Math.random(), 0.8) * 2.5;
+        const bufferSize = Math.floor(audioCtx.sampleRate * 0.04);
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let j = 0; j < bufferSize; j++) {
+          data[j] = Math.random() * 2 - 1;
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 800 + Math.random() * 1600;
+        filter.Q.value = 1.5;
+
+        const gain = audioCtx.createGain();
+        const startTime = audioCtx.currentTime + timeOffset;
+
+        gain.gain.setValueAtTime(0.7 + Math.random() * 0.3, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.038);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(masterGain);
+
+        noise.start(startTime);
+        noise.stop(startTime + 0.04);
+      }
+
+      // Jingle Bells Melody overlay for maximum joy
+      const jingleNotes = [
+        { freq: 659.25, time: 0 }, { freq: 659.25, time: 0.2 }, { freq: 659.25, time: 0.4 },
+        { freq: 659.25, time: 0.8 }, { freq: 659.25, time: 1.0 }, { freq: 659.25, time: 1.2 },
+        { freq: 659.25, time: 1.6 }, { freq: 783.99, time: 1.8 }, { freq: 523.25, time: 2.0 }, { freq: 587.33, time: 2.2 },
+        { freq: 659.25, time: 2.4 }
+      ];
+
+      jingleNotes.forEach(n => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(n.freq, audioCtx.currentTime + n.time);
+        gain.gain.setValueAtTime(0.4, audioCtx.currentTime + n.time);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + n.time + 0.4);
+        osc.connect(gain);
+        gain.connect(masterGain);
+        osc.start(audioCtx.currentTime + n.time);
+        osc.stop(audioCtx.currentTime + n.time + 0.4);
+      });
+    }
+
+    function playStampImpactSound() {
+      if (!audioEnabled) return;
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const now = audioCtx.currentTime;
+
+      const thudOsc = audioCtx.createOscillator();
+      const thudGain = audioCtx.createGain();
+
+      thudOsc.type = 'sine';
+      thudOsc.frequency.setValueAtTime(180, now);
+      thudOsc.frequency.exponentialRampToValueAtTime(30, now + 0.09);
+
+      thudGain.gain.setValueAtTime(0.85, now);
+      thudGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+
+      thudOsc.connect(thudGain);
+      thudGain.connect(audioCtx.destination);
+      thudOsc.start(now);
+      thudOsc.stop(now + 0.1);
+    }
+
+    // SPIN ANIMATION WITH SMOOTH DECELERATION & NODE REORDERING
+    function spin(isTestMode = false) {
+      if (pool.length === 0) initializePool();
+      if (pool.length === 0 || isSpinning) return;
+      isSpinning = true;
+      DOM.btnSpin.disabled = true;
+
+      playReindeerGallop();
+
+      const winnerIndex = Math.floor(Math.random() * pool.length);
+      const winner = pool[winnerIndex];
+
+      const safePool = pool.filter(p => p && p.name);
+      if (safePool.length === 0) return;
+
+      const durInput = parseFloat(document.getElementById('spin-duration').value);
+      const totalDuration = isNaN(durInput) || durInput <= 0 ? 10000 : durInput * 1000;
+
+      const cardTotalWidth = 392;
+      const offsetToCenter = cardTotalWidth / 2;
+      const START_POS = 5;
+
+      const TOTAL_CARDS_IN_SPIN = 70;
+      const WINNER_CARD_INDEX = TOTAL_CARDS_IN_SPIN;
+
+      const targetScrollDistance = WINNER_CARD_INDEX * cardTotalWidth;
+      const initialX = -(START_POS * cardTotalWidth) - offsetToCenter;
+      const randomOffset = (Math.random() * 120) - 60;
+
+      let cyclePool = [...safePool].sort(() => Math.random() - 0.5);
+      let currentWindow = [];
+      while (currentWindow.length < 25) {
+        currentWindow.push(...cyclePool);
+        cyclePool = [...safePool].sort(() => Math.random() - 0.5);
+      }
+      currentWindow = currentWindow.slice(0, 25);
+
+      let html = '';
+      currentWindow.forEach(item => {
+        html += createChristmasCardHTML(item);
+      });
+      DOM.tickerTrack.innerHTML = html;
+      DOM.tickerTrack.style.transition = 'none';
+      DOM.tickerTrack.style.transform = `translateX(${initialX}px)`;
+
+      let nextCardIndexToAppend = 25;
+      let lastCardsPassed = 0;
+      const startTime = performance.now();
+
+      function getProgress(s) {
+        if (s <= 0) return 0;
+        if (s >= 1) return 1;
+        if (s < 0.06) {
+          const t = s / 0.06;
+          return 0.0335 * (t * t);
+        } else if (s <= 0.80) {
+          const t = (s - 0.06) / 0.74;
+          return 0.0335 + 0.8615 * t;
+        } else {
+          const t = (s - 0.80) / 0.20;
+          const easeOut = t * (2 - t);
+          return 0.895 + 0.105 * easeOut;
+        }
+      }
+
+      function spinStep(now) {
+        if (!isSpinning) return;
+        const elapsed = now - startTime;
+        const s = Math.min(elapsed / totalDuration, 1.0);
+
+        const progress = getProgress(s);
+        const distanceTraveled = (targetScrollDistance + randomOffset) * progress;
+
+        const localOffset = distanceTraveled % cardTotalWidth;
+        const currentX = initialX - localOffset;
+
+        DOM.tickerTrack.style.transition = 'none';
+        DOM.tickerTrack.style.transform = `translateX(${currentX}px)`;
+
+        const cardsPassed = Math.floor(distanceTraveled / cardTotalWidth);
+        if (cardsPassed > lastCardsPassed) {
+          const steps = cardsPassed - lastCardsPassed;
+          for (let i = 0; i < steps; i++) {
+            const cardToMove = DOM.tickerTrack.firstElementChild;
+            if (cardToMove) {
+              DOM.tickerTrack.appendChild(cardToMove);
+
+              let nextItem;
+              let isWinnerCard = false;
+
+              if (nextCardIndexToAppend === WINNER_CARD_INDEX + START_POS) {
+                nextItem = winner;
+                isWinnerCard = true;
+              } else {
+                nextItem = cyclePool[nextCardIndexToAppend % cyclePool.length];
+              }
+
+              const nameEl = cardToMove.querySelector('.card-name');
+              const deptEl = cardToMove.querySelector('.card-dept');
+              if (nameEl) {
+                nameEl.textContent = nextItem.name || '';
+                nameEl.title = nextItem.name || '';
+              }
+              if (deptEl) {
+                deptEl.textContent = nextItem.dept || '';
+              }
+              cardToMove.setAttribute('data-id', nextItem.id || '0');
+
+              // Do not highlight winner during spin for suspense
+              cardToMove.classList.remove('winner-placeholder', 'winner-active');
+
+              nextCardIndexToAppend++;
+              playSleighBellTick();
+            }
+          }
+          lastCardsPassed = cardsPassed;
+        }
+
+        if (s < 1.0) {
+          requestAnimationFrame(spinStep);
+        } else {
+          isSpinning = false;
+          const cards = DOM.tickerTrack.querySelectorAll('.christmas-card');
+          cards.forEach(c => {
+            if (c.getAttribute('data-id') === (winner.id || '0')) {
+              c.classList.add('winner-active');
+            }
+          });
+
+          playChristmasVictoryFanfare();
+          showWinnerModal(winner, winnerIndex, isTestMode);
+
+          if (pool.length > 0) {
+            DOM.btnSpin.disabled = false;
+          }
+        }
+      }
+
+      requestAnimationFrame(spinStep);
+    }
+
+    // WINNER REVEAL MODAL
+    function showWinnerModal(winner, winnerIndex, isTestMode = false) {
+      if (!isTestMode) {
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        winners.push({ ...winner, timestamp });
+
+        if (DOM.chkRemoveWinner.checked) {
+          const idx = pool.findIndex(p => p.name === winner.name);
+          if (idx !== -1) {
+            pool.splice(idx, 1);
+          }
+        }
+
+        renderWinnersLog();
+        updateCounts();
+      }
+
+      DOM.modalName.textContent = winner.name;
+      DOM.modalDept.textContent = winner.dept + (isTestMode ? " (TEST DEMO)" : "");
+      DOM.santaSeal.classList.remove('stamped');
+      DOM.santaSeal.innerHTML = isTestMode ? "TEST<br>DRAW<br>★ DEMO ★" : "SANTA<br>APPROVED<br>★ 2026 ★";
+
+      DOM.winnerModal.classList.add('active');
+      launchConfetti();
+      playApplauseClapSound();
+
+      setTimeout(() => {
+        DOM.santaSeal.classList.add('stamped');
+        playStampImpactSound();
+      }, 400);
+    }
+
+    function renderWinnersLog() {
+      DOM.winnersLog.innerHTML = '';
+      [...winners].reverse().forEach(w => {
+        const el = document.createElement('div');
+        el.className = 'winner-log-item';
+        el.innerHTML = `
+      <div>
+        <strong>${w.name}</strong>
+        <div style="font-size:0.75rem; color:var(--xmas-green);">${w.dept}</div>
+      </div>
+      <span style="font-family:monospace; font-size:0.75rem; color:var(--text-muted);">${w.timestamp}</span>
+    `;
+        DOM.winnersLog.appendChild(el);
+      });
+      DOM.btnExportWinners.disabled = winners.length === 0;
+    }
+
+    function exportWinnersCSV() {
+      if (winners.length === 0) return;
+      let csv = "Participant Name,Department,Winning Time\n";
+      winners.forEach(w => {
+        csv += `"${w.name}","${w.dept}","${w.timestamp}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.setAttribute('download', `Christmas_Raffle_Winners_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // CANVAS SNOWFALL SYSTEM
+    const snowCtx = DOM.snowCanvas.getContext('2d');
+    let snowflakes = [];
+    let snowAnimId = null;
+
+    function resizeSnowCanvas() {
+      DOM.snowCanvas.width = window.innerWidth;
+      DOM.snowCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeSnowCanvas);
+    resizeSnowCanvas();
+
+    function createSnowflakes() {
+      snowflakes = [];
+      const count = 120;
+      for (let i = 0; i < count; i++) {
+        snowflakes.push({
+          x: Math.random() * DOM.snowCanvas.width,
+          y: Math.random() * DOM.snowCanvas.height,
+          r: Math.random() * 3.5 + 1.2,
+          d: Math.random() * 1 + 0.5,
+          sway: Math.random() * Math.PI * 2,
+          swaySpeed: Math.random() * 0.02 + 0.008,
+          opacity: Math.random() * 0.7 + 0.3
+        });
+      }
+    }
+
+    function renderSnowfall() {
+      if (!snowEnabled) return;
+      snowCtx.clearRect(0, 0, DOM.snowCanvas.width, DOM.snowCanvas.height);
+
+      snowCtx.fillStyle = '#ffffff';
+      snowflakes.forEach(p => {
+        snowCtx.save();
+        snowCtx.globalAlpha = p.opacity;
+        snowCtx.beginPath();
+        snowCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2, false);
+        snowCtx.fill();
+        snowCtx.restore();
+
+        p.y += p.d;
+        p.sway += p.swaySpeed;
+        p.x += Math.sin(p.sway) * 0.8;
+
+        if (p.y > DOM.snowCanvas.height) {
+          p.y = -10;
+          p.x = Math.random() * DOM.snowCanvas.width;
+        }
+      });
+
+      snowAnimId = requestAnimationFrame(renderSnowfall);
+    }
+
+    function toggleSnow() {
+      snowEnabled = !snowEnabled;
+      DOM.btnSnow.classList.toggle('active-toggle', snowEnabled);
+      DOM.btnSnow.textContent = snowEnabled ? '❄️' : '🧊';
+      if (snowEnabled) {
+        renderSnowfall();
+      } else {
+        if (snowAnimId) cancelAnimationFrame(snowAnimId);
+        snowCtx.clearRect(0, 0, DOM.snowCanvas.width, DOM.snowCanvas.height);
+      }
+    }
+
+    // CANVAS CONFETTI SYSTEM
+    const confettiCtx = DOM.confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+    let confettiId = null;
+
+    function resizeConfettiCanvas() {
+      DOM.confettiCanvas.width = window.innerWidth;
+      DOM.confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfettiCanvas);
+    resizeConfettiCanvas();
+
+    function launchConfetti() {
+      confettiParticles = [];
+      const colors = ['#f59e0b', '#ef4444', '#10b981', '#ffffff', '#fbbf24', '#f43f5e'];
+      for (let i = 0; i < 160; i++) {
+        confettiParticles.push({
+          x: Math.random() * DOM.confettiCanvas.width,
+          y: Math.random() * (DOM.confettiCanvas.height * 0.5) - 50,
+          r: Math.random() * 6 + 3,
+          dx: Math.random() * 4 - 2,
+          dy: Math.random() * 4 + 2,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          tilt: Math.random() * 10,
+          shape: Math.random() > 0.5 ? 'circle' : 'square'
+        });
+      }
+      if (confettiId) cancelAnimationFrame(confettiId);
+      drawConfetti();
+
+      setTimeout(() => {
+        stopConfetti();
+      }, 3500);
+    }
+
+    function drawConfetti() {
+      confettiCtx.clearRect(0, 0, DOM.confettiCanvas.width, DOM.confettiCanvas.height);
+      confettiParticles.forEach((p) => {
+        p.y += p.dy;
+        p.x += p.dx;
+        p.tilt += 0.1;
+
+        confettiCtx.beginPath();
+        confettiCtx.fillStyle = p.color;
+
+        confettiCtx.translate(p.x, p.y);
+        confettiCtx.rotate(p.tilt);
+
+        if (p.shape === 'circle') {
+          confettiCtx.arc(0, 0, p.r, 0, Math.PI * 2);
+        } else {
+          confettiCtx.rect(-p.r, -p.r, p.r * 2, p.r * 2);
+        }
+
+        confettiCtx.fill();
+        confettiCtx.resetTransform();
+      });
+
+      if (confettiParticles.some(p => p.y < DOM.confettiCanvas.height)) {
+        confettiId = requestAnimationFrame(drawConfetti);
+      } else {
+        confettiCtx.clearRect(0, 0, DOM.confettiCanvas.width, DOM.confettiCanvas.height);
+      }
+    }
+
+    function stopConfetti() {
+      if (confettiId) cancelAnimationFrame(confettiId);
+      confettiCtx.clearRect(0, 0, DOM.confettiCanvas.width, DOM.confettiCanvas.height);
+    }
+
+    // EVENT LISTENERS & SHORTCUTS
+    DOM.btnSpin.addEventListener('click', () => spin(false));
+    DOM.btnSnow.addEventListener('click', toggleSnow);
+
+    const headerTitle = document.getElementById('header-title');
+    const headerSubtitle = document.getElementById('header-subtitle');
+    const inputHeaderTitle = document.getElementById('input-header-title');
+    const inputHeaderSubtitle = document.getElementById('input-header-subtitle');
+
+    inputHeaderTitle.addEventListener('input', (e) => {
+      headerTitle.textContent = e.target.value;
+      document.title = `${e.target.value} 🎄 Grand Holiday Raffle`;
+    });
+
+    inputHeaderSubtitle.addEventListener('input', (e) => {
+      headerSubtitle.textContent = e.target.value;
+    });
+
+    DOM.btnSettings.addEventListener('click', () => DOM.settingsModal.classList.add('active'));
+    DOM.btnCloseSettings.addEventListener('click', () => DOM.settingsModal.classList.remove('active'));
+    DOM.btnCloseModal.addEventListener('click', () => {
+      DOM.winnerModal.classList.remove('active');
+      stopConfetti();
+    });
+    DOM.btnExportWinners.addEventListener('click', exportWinnersCSV);
+
+    DOM.btnAudio.addEventListener('click', () => {
+      audioEnabled = !audioEnabled;
+      DOM.btnAudio.textContent = audioEnabled ? '🔊' : '🔇';
+    });
+
+    DOM.chkShowStats.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        DOM.statsBoard.classList.add('show');
+      } else {
+        DOM.statsBoard.classList.remove('show');
+      }
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => console.log(err));
+      } else {
+        document.exitFullscreen().catch(err => console.log(err));
+      }
+    });
+
+    // Keyboard shortcuts (SPACE to spin, ESC to close modal)
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && !isSpinning && !DOM.settingsModal.classList.contains('active') && !DOM.winnerModal.classList.contains('active')) {
+        e.preventDefault();
+        spin(false);
+      }
+      if (e.code === 'Escape') {
+        DOM.settingsModal.classList.remove('active');
+        DOM.winnerModal.classList.remove('active');
+        stopConfetti();
+      }
+    });
+
+    // INITIALIZE APP ON LOAD
+    window.addEventListener('DOMContentLoaded', () => {
+      initializePool();
+      createSnowflakes();
+      renderSnowfall();
+    });
+  </script>
+</body>
+
+</html>
